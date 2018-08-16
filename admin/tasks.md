@@ -1,11 +1,15 @@
 # COMP1110 Assignment 2 Group Tasks
+Roles:
+Zhi Wang;
+Xiang Li;
+Ning Cai(fork);
 
 For each task or sub-task, record who is responsible, the deadline, and any dependencies.
 Use the entries below as an example.
 
 ## Week 4
 
-Everyone: create application skeleton - meeting 14:00 17 Aug
+meeting 14:05 17 Aug
 
 ## Week 5
 
