@@ -9,7 +9,7 @@ Use the entries below as an example.
 
 ## Week 4
 
-meeting 14:05 17 Aug
+meeting 14:00 19 Aug  In CF Level2.
 
 ## Week 5
 
