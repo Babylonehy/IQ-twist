@@ -1,8 +1,8 @@
 # COMP1110 Assignment 2 Group Tasks
 Roles:
-Zhi Wang;
-Xiang Li;
-Ning Cai(fork);
+Zhi Wang(u6171870);   
+Xiang Li(u6716878);
+Ning Cai(u6456964)(admin);
 
 For each task or sub-task, record who is responsible, the deadline, and any dependencies.
 Use the entries below as an example.
