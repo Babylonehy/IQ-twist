@@ -12,13 +12,13 @@ Use the entries below as an example.
 meeting 14:00 19 Aug  In CF Level2.
 Key: Distribute Tasks.
 
-# Week4 Meeting Message:
+#### Week4 Meeting Message:
 
 Room: 3.36
 Building: Hancock Library (Level 3, Hancock West)
 Time: Sunday, 19 August 2018: 15:00 - 17:00
 
-## Prepare For Week4 meeting:
+#### Prepare For Week4 meeting:
 The topic of is meeting is :
 1.    Discuss the Class which may be used in the game.
 2.  Discuss the main method of each Class.
