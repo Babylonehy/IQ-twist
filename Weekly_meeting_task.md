@@ -14,5 +14,6 @@ TODO list:
 1. Reading the description of ass2.
 2. Prepare your version of this game, Include Class and main methods. (Don't do this in meeting time！ Please finished this task before the meeting!)  You can refer to the design of ass1.
 3. Watch the [How to video](https://cs.anu.edu.au/courses/comp1110/help/mp4/gitexercise.mp4), know how to use Gitlab to help our group work.
+4. Preview Task2-5, This is important for us to understand our work.
 
 # Week5 Meeting Message:
