@@ -28,6 +28,9 @@ Time: Sunday, 19 August 2018: 15:00 - 17:00
 3. Watch the [How to video](https://cs.anu.edu.au/courses/comp1110/help/mp4/gitexercise.mp4), know how to use Gitlab to help our group work.
 4. Preview Task2-5, propose some solutions about this taskThis is important for us to understand our work.
 
+**Meeting Memo**  
+![TwistGameXmind](https://github.com/Babylonehy/comp1110-ass2-thu18a/blob/master/Meetingmemo/TwistGame.png)  
+
 ## Week 5
 
 
