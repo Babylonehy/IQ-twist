@@ -29,7 +29,7 @@ Time: Sunday, 19 August 2018: 15:00 - 17:00
 4. Preview Task2-5, propose some solutions about this taskThis is important for us to understand our work.
 
 #### Week4 Meeting Memo:
-![TwistGameXmind](admin/MeetingMemo/TwistGameXmind.png)  
+![TwistGameXmind](admin/MeetingMemo/TwistGame.png)  
 
 **TODO list**
 1. Based on this version above, provide more detailed design about Class or Method.
