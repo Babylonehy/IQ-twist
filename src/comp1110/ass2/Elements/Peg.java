@@ -9,7 +9,7 @@ import java.lang.reflect.Type;
  * Last modify: 2018-08-21 16:11:05 by Sean
  */
 
-
+//TODO Finished this commit about this class
 public class Peg {
 
     private  char type;
