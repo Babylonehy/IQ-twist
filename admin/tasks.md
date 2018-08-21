@@ -1,8 +1,8 @@
 # COMP1110 Assignment 2 Group Tasks
-Roles:
+Roles:  
 Zhi Wang(u6171870);   
-Xiang Li(u6716878);
-Ning Cai(u6456964)(admin);
+Xiang Li(u6716878);  
+Ning Cai(u6456964)(admin);   
 
 For each task or sub-task, record who is responsible, the deadline, and any dependencies.
 Use the entries below as an example.
@@ -27,6 +27,21 @@ Time: Sunday, 19 August 2018: 15:00 - 17:00
 2. Prepare your version of this game, Include Class and main methods. (Don't do this in meeting time！ Please finished this task before the meeting!)  You can refer to the design of ass1.
 3. Watch the [How to video](https://cs.anu.edu.au/courses/comp1110/help/mp4/gitexercise.mp4), know how to use Gitlab to help our group work.
 4. Preview Task2-5, propose some solutions about this taskThis is important for us to understand our work.
+
+#### Week4 Meeting Memo:
+![TwistGameXmind](admin/MeetingMemo/TwistGame.png)  
+
+**TODO list**
+1. Based on this version above, provide more detailed design about Class or Method.
+You can edit [this version](http://naotu.baidu.com/file/edcd1e638b97dddadaf72d6ad2e4e33c?token=4905a6679e76fb0c) online. 
+2. Propose your TwistGameXmind version;
+3. Decide which can be retained and which should add.
+4. Final design Version.
+
+Hope we can get  Final Version tomorrow(Mon 20/8/2018) night. We can discuss the specifical online-meeting time in Wechat.
+
+**Task Distribution**  
+
 
 ## Week 5
 
