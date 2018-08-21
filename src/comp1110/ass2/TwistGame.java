@@ -8,7 +8,8 @@ import java.util.Set;
  * The game is based directly on Smart Games' IQ-Twist game
  * (http://www.smartgames.eu/en/smartgames/iq-twist)
  */
-public class TwistGame {
+public class
+TwistGame {
 
   /**
    * Determine whether a piece or peg placement is well-formed according to the following:
