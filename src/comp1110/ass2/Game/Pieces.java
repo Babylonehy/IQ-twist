@@ -10,7 +10,7 @@ import comp1110.ass2.Elements.PiecesType;
  *This class will produce all the 64 pieces used.
  * All the change based on PiecesType.
  *
- * Last modify: 2018-08-21 16:15:41 by Sean
+ * Last modify: 2018-08-22 02:54:19 by Stella
  */
 
 public class Pieces {
@@ -29,13 +29,19 @@ public class Pieces {
     }
 
     /**
-     * This method flip piece to another side.
-     * @param pieces From PiecesType, Must after Rotation  pieces, 7x7
+     * This method rotates pieces by 90, 180, 270, 360 in clockwise.
+     * @param pieces From PiecesType,  Rotated and flipped pieces, 7x7
      * @return A set new rotated and fliped Pieces.
      */
     private static int[][] flipPieces(int [][] pieces){
         return null;
     }
+
+    /**
+     * The method mirror-flips pieces vertically by 180°.
+     * @param piecesId From PieceType, Must before Rotation pieces, 7×7;
+     * @returnA set new rotated and fliped Pieces.
+     */
 
 
     //TODO add description about this method
