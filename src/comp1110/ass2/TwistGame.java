@@ -32,7 +32,8 @@ TwistGame {
    * - it consists of exactly N four-character piece placements (where N = 1 .. 15);
    * - each piece or peg placement is well-formed
    * - each piece or peg placement occurs in the correct alphabetical order (duplicate pegs can be in either order)
-   * - no piece or red peg appears more than once in the placement
+   * - no piece or red peg appears mor
+   * e than once in the placement
    * - no green, blue or yellow peg appears more than twice in the placement
    *
    * @param placement A string describing a placement of one or more pieces and pegs
