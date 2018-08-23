@@ -29,19 +29,19 @@ public class Pieces {
     }
 
     /**
-     * This method rotates pieces by 90, 180, 270, 360 in clockwise.
-     * @param pieces From PiecesType,  Rotated and flipped pieces, 7x7
-     * @return A set new rotated and fliped Pieces.
+     * The method mirror-flips pieces vertically by 180°.
+     * @param pieces From PieceType, Must before Rotation pieces, 7×7;
+     * @returnA set new rotated and fliped Pieces.
      */
     private static int[][] flipPieces(int [][] pieces){
         return null;
     }
-
     /**
-     * The method mirror-flips pieces vertically by 180°.
-     * @param piecesId From PieceType, Must before Rotation pieces, 7×7;
+     * The method decodes pieces into encode.
+     * @param piecesId From PieceType; Offer to BoardNode.
      * @returnA set new rotated and fliped Pieces.
      */
+
 
 
     //TODO add description about this method

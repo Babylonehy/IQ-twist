@@ -19,6 +19,9 @@ public class Objective {
 
     /**
      * This method offer the challenge level which is input and match the suitable pieces and map for this game.
+     *Choose a new objective, given a challenge level.  The method should select a randomized
+     *objective from the 100 pre-defined solutions, being sure to select an objective with the correct
+     *level of difficulty.
      * @param Startstate Give the suitable information to BoardNode.
      * @param ChallengeNumber The challenge level which is excepted.
      */
@@ -30,15 +33,12 @@ public class Objective {
         this.ChallengeNumber = ChallengeNumber;
     }
 
-    /**
-     *Choose a new objective, given a challenge level.  The method should select a randomized
-     *objective from the 100 pre-defined solutions, being sure to select an objective with the correct
-     *level of difficulty.
-     */
-
 
     //TODO add two method to decode Startstate.
 
+    /**
+     * Initialize the Challenge level with Start state as Challenge Number equal to 1.
+     */
 
     static Objective[] OBJECTIVE={
             new Objective("",1),
