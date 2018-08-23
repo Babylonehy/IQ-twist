@@ -46,7 +46,7 @@ Doing assignment to prototype of 8 different shapes, which combines a 4*4 matrix
     /**
      *
      * @param id a character type id to identify pieces
-     * @return null
+     * @return pieces
      */
     static int[][] makePieces(char id){
         return null;

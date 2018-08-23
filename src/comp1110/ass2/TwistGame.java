@@ -8,8 +8,7 @@ import java.util.Set;
  * The game is based directly on Smart Games' IQ-Twist game
  * (http://www.smartgames.eu/en/smartgames/iq-twist)
  */
-public class
-TwistGame {
+public class TwistGame {
 
   /**
    * Determine whether a piece or peg placement is well-formed according to the following:
@@ -22,9 +21,47 @@ TwistGame {
    * @param piecePlacement A string describing a single piece or peg placement
    * @return True if the placement is well-formed
    */
+  // FIXME Task 2: determine whether a piece or peg placement is well-formed
   public static boolean isPlacementWellFormed(String piecePlacement) {
-    // FIXME Task 2: determine whether a piece or peg placement is well-formed
-    return false;
+    int l = piecePlacement.length();
+    int a = 0;
+    if(l%4 !=0){
+      return false;
+    }else{
+      a = l/4;
+    }
+    if(a==0){
+      return false;
+    }
+    if(piecePlacement ==null){
+      return false;
+    }
+    int[] char1,char2,char3,char4;
+    char1 = new int[8];
+    char2 = new int[8];
+    char3 = new int[8];
+    char4 = new int[8];
+    for(int i = 0;i<a;i++){
+      char1[i]= piecePlacement.charAt(4*i);
+      char2[i]= piecePlacement.charAt(4*i+1);
+      char3[i]= piecePlacement.charAt(4*i+2);
+      char4[i]= piecePlacement.charAt(4*i+3);
+    }
+    for(int i = 0;i<a;i++){
+      if(char1[i]<'a'|| char1[i]>'l'){
+        return false;
+      }
+      if(char2[i] <'1' || char2[i]>'8' ){
+        return false;
+      }
+      if(char3[i]<'A'|| char3[i]>'D'){
+        return false;
+      }
+      if(char4[i]<'0'||char4[i] >'8'){
+        return false;
+      }
+    }
+    return true;
   }
 
   /**
