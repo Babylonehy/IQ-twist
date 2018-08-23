@@ -57,7 +57,7 @@ public class TwistGame {
       if(char3[i]<'A'|| char3[i]>'D'){
         return false;
       }
-      if(char4[i]<'0'||char4[i] >'8'){
+      if(char4[i]<'0'||char4[i] >'7'){
         return false;
       }
     }
