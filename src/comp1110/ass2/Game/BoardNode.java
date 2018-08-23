@@ -22,6 +22,10 @@ public class BoardNode {
     Pieces Piece;
     //TODO add  constructor.
 
+    /**
+     * This method set up the link between node and Peg, Pieces.
+      */
+
     BoardNode(){
 
     }
