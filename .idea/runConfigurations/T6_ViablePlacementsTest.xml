@@ -1,6 +1,6 @@
 <component name="ProjectRunConfigurationManager">
   <configuration default="false" name="T6 ViablePlacementsTest" type="JUnit" factoryName="JUnit">
-    <module name="comp1110-ass2" />
+    <module name="comp1110-ass2-thu18a" />
     <extension name="coverage">
       <pattern>
         <option name="PATTERN" value="comp1110.ass2.*" />

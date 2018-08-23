@@ -25,7 +25,7 @@ import comp1110.ass2.Elements.BoardStatus;
 //TODO Finished this commit about this class
 
 public class BoardNode {
-    private int[] useNoed;
+    private int[] useNode;
     Peg peg;
     Pieces Piece;
     BoardStatus Status;
@@ -48,7 +48,7 @@ public class BoardNode {
      * Nodes can be used
      * @return a int [] include nodes can be used
      */
-    public int[] getUseNoed() {
+    public int[] getUseNode() {
         return null;
     }
 

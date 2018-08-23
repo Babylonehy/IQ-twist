@@ -36,17 +36,17 @@ public class Pieces {
     private static int[][] flipPieces(int [][] pieces){
         return null;
     }
+
+
     /**
-     * The method decodes pieces into encode.
+     * The method decodes pieces to 4*4.
      * @param piecesId From PieceType; Offer to BoardNode.
      * @returnA set new rotated and fliped Pieces.
      */
-
-
-
-    //TODO add description about this method
     private static int[][] DecodePieces(String piecesId){
         return null;
     }
+
+
 
 }

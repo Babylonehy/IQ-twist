@@ -25,39 +25,39 @@ public class TwistGame {
   public static boolean isPlacementWellFormed(String piecePlacement) {
     int l = piecePlacement.length();
     int a = 0;
-    if(l%4 !=0){
+    if (l % 4 != 0) {
       return false;
-    }else{
-      a = l/4;
+    } else {
+      a = l / 4;
     }
-    if(a==0){
-      return false;
-    }
-    if(piecePlacement ==null){
+    if (a == 0) {
       return false;
     }
-    int[] char1,char2,char3,char4;
+    if (piecePlacement == null) {
+      return false;
+    }
+    int[] char1, char2, char3, char4;
     char1 = new int[8];
     char2 = new int[8];
     char3 = new int[8];
     char4 = new int[8];
-    for(int i = 0;i<a;i++){
-      char1[i]= piecePlacement.charAt(4*i);
-      char2[i]= piecePlacement.charAt(4*i+1);
-      char3[i]= piecePlacement.charAt(4*i+2);
-      char4[i]= piecePlacement.charAt(4*i+3);
+    for (int i = 0; i < a; i++) {
+      char1[i] = piecePlacement.charAt(4 * i);
+      char2[i] = piecePlacement.charAt(4 * i + 1);
+      char3[i] = piecePlacement.charAt(4 * i + 2);
+      char4[i] = piecePlacement.charAt(4 * i + 3);
     }
-    for(int i = 0;i<a;i++){
-      if(char1[i]<'a'|| char1[i]>'l'){
+    for (int i = 0; i < a; i++) {
+      if (char1[i] < 'a' || char1[i] > 'l') {
         return false;
       }
-      if(char2[i] <'1' || char2[i]>'8' ){
+      if (char2[i] < '1' || char2[i] > '8') {
         return false;
       }
-      if(char3[i]<'A'|| char3[i]>'D'){
+      if (char3[i] < 'A' || char3[i] > 'D') {
         return false;
       }
-      if(char4[i]<'0'||char4[i] >'8'){
+      if (char4[i] < '0' || char4[i] > '8') {
         return false;
       }
     }
