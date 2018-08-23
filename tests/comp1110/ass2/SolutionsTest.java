@@ -24,7 +24,7 @@ public class SolutionsTest {
     TreeSet<String> outSet = new TreeSet<>();
     outSet.addAll(Arrays.asList(out));
     String expstr = expected.toString();
-    String outstr = out.toString();
+    String outstr = outSet.toString();
     assertTrue("For problem " + start + ", was expecting " + expstr + ", but got " + outstr, expstr.equals(outstr));
   }
 

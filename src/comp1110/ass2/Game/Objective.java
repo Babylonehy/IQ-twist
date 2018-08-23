@@ -19,7 +19,7 @@ public class Objective {
 
     /**
      * This method offer the challenge level which is input and match the suitable pieces and map for this game.
-      * @param Startstate Give the suitable information to BoardNode.
+     * @param Startstate Give the suitable information to BoardNode.
      * @param ChallengeNumber The challenge level which is excepted.
      */
 
@@ -44,4 +44,4 @@ public class Objective {
             new Objective("",1),
 
     };
- }
+}
