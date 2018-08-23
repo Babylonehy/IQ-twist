@@ -20,7 +20,7 @@ public enum PiecesType {
 Doing assignment to prototype of 8 different shapes, which combines a 4*4 matrix
 */
 
-    //TODO add commit (对每一个块类型的原型，赋值，这是一个4*4的矩阵)
+    //TODO add commit
     static final int[][] a0={};
     static final int[][] b0={};
     static final int[][] c0={};
@@ -31,7 +31,7 @@ Doing assignment to prototype of 8 different shapes, which combines a 4*4 matrix
     static final int[][] h0={};
 
 
-//TODO add commit (取得Type的类型)
+//TODO add commit
 
     /**
      * create a getType method
@@ -41,12 +41,12 @@ Doing assignment to prototype of 8 different shapes, which combines a 4*4 matrix
 
         return PiecesType.this.name();
     }
-//TODO add commit (返回一个a0-h0，即生成了一个初始块， id：a-h)
+//TODO add commit
 
     /**
      *
      * @param id a character type id to identify pieces
-     * @return pieces
+     * @return pieces 7*7
      */
     static int[][] makePieces(char id){
         return null;
