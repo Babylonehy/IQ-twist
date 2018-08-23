@@ -3,16 +3,16 @@ package comp1110.ass2;
 public class TestUtility {
 
   static final String[] GOOD_PLACEMENTS = {
-          "a7A7b6A7c1A3d2A6e2C3f3C4g4A7h6D0i6B0j2B0j1C0k3C0l4B0l5C0",      //  1
+          "a7A7b6A7c1A3d2A6e2C3f3C2g4A7h6D0i6B0j2B0j1C0k3C0l4B0l5C0",      //  1
           "a6B0b6C0c5A2d1B3e4A5f4C2g2B3h1A2i7D0j7A0k5B0k5C0l3A0l3D0",      //  2
-          "a6A0b4A2c3A3d1A3e1C4f4B5g6B2h5D0i5A0j2B0j3C0k2C0k2D0l8C0l8D0",  // 25
-          "a4C4b2C6c1B2d7B1e1C6f6A6g4A5h1A0j3B0j7D0k1C0k1D0l6B0l1A0",      // 26
-          "a7B1b2C6c1B2d4C4e1C3f4A6g6A1h1A0j3B0j5C0",                      // 49
+          "a6A0b4A2c3A3d1A3e1C4f4B3g6B2h5D0i5A0j2B0j3C0k2C0k2D0l8C0l8D0",  // 25
+          "a4C4b2C4c1B2d7B1e1C6f6A0g4A5h1A0j3B0j7D0k1C0k1D0l6B0l1A0",      // 26
+          "a7B1b2C4c1B2d4C4e1C3f4A0g6A1h1A0j3B0j5C0",                      // 49
           "a1B5b2C0c5A2d7B7e5B0f1A6g3A7h5D0i1B0j7A0j7B0k1A0k2B0l3B0l4C0",  // 50
-          "a1C6b6A6c2D0d7B1e1A6f2A2g4B2h4A2i7B0j3D0j7D0k3A0l6A0",          // 73
-          "a6C4b7A3c2D2d1A0e5B4f1B3g3A3h5A0k1B0k6B0l5A0l3C0",              // 74
+          "a1C6b6A6c2D0d7B1e1A3f2A2g4B2h4A2i7B0j3D0j7D0k3A0l6A0",          // 73
+          "a6C4b7A1c2D0d1A0e5B4f1B3g3A3h5A0k1B0k6B0l5A0l3C0",              // 74
           "a1A3b5A4c5C0d3A6e7A1f3C4g1B3h6D0j4B0k8B0k5D0l3C0",              // 97
-          "a7A7b3B7c3A0d1A3e5C2f1C4g6B7h4B2k3D0k5D0l6C0"                   // 98
+          "a7A7b3B5c3A0d1A3e5C2f1C4g6B7h4B0k3D0k5D0l6C0"                   // 98
   };
 
   static final String[] BAD_PIECES = {
@@ -34,6 +34,7 @@ public class TestUtility {
   static final String[] OFF_BOARD = {
           "a7D7",
           "b7C0",
+          "c6A0",
           "d1C3",
           "e1D6",
           "f7A6",
