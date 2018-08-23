@@ -1,7 +1,6 @@
 package comp1110.ass2.Game;
 
 import comp1110.ass2.Elements.Peg;
-import comp1110.ass2.gui.Board;
 import comp1110.ass2.Elements.BoardStatus;
 
 /**
@@ -61,6 +60,16 @@ public class BoardNode {
     public boolean updateBoard(){
         return false;
     }
+
+    /**
+     * Put a pieces to board and update Board.
+     * Must Check if this placement is valid.
+     * @return if Valid successful, return true.
+     */
+    public boolean isValid() {
+        return false;
+    }
+
 
 
 }
