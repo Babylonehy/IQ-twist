@@ -1,7 +1,6 @@
 package comp1110.ass2.Game;
 
 import comp1110.ass2.Elements.Peg;
-import comp1110.ass2.gui.Board;
 import comp1110.ass2.Elements.BoardStatus;
 
 /**
@@ -25,7 +24,7 @@ import comp1110.ass2.Elements.BoardStatus;
 //TODO Finished this commit about this class
 
 public class BoardNode {
-    private int[] useNoed;
+    private int[] useNode;
     Peg peg;
     Pieces Piece;
     BoardStatus Status;
@@ -48,7 +47,7 @@ public class BoardNode {
      * Nodes can be used
      * @return a int [] include nodes can be used
      */
-    public int[] getUseNoed() {
+    public int[] getUseNode() {
         return null;
     }
 
@@ -61,6 +60,16 @@ public class BoardNode {
     public boolean updateBoard(){
         return false;
     }
+
+    /**
+     * Put a pieces to board and update Board.
+     * Must Check if this placement is valid.
+     * @return if Valid successful, return true.
+     */
+    public boolean isValid() {
+        return false;
+    }
+
 
 
 }

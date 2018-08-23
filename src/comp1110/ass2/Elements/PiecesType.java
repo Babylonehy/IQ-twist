@@ -5,12 +5,10 @@ import comp1110.ass2.Game.Pieces;
 import static comp1110.ass2.Elements.Color.*;
 
 /**
-  * Create by Sean 2018-08-21
-  *
-  *
-  * Last modify: 2018-08-21 10:25:00 by Zhi Wang
+ * Create by Sean 2018-08-21
  * We use enum type to represent 8 different shapes of pieces, which are a,b,c,d,e,f,g,h;
  * Then create empty int[][] for each from a0 to h0;
+ * Last modify: 2018-08-21 10:25:00 by Zhi Wang
   */
 //TODO Finished this commit about a0-h0 and create empty int[][] for each from a0-h0 totoal 8.
 
