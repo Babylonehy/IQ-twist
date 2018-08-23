@@ -37,7 +37,7 @@ public class Objective {
      */
 
 
-    //TODO add two method to decode Startstate
+    //TODO add two method to decode Startstate.
 
 
     static Objective[] OBJECTIVE={
