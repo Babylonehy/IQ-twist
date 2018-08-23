@@ -6,5 +6,5 @@ public class Main {
     public String toString(){
         return "A";
     }
-    A a = new A();
+    A a =  new A();
 }
