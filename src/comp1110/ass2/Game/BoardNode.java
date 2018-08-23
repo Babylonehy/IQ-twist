@@ -7,10 +7,17 @@ import comp1110.ass2.gui.Board;
  * Create by Sean 2018-08-21
  *This class represents a node board by double array with 8×4;
  * It should be like the array below:
- * 1a  2a  3a  4a  5a  6a  7a  8a
- * 1b  2b  3b  4b  5b  6b  7b  8b
- * 1c  2c  3c  4c  5c  6c  7c  8c
- * 1d  2d  3d  4d  5d  6d  7d  8d
+ * a0  a1  a2  a3  a4  a5  a6  a7
+ * b0  b1  b2  b3  b4  b5  b6  b7
+ * c0  c1  c2  c3  c4  c5  c6  c7
+ * d0  d1  d2  d3  d4  d5  d6  d7
+ *
+ * This array above should transfer to the position numbers below:
+ *  0  1  2  3  4  5  6  7
+ *  8  9 10 11 12 13 14 15
+ * 16 17 18 19 20 21 22 23
+ * 24 25 26 27 28 29 30 31
+ *
  * Last modify: 2018-08-23 15:24:06 by Stella
  */
 
