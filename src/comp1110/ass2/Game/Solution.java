@@ -22,5 +22,15 @@ public class Solution {
         return null;  //TODO Solution
     }
 
+    /**
+     * Generate all  solutions without peg
+     * Store in txt
+     *
+     */
+    public static void AllSolutions(){
+         //TODO ALLSolution
+    }
+
+
 
 }

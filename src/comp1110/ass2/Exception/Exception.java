@@ -23,5 +23,12 @@ public class Exception {
 
     }
 
+    /**
+     *  Handling write file exceptions
+     * @param path  File path
+     */
+    public void WriteFile (String path){
+
+    }
 
 }

@@ -2,6 +2,7 @@ package comp1110.ass2.Game;
 
 import comp1110.ass2.Elements.Peg;
 import comp1110.ass2.gui.Board;
+import comp1110.ass2.Elements.BoardStatus;
 
 /**
  * Create by Sean 2018-08-21
@@ -24,19 +25,42 @@ import comp1110.ass2.gui.Board;
 //TODO Finished this commit about this class
 
 public class BoardNode {
-    private int[][] reachable;
+    private int[] useNoed;
     Peg peg;
     Pieces Piece;
+    BoardStatus Status;
     //TODO add  constructor.
 
     /**
-     * This method set up the link between node and Peg, Pieces.
+     * This two method set up the link between node and Peg, Pieces.
       */
 
-    BoardNode(){
+
+    BoardNode(Peg peg, int position){
 
     }
 
+    BoardNode(BoardStatus Status, int position){
+
+    }
+
+    /**
+     * Nodes can be used
+     * @return a int [] include nodes can be used
+     */
+    public int[] getUseNoed() {
+        return null;
+    }
+
+    /**
+     * Put a pieces to board and update Board.
+     * Must Check if this placement is valid.
+     * @return if update successful, return true.
+     */
+
+    public boolean updateBoard(){
+        return false;
+    }
 
 
 }
