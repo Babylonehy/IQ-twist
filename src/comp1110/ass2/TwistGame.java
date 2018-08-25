@@ -117,62 +117,62 @@ public class TwistGame {
     return false;
   }
 
-  /**
-   * Determine whether a placement string is valid.  To be valid, the placement
-   * string must be well-formed and each piece placement must be a valid placement
-   * according to the rules of the game.
-   * - pieces must be entirely on the board
-   * - pieces must not overlap each other
-   * - pieces may only overlap pegs when the a) peg is of the same color and b) the
-   *   point of overlap in the piece is a hole.
-   *
-   * @param placement A placement sequence string
-   * @return True if the placement sequence is valid
-   */
-  public static boolean isPlacementStringValid(String placement) {
-    // FIXME Task 5: determine whether a placement string is valid
-    return false;
-  }
+    /**
+     * Determine whether a placement string is valid.  To be valid, the placement
+     * string must be well-formed and each piece placement must be a valid placement
+     * according to the rules of the game.
+     * - pieces must be entirely on the board
+     * - pieces must not overlap each other
+     * - pieces may only overlap pegs when the a) peg is of the same color and b) the
+     * point of overlap in the piece is a hole.
+     *
+     * @param placement A placement sequence string
+     * @return True if the placement sequence is valid
+     */
+    public static boolean isPlacementStringValid(String placement) {
+        // FIXME Task 5: determine whether a placement string is valid
+        return false;
+    }
 
-  /**
-   * Given a string describing a placement of pieces and pegs, return a set
-   * of all possible next viable piece placements.   To be viable, a piece
-   * placement must be a valid placement of a single piece.  The piece must
-   * not have already been placed (ie not already in the placement string),
-   * and its placement must be valid.   If there are no valid piece placements
-   * for the given placement string, return null.
-   *
-   * When symmetric placements of the same piece are viable, only the placement
-   * with the lowest rotation should be included in the set.
-   *
-   * @param placement A valid placement string (comprised of peg and piece placements)
-   * @return An set of viable piece placements, or null if there are none.
-   */
+    /**
+     * Given a string describing a placement of pieces and pegs, return a set
+     * of all possible next viable piece placements.   To be viable, a piece
+     * placement must be a valid placement of a single piece.  The piece must
+     * not have already been placed (ie not already in the placement string),
+     * and its placement must be valid.   If there are no valid piece placements
+     * for the given placement string, return null.
+     * <p>
+     * When symmetric placements of the same piece are viable, only the placement
+     * with the lowest rotation should be included in the set.
+     *
+     * @param placement A valid placement string (comprised of peg and piece placements)
+     * @return An set of viable piece placements, or null if there are none.
+     */
 
-  public static Set<String> getViablePiecePlacements(String placement) {
-    // FIXME Task 6: determine the set of valid next piece placements
-    return null;
-  }
+    public static Set<String> getViablePiecePlacements(String placement) {
+        // FIXME Task 6: determine the set of valid next piece placements
+        return null;
+    }
 
-  /**
-   * Return an array of all unique solutions for a given starting placement.
-   *
-   * Each solution should be a 32-character string giving the placement sequence
-   * of all eight pieces, given the starting placement.
-   *
-   * The set of solutions should not include any symmetric piece placements.
-   *
-   * In the IQ-Twist game, valid challenges can have only one solution, but
-   * other starting placements that are not valid challenges may have more
-   * than one solution.  The most obvious example is the unconstrained board,
-   * which has very many solutions.
-   *
-   * @param placement A valid piece placement string.
-   * @return An array of strings, each 32-characters long, describing a unique
-   * unordered solution to the game given the starting point provided by placement.
-   */
-  public static String[] getSolutions(String placement) {
-    // FIXME Task 9: determine all solutions to the game, given a particular starting placement
-    return null;
-  }
+    /**
+     * Return an array of all unique solutions for a given starting placement.
+     * <p>
+     * Each solution should be a 32-character string giving the placement sequence
+     * of all eight pieces, given the starting placement.
+     * <p>
+     * The set of solutions should not include any symmetric piece placements.
+     * <p>
+     * In the IQ-Twist game, valid challenges can have only one solution, but
+     * other starting placements that are not valid challenges may have more
+     * than one solution.  The most obvious example is the unconstrained board,
+     * which has very many solutions.
+     *
+     * @param placement A valid piece placement string.
+     * @return An array of strings, each 32-characters long, describing a unique
+     * unordered solution to the game given the starting point provided by placement.
+     */
+    public static String[] getSolutions(String placement) {
+        // FIXME Task 9: determine all solutions to the game, given a particular starting placement
+        return null;
+    }
 }
