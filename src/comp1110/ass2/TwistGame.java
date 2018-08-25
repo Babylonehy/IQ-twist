@@ -1,5 +1,7 @@
 package comp1110.ass2;
 
+import comp1110.ass2.Game.Pieces;
+
 import java.util.Set;
 
 /**
@@ -77,6 +79,40 @@ public class TwistGame {
    * @return True if the placement is well-formed
    */
   public static boolean isPlacementStringWellFormed(String placement) {
+    boolean convertSuccess=true;
+    Pieces String = new Pieces();
+    int pl = placement.length();
+    int[] char1,char2,char3,char4;
+    char1 = new int[8];
+    char2 = new int[8];
+    char3 = new int[8];
+    char4 = new int[8];
+    int N = 15;
+    if ((pl %4 == 0) && (pl<= N*4)){
+        return true;
+    }
+    for (int i = 1;i <= pl;i ++){
+      while (i %4 == 1){
+            if(char1[i]>'a'&& char1[i]<'l'){
+                return true;
+        }
+      }
+        while (i %4 == 2){
+            if(char1[i]>'1'&& char1[i]<'8'){
+                return true;
+            }
+        }
+        while (i %4 == 3){
+            if (char1[i]>'A'&& char1[i]<'D'){
+                return true;
+            }
+        }
+        while (i %4 == 0){
+            if (char1[i]>'0'&& char1[i]<'8'){
+                return true;
+            }
+        }
+    }
     // FIXME Task 3: determine whether a placement is well-formed
     return false;
   }
