@@ -3,6 +3,9 @@ package comp1110.ass2;
 import comp1110.ass2.Game.Pieces;
 
 import java.util.Set;
+import java.util.Vector;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  * This class provides the text interface for the Twist Game
@@ -25,7 +28,7 @@ public class TwistGame {
    */
   // FIXME Task 2: determine whether a piece or peg placement is well-formed
   public static boolean isPlacementWellFormed(String piecePlacement) {
-    int l = piecePlacement.length();
+   /* int l = piecePlacement.length();
     int a = 0;
     if(l%4 !=0){
       return false;
@@ -63,7 +66,14 @@ public class TwistGame {
         return false;
       }
     }
-    return true;
+
+    */
+      Pattern p=Pattern.compile("[a-h][1-8][A-D][0-7]$|[i-l][1-8][A-D]0$");
+      Matcher m=p.matcher(piecePlacement);
+      while (m.find()){
+          return true;
+      }
+      return false;
   }
 
   /**
@@ -79,6 +89,7 @@ public class TwistGame {
    * @return True if the placement is well-formed
    */
   public static boolean isPlacementStringWellFormed(String placement) {
+      /*
       boolean convertSuccess = true;
       Pieces String = new Pieces();
       int pl = placement.length();
@@ -112,10 +123,62 @@ public class TwistGame {
                   }
               }
           }
-          // FIXME Task 3: determine whether a placement is well-formed
+          }
+          */
+      // FIXME Task 3: determine whether a placement is well-formed
+//      String match = "(a[1-8][A-D][0-7])?(b[1-8][A-D][0-7])?(c[1-8][A-D][0-7])?(d[1-8][A-D][0-7])?" +
+//              "(e[1-8][A-D][0-7])?(f[1-8][A-D][0-7])?(g[1-8][A-D][0-7])?(h[1-8][A-D][0-7])?" +
+//              "(h[1-8][A-D][0-7])?(i[1-8][A-D]0)?(j[1-8][A-D]0)?(j[1-8][A-D]0)?(k[1-8][A-D]0)?(l[1-8][A-D]0)?" +
+//              "(l[1-8][A-D]0)?";
+//      String matchsmall = "[a-h][1-8][A-D][0-7]$|[i-l][1-8][A-D]0$";
+      Vector position = new Vector();
+      Vector positionpeg = new Vector();
+      String temp = "";
+      String single = "";
+      int count=1;
 
+      char before = (char) 30;
+
+      if (placement.length() % 4 != 0 || placement.length() == 0) {
+          return false;
+      } else {
+          char[] placementChar = placement.toCharArray();
+          for (int i = 0; i < placementChar.length; i = i + 4) {
+              single = String.valueOf(placementChar[i]) + String.valueOf(placementChar[i + 1]) +
+                      String.valueOf(placementChar[i + 2]) + String.valueOf(placementChar[i + 3]);
+              if (isPlacementWellFormed(single)) {
+
+                  if (before <= placementChar[i]) {
+                      if (before==placementChar[i]){
+                            count++;
+                          before = placementChar[i];
+                            if (count>=3){
+                                return false;
+                            }
+                      }
+                      else {
+                          before = placementChar[i];
+                          count=1;
+                      }
+
+                  } else {
+                      return false;
+                  }
+
+                  temp = String.valueOf(placementChar[i]) + String.valueOf(placementChar[i + 1]) + String.valueOf(placementChar[i + 2]);
+
+                  if (position.contains(temp)) {
+                      return false;
+                  } else {
+                      position.add(temp);
+                  }
+              } else {
+                  return false;
+              }
+
+          }
+          return true;
       }
-      return false;
   }
 
     /**
