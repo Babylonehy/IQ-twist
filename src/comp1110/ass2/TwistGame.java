@@ -89,48 +89,8 @@ public class TwistGame {
    * @return True if the placement is well-formed
    */
   public static boolean isPlacementStringWellFormed(String placement) {
-      /*
-      boolean convertSuccess = true;
-      Pieces String = new Pieces();
-      int pl = placement.length();
-      int[] char1, char2, char3, char4;
-      char1 = new int[8];
-      char2 = new int[8];
-      char3 = new int[8];
-      char4 = new int[8];
-      int N = 15;
-      if ((pl % 4 == 0) && (pl <= N * 4)) {
 
-          for (int i = 1; i <= pl; i++) {
-              while (i % 4 == 1) {
-                  if (char1[i] > 'a' && char1[i] < 'l') {
-                      return true;
-                  }
-              }
-              while (i % 4 == 2) {
-                  if (char1[i] > '1' && char1[i] < '8') {
-                      return true;
-                  }
-              }
-              while (i % 4 == 3) {
-                  if (char1[i] > 'A' && char1[i] < 'D') {
-                      return true;
-                  }
-              }
-              while (i % 4 == 0) {
-                  if (char1[i] > '0' && char1[i] < '8') {
-                      return true;
-                  }
-              }
-          }
-          }
-          */
       // FIXME Task 3: determine whether a placement is well-formed
-//      String match = "(a[1-8][A-D][0-7])?(b[1-8][A-D][0-7])?(c[1-8][A-D][0-7])?(d[1-8][A-D][0-7])?" +
-//              "(e[1-8][A-D][0-7])?(f[1-8][A-D][0-7])?(g[1-8][A-D][0-7])?(h[1-8][A-D][0-7])?" +
-//              "(h[1-8][A-D][0-7])?(i[1-8][A-D]0)?(j[1-8][A-D]0)?(j[1-8][A-D]0)?(k[1-8][A-D]0)?(l[1-8][A-D]0)?" +
-//              "(l[1-8][A-D]0)?";
-//      String matchsmall = "[a-h][1-8][A-D][0-7]$|[i-l][1-8][A-D]0$";
       Vector position = new Vector();
       Vector positionpeg = new Vector();
       String temp = "";
@@ -180,7 +140,25 @@ public class TwistGame {
           return true;
       }
   }
+  public static char [][] decodeTotype_postion(String placement){
+    assert isPlacementStringWellFormed(placement);
+    char[] placementChar = placement.toCharArray();
+    int paircount=4;
+    char [][] decode=new char[placement.length()/paircount][paircount];
+    for (int i = 0; i < placementChar.length; i = i + paircount){
+        for (int j = 0; j < paircount; j++) {
+            decode[i][j]=placementChar[i+j];
+        }
+    }
 
+    return decode;
+}
+    public static boolean isPeg(char peg){
+      if (peg>'i'&& peg<'l') {
+          return true;
+      }
+      return false;
+    }
     /**
      * Determine whether a placement string is valid.  To be valid, the placement
      * string must be well-formed and each piece placement must be a valid placement
@@ -194,6 +172,7 @@ public class TwistGame {
      * @return True if the placement sequence is valid
      */
     public static boolean isPlacementStringValid(String placement) {
+
         // FIXME Task 5: determine whether a placement string is valid
         return false;
     }
