@@ -140,21 +140,22 @@ public class TwistGame {
           return true;
       }
   }
-  public static char [][] decodeTotype_postion(String placement){
+  public static char [][] decodeTotype_position(String placement){
     assert isPlacementStringWellFormed(placement);
     char[] placementChar = placement.toCharArray();
     int paircount=4;
     char [][] decode=new char[placement.length()/paircount][paircount];
     for (int i = 0; i < placementChar.length; i = i + paircount){
+
         for (int j = 0; j < paircount; j++) {
-            decode[i][j]=placementChar[i+j];
+            decode[i/4][j]=placementChar[i+j];
         }
     }
 
     return decode;
 }
     public static boolean isPeg(char peg){
-      if (peg>'i'&& peg<'l') {
+      if (peg>='i'&& peg <='l') {
           return true;
       }
       return false;

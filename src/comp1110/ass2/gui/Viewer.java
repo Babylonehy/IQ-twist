@@ -19,7 +19,6 @@ import javafx.scene.text.Text;
 import javafx.scene.text.TextAlignment;
 import javafx.stage.Stage;
 
-import java.util.Vector;
 
 import static comp1110.ass2.TwistGame.*;
 
@@ -33,7 +32,7 @@ import static comp1110.ass2.TwistGame.*;
 public class Viewer extends Application {
 
     /* board layout */
-    private static final int MARGIN_X = 60;
+    private static final int MARGIN_Y = 60;
     private static final int SQUARE_SIZE = 60;
     private static final int VIEWER_WIDTH = 955;
     private static final int VIEWER_HEIGHT = 700;
@@ -101,13 +100,21 @@ public class Viewer extends Application {
     void makePlacement(String placement) {
         if (isPlacementStringWellFormed(placement)){
             hidewrongInput();
-            char [][] decode=decodeTotype_postion(placement);
+            char [][] decode=decodeTotype_position(placement);
             for (int i = 0; i <decode.length ; i++) {
                     if (isPeg(decode[i][0])){
-
+                        int X= BOARD_X+SQUARE_SIZE*(decode[i][1]-'1'+1);
+                        int Y=MARGIN_Y+SQUARE_SIZE*(decode[i][2]-'A'+1);
+                        Peg Peginput=new Peg(decode[i][0],X,Y);
+                        peg.getChildren().set(decode[i][0]-'i',Peginput);
                     }
 
                     else {
+                        int X= BOARD_X+SQUARE_SIZE*(decode[i][1]-'1'+1);
+                        int Y=MARGIN_Y+SQUARE_SIZE*(decode[i][2]-'A'+1);
+                        int Z=decode[i][3]-'0';
+                        Pieces Piecesinput=new Pieces(decode[i][0],X,Y,Z);
+                        piece.getChildren().set(decode[i][0]-'a',Piecesinput);
 
                     }
 
@@ -124,11 +131,12 @@ public class Viewer extends Application {
     /**
      * Create a basic text field for input and a refresh button.
      */
-    private void makeControls() {
+    private void makeControls() throws Exception{
         Label label1 = new Label("Placement:");
         textField = new TextField ();
         textField.setPrefWidth(300);
         Button button = new Button("Refresh");
+        Button button2 = new Button("Clear");
         button.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent e) {
@@ -136,9 +144,18 @@ public class Viewer extends Application {
                 textField.clear();
             }
         });
-
+        button2.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent e) {
+                try {
+                    reset();
+                } catch (Exception e1) {
+                    e1.printStackTrace();
+                }
+            }
+        });
         HBox hb = new HBox();
-        hb.getChildren().addAll(label1, textField, button);
+        hb.getChildren().addAll(label1, textField, button,button2);
         hb.setSpacing(10);
         hb.setLayoutX(VIEWER_WIDTH/3.5);
         hb.setLayoutY(VIEWER_HEIGHT - 20);
@@ -151,7 +168,7 @@ public class Viewer extends Application {
      */
     class Pieces extends ImageView{
         char pieces;
-        Pieces (char pieces) throws IllegalAccessException {
+        Pieces (char pieces) {
             if (pieces>='a' && pieces<='h'){
                 Image img=new Image(Viewer.class.getResource(URI_BASE + pieces + ".png").toString());
                 setImage(img);
@@ -171,7 +188,30 @@ public class Viewer extends Application {
 
             }
             else {
-                throw new IllegalAccessException("Bad pieces: \""+pieces+"\'");
+                System.out.println("Bad pieces: \""+pieces+"\'");
+            }
+        }
+        Pieces (char pieces, int x, int y,int z){
+            if (pieces>='a' && pieces<='h'){
+                Image img=new Image(Viewer.class.getResource(URI_BASE + pieces + ".png").toString());
+                setImage(img);
+                if (z<4 && z%2==1){
+                    setRotate(90*(z+1));
+                }
+                if (z<4 && z%2==0)
+                {
+                    setRotate(90*(z+1));
+                    x=x-30;
+                    y=y+30;
+                }
+                //TODO rotate 重新写
+                this.pieces = pieces;
+                setFitHeight((img.getHeight()/100)*SQUARE_SIZE);
+                setFitWidth(img.getWidth()/100*SQUARE_SIZE);
+                System.out.println(x+" "+y);
+                setLayoutX(x);
+                setLayoutY(y);
+                System.out.println(getLayoutX()+" "+getLayoutY());
             }
         }
 
@@ -196,7 +236,7 @@ public class Viewer extends Application {
             }
         }
 
-        Peg(char peg, int x, int y)throws IllegalAccessException{
+        Peg(char peg, int x, int y){
             if (peg>='i' && peg<='l'){
                 setImage(new Image(Viewer.class.getResource(URI_BASE + peg + ".png").toString()));
                 this.peg = peg;
@@ -205,9 +245,7 @@ public class Viewer extends Application {
                 setLayoutX(x);
                 setLayoutY(y);
             }
-            else {
-                throw new IllegalAccessException("Bad peg: \""+peg+"\'");
-            }
+
 
             }
 
@@ -225,12 +263,16 @@ public class Viewer extends Application {
         baseboard.setFitWidth(BOAED_FitWidth);
         baseboard.setFitHeight(BOAED_FitHeight);
         baseboard.setLayoutX(BOARD_X);
-        baseboard.setLayoutY(MARGIN_X);
+        baseboard.setLayoutY(MARGIN_Y);
         board.getChildren().add(baseboard);
 
         board.toBack();
     }
-
+    private void reset() throws Exception{
+        char[] pegs={'i','j','j','k','k','l','l'};
+        char[] pieces={'a','b','c','d','e','f','g','h'};
+        makeStart(pegs,pieces);
+    }
     /**
      * Set up the group that represents the places when start
      */
