@@ -280,7 +280,7 @@ public class Viewer extends Application {
      * isPegOnBoard or not
      */
     private boolean isPegOnBoard(double x, double y){
-        if (x>=240&&x<=680&&y>=120&&y<=300){
+        if (x>=BOARD_X+SQUARE_SIZE&&x<=BOARD_X+BOAED_FitWidth&&y>=MARGIN_Y+SQUARE_SIZE&&y<=MARGIN_Y+BOAED_FitHeight){
             return true;
         }
         else {
