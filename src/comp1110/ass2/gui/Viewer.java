@@ -1,6 +1,5 @@
 package comp1110.ass2.gui;
 
-import comp1110.ass2.TwistGame;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -202,7 +201,7 @@ public class Viewer extends Application {
                     setScaleY(-1);
                 }
                 setRotate((z%4)*90);
-                //TODO rotate 重新写
+
                 this.pieces = pieces;
                 double height=img.getHeight()/100*SQUARE_SIZE;
                 double weight=img.getWidth()/100*SQUARE_SIZE;

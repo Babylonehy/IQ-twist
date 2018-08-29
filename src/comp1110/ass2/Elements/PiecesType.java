@@ -2,6 +2,9 @@ package comp1110.ass2.Elements;
 
 import comp1110.ass2.Game.Pieces;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import static comp1110.ass2.Elements.Color.*;
 
 /**
@@ -12,14 +15,15 @@ import static comp1110.ass2.Elements.Color.*;
   */
 //TODO Finished this commit about a0-h0 and create empty int[][] for each from a0-h0 totoal 8.
 
-public enum PiecesType {
-    a,b,c,d,e,f,g,h;
+public class PiecesType {
 /**
 Doing assignment to prototype of 8 different shapes, which combines a 4*4 matrix
  0 for null;
  1 for covered;
  -1 for empty;
 */
+    static Map all=new HashMap();
+
 
     static final int[][] a0 = {
         {-1, 1,-1, 0},
@@ -186,12 +190,18 @@ Doing assignment to prototype of 8 different shapes, which combines a 4*4 matrix
     }
 
 
+    public  static int[][] getA0(char type,int rotation){
+        String key= String.valueOf(type)+String.valueOf(rotation);
+        return null;
+        //return all.get("key");
+    }
 
     public String getType(){
 
-        return PiecesType.this.name();
+        return null;
     }
 //TODO add commit
+
 
     /**
      *

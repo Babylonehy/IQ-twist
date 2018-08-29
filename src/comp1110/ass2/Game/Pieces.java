@@ -15,8 +15,12 @@ import comp1110.ass2.Elements.PiecesType;
 
 public class Pieces {
 
-    private  String piecesId; //length 4 chars
+    private  char piecesId; //length 4 chars
 
+
+    public Pieces(char piecesId){
+        this.piecesId=piecesId;
+    }
     /**
      * This method rotate piece by 90,180,270,360 degree in right direction
      * @param dir Rotation Direction

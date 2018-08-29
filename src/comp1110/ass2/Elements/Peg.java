@@ -1,6 +1,9 @@
 package comp1110.ass2.Elements;
 
-import java.lang.reflect.Type;
+
+import static comp1110.ass2.Elements.BoardStatus.*;
+import static comp1110.ass2.Elements.Color.*;
+
 
 /**
  * Create by Sean 2018-08-21
@@ -15,24 +18,44 @@ import java.lang.reflect.Type;
 public class Peg {
 
     private  char type;
-    private  int postion;
+    private Color color;
 
     /**
      * Constructor for Peg, which does not have a fixed position and certain type
      *
-     * @param position one of the params to define peg
      * @param type  one of the params to define peg
      */
-    Peg(char type,int position){
+    public Peg(char type){
         //TODO initialize for a certain BoardPosition.
         this.type=type;
-        this.postion=position;
+        insertColor(type);
     }
-
+    private void insertColor(char type){
+        switch (type){
+            case 'i':
+                this.color=Red;
+                break;
+            case 'j':
+                this.color=Blue;
+                break;
+            case 'k':
+                this.color=Green;
+                break;
+            case 'l':
+                this.color=Yellow;
+                default:
+                    break;
+        }
+    }
     /** @return the character type for peg*/
 
     public  char getType(){
         return type;
     }
+
+    public Color getColor(){
+        return color;
+    }
+
 
 }

@@ -1,11 +1,17 @@
 package comp1110.ass2;
 
+import comp1110.ass2.Elements.BoardStatus;
+import comp1110.ass2.Elements.Peg;
+import comp1110.ass2.Elements.PiecesType;
+import comp1110.ass2.Game.BoardNode;
 import comp1110.ass2.Game.Pieces;
 
 import java.util.Set;
 import java.util.Vector;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+
+import static comp1110.ass2.Elements.BoardStatus.Full;
 
 /**
  * This class provides the text interface for the Twist Game
@@ -14,6 +20,8 @@ import java.util.regex.Pattern;
  * (http://www.smartgames.eu/en/smartgames/iq-twist)
  */
 public class TwistGame {
+    private static final int nodecount=32;
+    static BoardNode [] node=new BoardNode[nodecount];
 
   /**
    * Determine whether a piece or peg placement is well-formed according to the following:
@@ -92,7 +100,6 @@ public class TwistGame {
 
       // FIXME Task 3: determine whether a placement is well-formed
       Vector position = new Vector();
-      Vector positionpeg = new Vector();
       String temp = "";
       String single = "";
       int count=1;
@@ -173,11 +180,61 @@ public class TwistGame {
      * @return True if the placement sequence is valid
      */
     public static boolean isPlacementStringValid(String placement) {
+        char [][] decode=decodeTotype_position(placement);
 
+        for (int i = 0; i <decode.length ; i++){
+            char type=decode[i][0];
+            int x=decode[i][1]-'1';
+            char y=decode[i][2];
+            int rotation= decode[i][3]-'0';
+            int position=charPairToPosition(x,y);
+            if (isPeg(type)){
+                node[position]=new BoardNode(new Peg(type),position);
+                System.out.print(type+" ");
+                System.out.println(node[position].getStatus());
+
+            }
+            else {
+                int[][] piecestemp=PiecesType.getA0(type,rotation);
+
+//                BoardStatus Status=Full;
+//               node[position]=new BoardNode(Status,position);
+            }
+
+
+        }
         // FIXME Task 5: determine whether a placement string is valid
+
         return false;
+
     }
 
+    /**
+     *
+     * @param x
+     * @param y
+     * @return
+     */
+    public static int charPairToPosition(int x,char y){
+        assert onBoard(x,y);
+
+        return (y-'A')*8+x-1;
+    }
+
+    /**
+     *
+     * @param x
+     * @param y
+     * @return
+     */
+
+    public static boolean onBoard(int x,char y){
+        if (y>='A'&&y<='D'&&x>=0&&x<=7){
+            return true;
+        }
+        System.out.println(x+" "+y+" Off Board.");
+        return false;
+    }
     /**
      * Given a string describing a placement of pieces and pegs, return a set
      * of all possible next viable piece placements.   To be viable, a piece
