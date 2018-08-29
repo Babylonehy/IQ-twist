@@ -22,7 +22,11 @@ Doing assignment to prototype of 8 different shapes, which combines a 4*4 matrix
  1 for covered;
  -1 for empty;
 */
-    static Map all=new HashMap();
+
+
+String[] PiecesType = new String[64];
+public static Map all=new HashMap();
+
 
 
     static final int[][] a0 = {
@@ -180,9 +184,20 @@ Doing assignment to prototype of 8 different shapes, which combines a 4*4 matrix
     }
 
 
-    private static int[][] RotateRight(int[][]op ){
+    private static int[][] RotateRight(int[][]op){
         int[][] rotate = new int[4][4];
-        rotate[0] = op[2];
+        for(int i = 0; i<4/2; i++){
+            int first = i;
+            int last = 4 - 1 -i;
+            for(int j = first; j< last;j++){
+                int off = i - first;
+                int top = op[first][i];
+                op[first][j] = op[last-off][first];
+                op[last-off][first] = op[last][last-off];
+                op[last][last-off] = op[j][last];
+                op[j][last] = top;
+            }
+        }
 
 
 
