@@ -42,9 +42,9 @@ public static Map all=new HashMap();
     static final int[][] a3=RotateRight(a2);
     static final int[][] a4=RotateRight(a3);
     static final int[][] a5=Flip(a1);
-    static final int[][] a6=Flip(a5);
-    static final int[][] a7=Flip(a6);
-    static final int[][] a8=Flip(a7);
+    static final int[][] a6=RotateRight(a5);
+    static final int[][] a7=RotateRight(a6);
+    static final int[][] a8=RotateRight(a7);
 
     static final int[][] b0 = {
             { 1, 1, 0, 0},
@@ -58,9 +58,9 @@ public static Map all=new HashMap();
     static final int[][] b3=RotateRight(b2);
     static final int[][] b4=RotateRight(b3);
     static final int[][] b5=Flip(b1);
-    static final int[][] b6=Flip(b5);
-    static final int[][] b7=Flip(b6);
-    static final int[][] b8=Flip(b7);
+    static final int[][] b6=RotateRight(b5);
+    static final int[][] b7=RotateRight(b6);
+    static final int[][] b8=RotateRight(b7);
 
     static final int[][] c0 = {
             { 1,-1, 1, 1},
@@ -74,9 +74,9 @@ public static Map all=new HashMap();
     static final int[][] c3=RotateRight(c2);
     static final int[][] c4=RotateRight(c3);
     static final int[][] c5=Flip(c1);
-    static final int[][] c6=Flip(c5);
-    static final int[][] c7=Flip(c6);
-    static final int[][] c8=Flip(c7);
+    static final int[][] c6=RotateRight(c5);
+    static final int[][] c7=RotateRight(c6);
+    static final int[][] c8=RotateRight(c7);
 
     static final int[][] d0 = {
             { 1, 1, 1, 0},
@@ -206,7 +206,14 @@ public static Map all=new HashMap();
     }
 
     public static void setMap( Map map ){
-        map.put("a0",a0);
+        map.put("a0",new int[][][]{a0,a1,a2,a3,a4,a5,a6,a7});
+        map.put("b0",new int[][][]{b0,b1,b2,b3,b4,b5,b6,b7});
+        map.put("c0",new int[][][]{c0,c1,c2,c3,c4,c5,c6,c7});
+        map.put("d0",new int[][][]{d0,d1,d2,d3,d4,d5,d6,d7});
+        map.put("e0",new int[][][]{e0,e1,e2,e3,e4,e5,e6,e7});
+        map.put("f0",new int[][][]{f0,f1,f2,f3,f4,f5,f6,f7});
+        map.put("g0",new int[][][]{g0,g1,g2,g3,g4,g5,g6,g7});
+        map.put("h0",new int[][][]{h0,h1,h2,h3,h4,h5,h6,h7});
         //TODO 补充完
     }
 
