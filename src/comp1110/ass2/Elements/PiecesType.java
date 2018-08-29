@@ -2,8 +2,7 @@ package comp1110.ass2.Elements;
 
 import comp1110.ass2.Game.Pieces;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 import static comp1110.ass2.Elements.Color.*;
 
@@ -22,7 +21,7 @@ Doing assignment to prototype of 8 different shapes, which combines a 4*4 matrix
  1 for covered;
  -1 for empty;
 */
-    static Map all=new HashMap();
+    static Map<String,Integer> map=new HashMap<String, Integer>();
 
 
     static final int[][] a0 = {
@@ -189,11 +188,15 @@ Doing assignment to prototype of 8 different shapes, which combines a 4*4 matrix
         return rotate;
     }
 
+    public static void setMap( Map map ){
+        map.put("a0",a0);
+        //TODO 补充完
+    }
 
-    public  static int[][] getA0(char type,int rotation){
+    public  static Integer getTypeset(char type,int rotation){
+        setMap(map);
         String key= String.valueOf(type)+String.valueOf(rotation);
-        return null;
-        //return all.get("key");
+        return map.get("key");
     }
 
     public String getType(){
