@@ -22,6 +22,7 @@ Doing assignment to prototype of 8 different shapes, which combines a 4*4 matrix
  1 for covered;
  -1 for empty;
 */
+    static Map<String,Integer> map=new HashMap<String, Integer>();
 
 
 String[] PiecesType = new String[64];
@@ -204,11 +205,15 @@ public static Map all=new HashMap();
         return rotate;
     }
 
+    public static void setMap( Map map ){
+        map.put("a0",a0);
+        //TODO 补充完
+    }
 
-    public  static int[][] getA0(char type,int rotation){
+    public  static Integer getTypeset(char type,int rotation){
+        setMap(map);
         String key= String.valueOf(type)+String.valueOf(rotation);
-        return null;
-        //return all.get("key");
+        return map.get("key");
     }
 
     public String getType(){

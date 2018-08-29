@@ -6,6 +6,8 @@ import comp1110.ass2.Elements.PiecesType;
 import comp1110.ass2.Game.BoardNode;
 import comp1110.ass2.Game.Pieces;
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Set;
 import java.util.Vector;
 import java.util.regex.Matcher;
@@ -249,6 +251,7 @@ public class TwistGame {
      * @param placement A valid placement string (comprised of peg and piece placements)
      * @return An set of viable piece placements, or null if there are none.
      */
+
 
     public static Set<String> getViablePiecePlacements(String placement) {
         // FIXME Task 6: determine the set of valid next piece placements
