@@ -174,6 +174,11 @@ public class TwistGame {
      */
     public static boolean isPlacementStringValid(String placement) {
 
+      //  public static boolean isOnBoard
+
+       // public static int getPosition(){
+       // getwidth
+
         // FIXME Task 5: determine whether a placement string is valid
         return false;
     }

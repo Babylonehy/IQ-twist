@@ -14,6 +14,11 @@ import comp1110.ass2.Elements.PiecesType;
  */
 
 public class Pieces {
+    Object Pieces = new Object();
+
+    public Object getPieces() {
+        return Pieces;
+    }
 
     private  String piecesId; //length 4 chars
 
