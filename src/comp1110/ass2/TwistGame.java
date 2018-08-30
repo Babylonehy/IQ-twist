@@ -57,6 +57,7 @@ public class TwistGame {
     char2 = new int[8];
     char3 = new int[8];
     char4 = new int[8];
+
     for(int i = 0;i<a;i++){
       char1[i]= piecePlacement.charAt(4*i);
       char2[i]= piecePlacement.charAt(4*i+1);
