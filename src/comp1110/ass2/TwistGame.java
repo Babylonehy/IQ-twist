@@ -197,7 +197,7 @@ public class TwistGame {
 
             }
             else {
-                int[][] piecestemp=PiecesType.getA0(type,rotation);
+               // int[][] piecestemp=PiecesType.getA0(type,rotation);
 
 //                BoardStatus Status=Full;
 //               node[position]=new BoardNode(Status,position);

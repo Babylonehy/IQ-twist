@@ -105,7 +105,7 @@ public class Viewer extends Application {
             char [][] decode=decodeTotype_position(placement);
             for (int i = 0; i <decode.length ; i++) {
                     if (isPeg(decode[i][0])){
-                        int X= BOARD_X+SQUARE_SIZE*(decode[i][1]-'1'+1);
+                        int X=BOARD_X+SQUARE_SIZE*(decode[i][1]-'1'+1);
                         int Y=MARGIN_Y+SQUARE_SIZE*(decode[i][2]-'A'+1);
                         int index=getGroupIndex(decode[i][0]);
                         Peg Peg_change=new Peg(decode[i][0],X,Y);
