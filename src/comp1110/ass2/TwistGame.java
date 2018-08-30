@@ -25,19 +25,19 @@ public class TwistGame {
     private static final int nodecount=32;
     static BoardNode [] node=new BoardNode[nodecount];
 
-  /**
-   * Determine whether a piece or peg placement is well-formed according to the following:
-   * - it consists of exactly four characters
-   * - the first character is in the range a .. l (pieces and pegs)
-   * - the second character is in the range 1 .. 8 (columns)
-   * - the third character is in the range A .. D (rows)
-   * - the fourth character is in the range 0 .. 7 (if a piece) or is 0 (if a peg)
-   *
-   * @param piecePlacement A string describing a single piece or peg placement
-   * @return True if the placement is well-formed
-   */
-  // FIXME Task 2: determine whether a piece or peg placement is well-formed
-  public static boolean isPlacementWellFormed(String piecePlacement) {
+    /**
+     * Determine whether a piece or peg placement is well-formed according to the following:
+     * - it consists of exactly four characters
+     * - the first character is in the range a .. l (pieces and pegs)
+     * - the second character is in the range 1 .. 8 (columns)
+     * - the third character is in the range A .. D (rows)
+     * - the fourth character is in the range 0 .. 7 (if a piece) or is 0 (if a peg)
+     *
+     * @param piecePlacement A string describing a single piece or peg placement
+     * @return True if the placement is well-formed
+     */
+    // FIXME Task 2: determine whether a piece or peg placement is well-formed
+    public static boolean isPlacementWellFormed(String piecePlacement) {
    /* int l = piecePlacement.length();
     int a = 0;
     if(l%4 !=0){
@@ -78,96 +78,96 @@ public class TwistGame {
     }
 
     */
-      Pattern p=Pattern.compile("[a-h][1-8][A-D][0-7]$|[i-l][1-8][A-D]0$");
-      Matcher m=p.matcher(piecePlacement);
-      while (m.find()){
-          return true;
-      }
-      return false;
-  }
+        Pattern p=Pattern.compile("[a-h][1-8][A-D][0-7]$|[i-l][1-8][A-D]0$");
+        Matcher m=p.matcher(piecePlacement);
+        while (m.find()){
+            return true;
+        }
+        return false;
+    }
 
-  /**
-   * Determine whether a placement string is well-formed:
-   * - it consists of exactly N four-character piece placements (where N = 1 .. 15);
-   * - each piece or peg placement is well-formed
-   * - each piece or peg placement occurs in the correct alphabetical order (duplicate pegs can be in either order)
-   * - no piece or red peg appears mor
-   * e than once in the placement
-   * - no green, blue or yellow peg appears more than twice in the placement
-   *
-   * @param placement A string describing a placement of one or more pieces and pegs
-   * @return True if the placement is well-formed
-   */
-  public static boolean isPlacementStringWellFormed(String placement) {
+    /**
+     * Determine whether a placement string is well-formed:
+     * - it consists of exactly N four-character piece placements (where N = 1 .. 15);
+     * - each piece or peg placement is well-formed
+     * - each piece or peg placement occurs in the correct alphabetical order (duplicate pegs can be in either order)
+     * - no piece or red peg appears mor
+     * e than once in the placement
+     * - no green, blue or yellow peg appears more than twice in the placement
+     *
+     * @param placement A string describing a placement of one or more pieces and pegs
+     * @return True if the placement is well-formed
+     */
+    public static boolean isPlacementStringWellFormed(String placement) {
 
-      // FIXME Task 3: determine whether a placement is well-formed
-      Vector position = new Vector();
-      String temp = "";
-      String single = "";
-      int count=1;
+        // FIXME Task 3: determine whether a placement is well-formed
+        Vector position = new Vector();
+        String temp = "";
+        String single = "";
+        int count=1;
 
-      char before = (char) 30;
+        char before = (char) 30;
 
-      if (placement.length() % 4 != 0 || placement.length() == 0) {
-          return false;
-      } else {
-          char[] placementChar = placement.toCharArray();
-          for (int i = 0; i < placementChar.length; i = i + 4) {
-              single = String.valueOf(placementChar[i]) + String.valueOf(placementChar[i + 1]) +
-                      String.valueOf(placementChar[i + 2]) + String.valueOf(placementChar[i + 3]);
-              if (isPlacementWellFormed(single)) {
+        if (placement.length() % 4 != 0 || placement.length() == 0) {
+            return false;
+        } else {
+            char[] placementChar = placement.toCharArray();
+            for (int i = 0; i < placementChar.length; i = i + 4) {
+                single = String.valueOf(placementChar[i]) + String.valueOf(placementChar[i + 1]) +
+                        String.valueOf(placementChar[i + 2]) + String.valueOf(placementChar[i + 3]);
+                if (isPlacementWellFormed(single)) {
 
-                  if (before <= placementChar[i]) {
-                      if (before==placementChar[i]){
+                    if (before <= placementChar[i]) {
+                        if (before==placementChar[i]){
                             count++;
-                          before = placementChar[i];
+                            before = placementChar[i];
                             if (count>=3){
                                 return false;
                             }
-                      }
-                      else {
-                          before = placementChar[i];
-                          count=1;
-                      }
+                        }
+                        else {
+                            before = placementChar[i];
+                            count=1;
+                        }
 
-                  } else {
-                      return false;
-                  }
+                    } else {
+                        return false;
+                    }
 
-                  temp = String.valueOf(placementChar[i]) + String.valueOf(placementChar[i + 1]) + String.valueOf(placementChar[i + 2]);
+                    temp = String.valueOf(placementChar[i]) + String.valueOf(placementChar[i + 1]) + String.valueOf(placementChar[i + 2]);
 
-                  if (position.contains(temp)) {
-                      return false;
-                  } else {
-                      position.add(temp);
-                  }
-              } else {
-                  return false;
-              }
+                    if (position.contains(temp)) {
+                        return false;
+                    } else {
+                        position.add(temp);
+                    }
+                } else {
+                    return false;
+                }
 
-          }
-          return true;
-      }
-  }
-  public static char [][] decodeTotype_position(String placement){
-    assert isPlacementStringWellFormed(placement);
-    char[] placementChar = placement.toCharArray();
-    int paircount=4;
-    char [][] decode=new char[placement.length()/paircount][paircount];
-    for (int i = 0; i < placementChar.length; i = i + paircount){
-
-        for (int j = 0; j < paircount; j++) {
-            decode[i/4][j]=placementChar[i+j];
+            }
+            return true;
         }
     }
+    public static char [][] decodeTotype_position(String placement){
+        assert isPlacementStringWellFormed(placement);
+        char[] placementChar = placement.toCharArray();
+        int paircount=4;
+        char [][] decode=new char[placement.length()/paircount][paircount];
+        for (int i = 0; i < placementChar.length; i = i + paircount){
 
-    return decode;
-}
+            for (int j = 0; j < paircount; j++) {
+                decode[i/4][j]=placementChar[i+j];
+            }
+        }
+
+        return decode;
+    }
     public static boolean isPeg(char peg){
-      if (peg>='i'&& peg <='l') {
-          return true;
-      }
-      return false;
+        if (peg>='i'&& peg <='l') {
+            return true;
+        }
+        return false;
     }
     /**
      * Determine whether a placement string is valid.  To be valid, the placement
@@ -197,7 +197,7 @@ public class TwistGame {
 
             }
             else {
-                int[][] piecestemp=PiecesType.getA0(type,rotation);
+               // int[][] piecestemp=PiecesType.getA0(type,rotation);
 
 //                BoardStatus Status=Full;
 //               node[position]=new BoardNode(Status,position);
