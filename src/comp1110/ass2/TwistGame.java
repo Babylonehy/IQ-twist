@@ -39,6 +39,7 @@ public class TwistGame {
      */
     // FIXME Task 2: determine whether a piece or peg placement is well-formed
     public static boolean isPlacementWellFormed(String piecePlacement) {
+
    /* int l = piecePlacement.length();
     int a = 0;
     if(l%4 !=0){
@@ -80,6 +81,7 @@ public class TwistGame {
     }
 
     */
+
         Pattern p=Pattern.compile("[a-h][1-8][A-D][0-7]$|[i-l][1-8][A-D]0$");
         Matcher m=p.matcher(piecePlacement);
         while (m.find()){
@@ -200,6 +202,7 @@ public class TwistGame {
 
             }
             else {
+                //FIXME please finished this part about pieces decode.
                // int[][] piecestemp=PiecesType.getA0(type,rotation);
 
 //                BoardStatus Status=Full;

@@ -199,22 +199,28 @@ public static Map all=new HashMap();
                 op[j][last] = top;
             }
         }
-
-
-
         return rotate;
     }
 
     public static void setMap( Map map ){
-        map.put("a0",new int[][][]{a0,a1,a2,a3,a4,a5,a6,a7});
-        map.put("b0",new int[][][]{b0,b1,b2,b3,b4,b5,b6,b7});
-        map.put("c0",new int[][][]{c0,c1,c2,c3,c4,c5,c6,c7});
-        map.put("d0",new int[][][]{d0,d1,d2,d3,d4,d5,d6,d7});
-        map.put("e0",new int[][][]{e0,e1,e2,e3,e4,e5,e6,e7});
-        map.put("f0",new int[][][]{f0,f1,f2,f3,f4,f5,f6,f7});
-        map.put("g0",new int[][][]{g0,g1,g2,g3,g4,g5,g6,g7});
-        map.put("h0",new int[][][]{h0,h1,h2,h3,h4,h5,h6,h7});
-        //TODO 补充完
+        map.put("a0",a0);
+        map.put("b0",b0);
+        map.put("c0",c0);
+        map.put("d0",d0);
+        map.put("e0",e0);
+        map.put("f0",f0);
+        map.put("g0",g0);
+        map.put("h0",h0);
+        map.put("a1",a1);
+        map.put("b1",b1);
+        map.put("c1",c1);
+        map.put("d1",d1);
+        map.put("e1",e1);
+        map.put("f1",f1);
+        map.put("g1",g1);
+        map.put("h1",h1);
+
+        //TODO 补充完!
     }
 
     public  static Integer getTypeset(char type,int rotation){
