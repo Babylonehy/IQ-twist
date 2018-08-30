@@ -1,7 +1,11 @@
 package comp1110.ass2.Game;
 
+import comp1110.ass2.Elements.Color;
 import comp1110.ass2.Elements.Peg;
 import comp1110.ass2.Elements.BoardStatus;
+
+import static comp1110.ass2.Elements.BoardStatus.*;
+
 
 /**
  * Create by Sean 2018-08-21
@@ -26,8 +30,11 @@ import comp1110.ass2.Elements.BoardStatus;
 public class BoardNode {
     private int[] useNode;
     Peg peg;
-    Pieces Piece;
+    Pieces piece;
     BoardStatus Status;
+    private int position;
+    Color color;
+
     //TODO add  constructor.
 
     /**
@@ -35,12 +42,24 @@ public class BoardNode {
       */
 
 
-    BoardNode(Peg peg, int position){
+    public BoardNode(Peg peg, int position){
+        this.peg=peg;
+        this.position=position;
+        this.Status=IamPeg;
 
     }
 
-    BoardNode(BoardStatus Status, int position){
+//    public BoardNode(Pieces piece, int position){
+//        this.piece=piece;
+//        this.position=position;
+//        this.Status=IamPeg;
+//
+//    }
 
+    public BoardNode(BoardStatus Status, int position,Color color){
+            this.Status=Status;
+            this.color=color;
+            this.position=position;
     }
 
     /**
@@ -70,6 +89,12 @@ public class BoardNode {
         return false;
     }
 
+    /**
+     *
+     */
+    public BoardStatus getStatus(){
+        return Status;
+    }
 
 
 }

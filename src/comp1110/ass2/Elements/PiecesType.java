@@ -2,6 +2,9 @@ package comp1110.ass2.Elements;
 
 import comp1110.ass2.Game.Pieces;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import static comp1110.ass2.Elements.Color.*;
 
 /**
@@ -12,14 +15,20 @@ import static comp1110.ass2.Elements.Color.*;
   */
 //TODO Finished this commit about a0-h0 and create empty int[][] for each from a0-h0 totoal 8.
 
-public enum PiecesType {
-    a,b,c,d,e,f,g,h;
+public class PiecesType {
 /**
 Doing assignment to prototype of 8 different shapes, which combines a 4*4 matrix
  0 for null;
  1 for covered;
  -1 for empty;
 */
+    static Map<String,Integer> map=new HashMap<String, Integer>();
+
+
+String[] PiecesType = new String[64];
+public static Map all=new HashMap();
+
+
 
     static final int[][] a0 = {
         {-1, 1,-1, 0},
@@ -176,22 +185,43 @@ Doing assignment to prototype of 8 different shapes, which combines a 4*4 matrix
     }
 
 
-    private static int[][] RotateRight(int[][]op ){
+    private static int[][] RotateRight(int[][]op){
         int[][] rotate = new int[4][4];
-        rotate[0] = op[2];
+        for(int i = 0; i<4/2; i++){
+            int first = i;
+            int last = 4 - 1 -i;
+            for(int j = first; j< last;j++){
+                int off = i - first;
+                int top = op[first][i];
+                op[first][j] = op[last-off][first];
+                op[last-off][first] = op[last][last-off];
+                op[last][last-off] = op[j][last];
+                op[j][last] = top;
+            }
+        }
 
 
 
         return rotate;
     }
 
+    public static void setMap( Map map ){
+        map.put("a0",a0);
+        //TODO 补充完
+    }
 
+    public  static Integer getTypeset(char type,int rotation){
+        setMap(map);
+        String key= String.valueOf(type)+String.valueOf(rotation);
+        return map.get("key");
+    }
 
     public String getType(){
 
-        return PiecesType.this.name();
+        return null;
     }
 //TODO add commit
+
 
     /**
      *
