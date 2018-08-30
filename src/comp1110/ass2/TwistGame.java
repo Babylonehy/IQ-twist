@@ -171,6 +171,7 @@ public class TwistGame {
         }
         return false;
     }
+
     /**
      * Determine whether a placement string is valid.  To be valid, the placement
      * string must be well-formed and each piece placement must be a valid placement
