@@ -21,6 +21,7 @@ import static comp1110.ass2.Elements.BoardStatus.Full;
  * The game is based directly on Smart Games' IQ-Twist game
  * (http://www.smartgames.eu/en/smartgames/iq-twist)
  */
+
 public class TwistGame {
     private static final int nodecount=32;
     static BoardNode [] node=new BoardNode[nodecount];
