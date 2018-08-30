@@ -199,9 +199,6 @@ public static Map all=new HashMap();
                 op[j][last] = top;
             }
         }
-
-
-
         return rotate;
     }
 
