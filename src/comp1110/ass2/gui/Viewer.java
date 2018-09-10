@@ -18,7 +18,6 @@ import javafx.scene.text.Text;
 import javafx.scene.text.TextAlignment;
 import javafx.stage.Stage;
 
-
 import static comp1110.ass2.TwistGame.*;
 
 /**
@@ -197,6 +196,7 @@ public class Viewer extends Application {
             if (pieces>='a' && pieces<='h'){
                 Image img=new Image(Viewer.class.getResource(URI_BASE + pieces + ".png").toString());
                 setImage(img);
+
                 if (z>=4){
                     setScaleY(-1);
                 }

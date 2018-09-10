@@ -16,11 +16,12 @@ import static comp1110.ass2.Elements.Color.*;
 //TODO Finished this commit about a0-h0 and create empty int[][] for each from a0-h0 totoal 8.
 
 public class PiecesType {
+
 /**
-Doing assignment to prototype of 8 different shapes, which combines a 4*4 matrix
- 0 for null;
- 1 for covered;
- -1 for empty;
+ * Doing assignment to prototype of 8 different shapes, which combines a 4*4 matrix
+ *  0 for null;
+ *  1 for covered;
+ *  -1 for empty;
 */
     static final int[][] a0 = {
         {-1, 1,-1, 0},
@@ -28,15 +29,7 @@ Doing assignment to prototype of 8 different shapes, which combines a 4*4 matrix
         { 0, 0, 0, 0},
         { 0, 0, 0, 0}
     };
-    //TODO add commit
-    static final int[][] a1=RotateRight(a0);
-    static final int[][] a2=RotateRight(a1);
-    static final int[][] a3=RotateRight(a2);
-    static final int[][] a4=RotateRight(a3);
-    static final int[][] a5=Flip(a0);
-    static final int[][] a6=RotateRight(a5);
-    static final int[][] a7=RotateRight(a6);
-    static final int[][] a8=RotateRight(a7);
+
 
     static final int[][] b0 = {
             { 1, 1, 0, 0},
@@ -45,14 +38,6 @@ Doing assignment to prototype of 8 different shapes, which combines a 4*4 matrix
             { 0, 0, 0, 0}
     };
 
-    static final int[][] b1=RotateRight(b0);
-    static final int[][] b2=RotateRight(b1);
-    static final int[][] b3=RotateRight(b2);
-    static final int[][] b4=RotateRight(b3);
-    static final int[][] b5=Flip(b0);
-    static final int[][] b6=RotateRight(b5);
-    static final int[][] b7=RotateRight(b6);
-    static final int[][] b8=RotateRight(b7);
 
     static final int[][] c0 = {
             { 1,-1, 1, 1},
@@ -61,14 +46,6 @@ Doing assignment to prototype of 8 different shapes, which combines a 4*4 matrix
             { 0, 0, 0, 0}
     };
 
-    static final int[][] c1=RotateRight(c0);
-    static final int[][] c2=RotateRight(c1);
-    static final int[][] c3=RotateRight(c2);
-    static final int[][] c4=RotateRight(c3);
-    static final int[][] c5=Flip(c0);
-    static final int[][] c6=RotateRight(c5);
-    static final int[][] c7=RotateRight(c6);
-    static final int[][] c8=RotateRight(c7);
 
     static final int[][] d0 = {
             { 1, 1, 1, 0},
@@ -77,13 +54,7 @@ Doing assignment to prototype of 8 different shapes, which combines a 4*4 matrix
             { 0, 0, 0, 0}
     };
 
-    static final int[][] d1=RotateRight(d0);
-    static final int[][] d2=RotateRight(d1);
-    static final int[][] d3=RotateRight(d2);
-    static final int[][] d4=Flip(d0);
-    static final int[][] d5=RotateRight(d4);
-    static final int[][] d6=RotateRight(d5);
-    static final int[][] d7=RotateRight(d6);
+
 
     static final int[][] e0 = {
             { 1, 1,-1, 0},
@@ -92,13 +63,6 @@ Doing assignment to prototype of 8 different shapes, which combines a 4*4 matrix
             { 0, 0, 0, 0}
     };
 
-    static final int[][] e1=RotateRight(e0);
-    static final int[][] e2=RotateRight(e1);
-    static final int[][] e3=RotateRight(e2);
-    static final int[][] e4=Flip(e0);
-    static final int[][] e5=RotateRight(e4);
-    static final int[][] e6=RotateRight(e5);
-    static final int[][] e7=RotateRight(e6);
 
     static final int[][] f0 = {
             { 1, 1,-1, 0},
@@ -107,29 +71,12 @@ Doing assignment to prototype of 8 different shapes, which combines a 4*4 matrix
             { 0, 0, 0, 0}
     };
 
-    static final int[][] f1=RotateRight(f0);
-    static final int[][] f2=RotateRight(f1);
-    static final int[][] f3=RotateRight(f2);
-    static final int[][] f4=Flip(f0);
-    static final int[][] f5=RotateRight(f4);
-    static final int[][] f6=RotateRight(f5);
-    static final int[][] f7=RotateRight(f6);
-
     static final int[][] g0 = {
             {-1, 0, 0, 0},
             {-1, 1, 1, 0},
             { 0,-1, 0, 0},
             { 0, 0, 0, 0}
     };
-
-    static final int[][] g1=RotateRight(g0);
-    static final int[][] g2=RotateRight(g1);
-    static final int[][] g3=RotateRight(g2);
-    static final int[][] g4=Flip(g0);
-    static final int[][] g5=RotateRight(g4);
-    static final int[][] g6=RotateRight(g5);
-    static final int[][] g7=RotateRight(g6);
-
 
     static final int[][] h0 = {
             {-1, 1, 1, 0},
@@ -138,22 +85,11 @@ Doing assignment to prototype of 8 different shapes, which combines a 4*4 matrix
             { 0, 0, 0, 0}
     };
 
-    static final int[][] h1=RotateRight(h0);
-    static final int[][] h2=RotateRight(h1);
-    static final int[][] h3=RotateRight(h2);
-    static final int[][] h4=Flip(h0);
-    static final int[][] h5=RotateRight(h4);
-    static final int[][] h6=RotateRight(h5);
-    static final int[][] h7=RotateRight(h6);
 
-
-    /**
-     * create a getType method
-     * @return type of Type
-     */
     static int[][] Flip(int[][] op) {
       int[][] flip = new int[4][4];
-       for(int i = 0; i<4; i++){
+
+       for(int i = 0; i<flip.length; i++){
            flip[0][i] = op[3][i];
            flip[1][i] = op[2][i];
            flip[2][i] = op[1][i];
@@ -161,26 +97,75 @@ Doing assignment to prototype of 8 different shapes, which combines a 4*4 matrix
        }
         return flip;
     }
-    
-    private static int[][] RotateRight(int[][]op){
-        int[][] rotate = new int[4][4];
-        for(int i = 0; i<4/2; i++){
-            int first = i;
-            int last = 4 - 1 -i;
-            for(int j = first; j< last;j++){
-                int off = i - first;
-                int top = op[first][i];
-                op[first][j] = op[last-off][first];
-                op[last-off][first] = op[last][last-off];
-                op[last][last-off] = op[j][last];
-                op[j][last] = top;
-            }
-        }
-        return rotate;
+
+    private static int[][] RotateRight(int[][]matrix){
+
+      int[][] rotate = new int[4][4];
+      int n = matrix[0].length;
+      for (int i = 0; i < n; i++)
+          for (int j = 0; j < n; j++) {
+              rotate[j][n - 1 - i] = matrix[i][j];
+          }
+       return rotate;
+
     }
 
+    private static int[][] Flip_Rotate(int[][]matrix,int z){
 
-    public  static Integer getTypeset(char type,int rotation){
+        int[][] result = matrix;
+        if (z>=4){
+            matrix=Flip(result);
+        }
+        for (int i = 0; i < z%4; i++) {
+            result=RotateRight(matrix);
+            matrix=result;
+        }
+        return result;
+    }
+
+    private static void PrintMatrix(int[][]matrix){
+
+        for (int i = 0; i <matrix.length ; i++) {
+            for (int j = 0; j < matrix[i].length; j++) {
+                System.out.print(matrix[i][j]+"  ");
+            }
+            System.out.println();
+        }
+        System.out.println("---------");
+    }
+
+    public static void main(String[] args) {
+        int[][] a1=Flip_Rotate(a0,7);
+        for (int i = 0; i <a1.length ; i++) {
+            for (int j = 0; j < a1[i].length; j++) {
+                System.out.print(a1[i][j]+"  ");
+            }
+            System.out.println();
+        }
+    }
+
+    public  static int[][] getTypeset(char type,int rotation){
+        switch (type){
+            case 'a':
+                return Flip_Rotate(a0,rotation);
+            case 'b':
+                return Flip_Rotate(b0,rotation);
+            case 'c':
+                return Flip_Rotate(c0,rotation);
+            case 'd':
+                return Flip_Rotate(d0,rotation);
+            case 'e':
+                return Flip_Rotate(e0,rotation);
+            case 'f':
+                return Flip_Rotate(f0,rotation);
+            case 'g':
+                return Flip_Rotate(g0,rotation);
+            case 'h':
+                return Flip_Rotate(h0,rotation);
+            default:
+                    System.out.println("Wrong Type input!");
+
+        }
         return null;
     }
 
