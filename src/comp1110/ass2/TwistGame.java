@@ -114,7 +114,8 @@ public class TwistGame {
 
         if (placement.length() % 4 != 0 || placement.length() == 0) {
             return false;
-        } else {
+        }
+        else {
             char[] placementChar = placement.toCharArray();
             for (int i = 0; i < placementChar.length; i = i + 4) {
                 single = String.valueOf(placementChar[i]) + String.valueOf(placementChar[i + 1]) +
@@ -153,6 +154,12 @@ public class TwistGame {
             return true;
         }
     }
+
+    /**
+     *
+     * @param placement
+     * @return
+     */
     public static char [][] decodeTotype_position(String placement){
         assert isPlacementStringWellFormed(placement);
         char[] placementChar = placement.toCharArray();
@@ -193,8 +200,10 @@ public class TwistGame {
             char type=decode[i][0];
             int x=decode[i][1]-'1';
             char y=decode[i][2];
+
             int rotation= decode[i][3]-'0';
             int position=charPairToPosition(x,y);
+
             if (isPeg(type)){
                 node[position]=new BoardNode(new Peg(type),position);
                 System.out.print(type+" ");
@@ -202,11 +211,8 @@ public class TwistGame {
 
             }
             else {
-                //FIXME please finished this part about pieces decode.
-               // int[][] piecestemp=PiecesType.getA0(type,rotation);
 
-//                BoardStatus Status=Full;
-//               node[position]=new BoardNode(Status,position);
+
             }
 
 
@@ -221,7 +227,7 @@ public class TwistGame {
      *
      * @param x
      * @param y
-     * @return
+     * @return Board position
      */
     public static int charPairToPosition(int x,char y){
         assert onBoard(x,y);
@@ -233,7 +239,7 @@ public class TwistGame {
      *
      * @param x
      * @param y
-     * @return
+     * @return onBoard or not
      */
 
     public static boolean onBoard(int x,char y){
@@ -243,6 +249,16 @@ public class TwistGame {
         System.out.println(x+" "+y+" Off Board.");
         return false;
     }
+
+    /**
+     * Nodes can be used
+     * @return a int [] include nodes can be used
+     */
+    public int[] getUseNode() {
+        return null;
+    }
+
+
     /**
      * Given a string describing a placement of pieces and pegs, return a set
      * of all possible next viable piece placements.   To be viable, a piece

@@ -31,7 +31,7 @@ public class BoardNode {
     private int[] useNode;
     Peg peg;
     Pieces piece;
-    BoardStatus Status;
+    BoardStatus Status=null;
     private int position;
     Color color;
 
@@ -49,26 +49,25 @@ public class BoardNode {
 
     }
 
-//    public BoardNode(Pieces piece, int position){
-//        this.piece=piece;
-//        this.position=position;
-//        this.Status=IamPeg;
-//
-//    }
-
-    public BoardNode(BoardStatus Status, int position,Color color){
-            this.Status=Status;
+    public BoardNode(int position,int status,Color color){
+            WriteStatus(status);
             this.color=color;
             this.position=position;
     }
 
-    /**
-     * Nodes can be used
-     * @return a int [] include nodes can be used
-     */
-    public int[] getUseNode() {
-        return null;
+    private void WriteStatus(int status){
+        switch (status){
+            case 1:
+                this.Status=Full;
+            case -1:
+                this.Status=Hole;
+            case 0:
+                this.Status=null;
+            default:
+                System.out.println("Wrong status input!");
+        }
     }
+
 
     /**
      * Put a pieces to board and update Board.

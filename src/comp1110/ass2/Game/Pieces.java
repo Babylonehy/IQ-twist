@@ -3,7 +3,12 @@ package comp1110.ass2.Game;
 
 import comp1110.ass2.Elements.Color;
 import comp1110.ass2.Elements.Direction;
-import comp1110.ass2.Elements.PiecesType;
+
+import java.util.Arrays;
+
+import static comp1110.ass2.Elements.Color.*;
+import static comp1110.ass2.Elements.PiecesType.getTypeset;
+
 
 /**
  * Create by Sean 2018-08-21
@@ -14,45 +19,71 @@ import comp1110.ass2.Elements.PiecesType;
  */
 
 public class Pieces {
-    Object Pieces = new Object();
 
-    public Object getPieces() {
-        return Pieces;
-    }
+    private  String piecesId; //length 2 chars
+    private  int[][] pieces_matrix;
+    private  char type;
+    private  int rotate;
+    Color color;
 
-    private  char piecesId; //length 4 chars
 
-
-    public Pieces(char piecesId){
+    public Pieces(String piecesId){
         this.piecesId=piecesId;
+        char [] Id=piecesId.toCharArray();
+        this.type=Id[0];
+        this.rotate=Id[1]-'0';
+        if (type>='a'&&type<='h'&&rotate<=7){
+            this.pieces_matrix=getTypeset(type,rotate);
+            WriteColor(type);
+            System.out.println("Create "+piecesId+" successful.");
+        }
+        else {
+            System.out.println("Wrong PiecesId!");
+        }
+
     }
+
     /**
-     * This method rotate piece by 90,180,270,360 degree in right direction
-     * @param dir Rotation Direction
-     * @param pieces From PiecesType, original pieces, 7x7
-     * @return A set new rotated Pieces.
+     * Write Color for pieces
+     *
      */
+    private void WriteColor(char Type){
+        switch (type){
+            case 'a':
+               this.color=Red;
+               break;
+            case 'b':
+               this.color=Red;
+                break;
+            case 'c':
+                this.color=Blue;
+                break;
+            case 'd':
+                this.color=Blue;
+                break;
+            case 'e':
+                this.color=Green;
+                break;
+            case 'f':
+                this.color=Green;
+                break;
+            case 'g':
+                this.color=Yellow;
+                break;
+            case 'h':
+                this.color=Yellow;
+                break;
+            default:
+                System.out.println("Bad color write");
 
-    private static int[][] rotateRight(Direction dir,int[][] pieces ){
-        return null;
+        }
     }
-
-    /**
-     * The method mirror-flips pieces vertically by 180°.
-     * @param pieces From PieceType, Must before Rotation pieces, 7×7;
-     * @returnA set new rotated and fliped Pieces.
-     */
-    private static int[][] flipPieces(int [][] pieces){
-        return null;
-    }
-
-
     /**
      * The method decodes pieces to 4*4.
-     * @param piecesId From PieceType; Offer to BoardNode.
      * @return A set new rotated and fliped Pieces.
      */
-    private static int[][] DecodePieces(String piecesId){
+    private static int[][] DecodetoBoard(int position){
+
         return null;
     }
 
@@ -66,7 +97,12 @@ public class Pieces {
      * @return position 0-11
      */
     public static int left_top_position(int[][] m){
+
         return 1;
+    }
+
+    public static void main(String[] args) {
+        Pieces x=new Pieces("a6");
     }
 
 }
