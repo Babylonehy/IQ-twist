@@ -22,7 +22,7 @@ import static comp1110.ass2.Elements.BoardStatus.*;
 
 public class TwistGame {
     private static final int nodecount=32;
-    static BoardNode [] node=new BoardNode[nodecount];
+    static BoardNode [] node;
     static Vector<Pieces> piecesSet=new Vector<>();
 
     /**
@@ -194,8 +194,14 @@ public class TwistGame {
      * @return True if the placement sequence is valid
      */
     public static boolean isPlacementStringValid(String placement) {
+
+        assert (isPlacementStringWellFormed(placement));
+
         System.out.println('\n'+"--"+placement+"--"+'\n');
         char [][] decode=decodeTotype_position(placement);
+
+        //Fixme this satement should be deleted......
+
         node=new BoardNode[nodecount];
 
         for (int i = 0; i <decode.length ; i++){
@@ -221,7 +227,7 @@ public class TwistGame {
                         return false;
                     }
                 }
-                System.out.print(type+" put successfully");
+                System.out.println(type+" put successfully");
             }
             else {
                 String piecesId=type+""+rotation+"";
@@ -231,10 +237,8 @@ public class TwistGame {
 
                     System.out.println(piecesSet.lastElement().getPiecesId()+" Good put.");
 
-                    if (updateBoard(piecesSet.lastElement().DecodetoBoardposition(position),piecesSet.lastElement().getColor())){
+                    if (updateBoard(piecesSet.lastElement().DecodetoBoardposition(position),piecesSet.lastElement().getColor())==false){
 
-                    }
-                    else {
                         return false;
                     }
                 }
@@ -316,10 +320,12 @@ public class TwistGame {
                     if (node[key].getColor() != null && node[key].getColor() != color) {
                         System.out.println(key + " color wrong.");
                         return false;
-                    } else if (node[key].getStatus() == IamPeg && status == 1) {
+                    }
+                    else if (node[key].getStatus() == IamPeg && status == 1) {
                         System.out.println(key + " not hole but put on peg.");
                         return false;
-                    } else {
+                    }
+                    else {
                         node[key] = new BoardNode(key, status, color);
                         System.out.println(key + " update successfully.");
                     }
@@ -329,17 +335,27 @@ public class TwistGame {
         }
         return true;
     }
+
     //TODO delete
     public static void main(String[] args) {
-        isPlacementStringValid("c2A3d1A3");
+        isPlacementStringValid("a7A7c1A3d2A6e2C3f3C2g4A7h6D0i6B0j2B0j1C0k3C0l4B0l5C0");
+        getNotUseNode();
         System.out.println();
     }
     /**
      * Nodes can be used
      * @return a int [] include nodes can be used
      */
-    public int[] getUseNode() {
-        return null;
+    public static  Integer[] getNotUseNode() {
+        Vector<Integer> use=new Vector();
+        for (int i = 0; i < node.length; i++) {
+            if (node[i]==null || node[i].getStatus()==IamPeg){
+                System.out.println(i);
+                use.add(i);
+            }
+        }
+        Integer [] result=(Integer []) use.toArray();
+        return result;
     }
 
 
@@ -360,6 +376,9 @@ public class TwistGame {
 
 
     public static Set<String> getViablePiecePlacements(String placement) {
+        assert isPlacementStringValid(placement);
+        Integer[] canUseNode=getNotUseNode();
+
         // FIXME Task 6: determine the set of valid next piece placements
         return null;
     }
