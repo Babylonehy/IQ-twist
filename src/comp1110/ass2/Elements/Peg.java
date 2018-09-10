@@ -30,6 +30,11 @@ public class Peg {
         this.type=type;
         insertColor(type);
     }
+
+    /**
+     * Write Type
+     * @param type
+     */
     private void insertColor(char type){
         switch (type){
             case 'i':

@@ -1,19 +1,17 @@
 package comp1110.ass2;
 
-import comp1110.ass2.Elements.BoardStatus;
+import comp1110.ass2.Elements.Color;
 import comp1110.ass2.Elements.Peg;
-import comp1110.ass2.Elements.PiecesType;
 import comp1110.ass2.Game.BoardNode;
 import comp1110.ass2.Game.Pieces;
 
-import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
 import java.util.Vector;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import static comp1110.ass2.Elements.BoardStatus.Full;
+import static comp1110.ass2.Elements.BoardStatus.*;
 
 /**
  * This class provides the text interface for the Twist Game
@@ -25,6 +23,7 @@ import static comp1110.ass2.Elements.BoardStatus.Full;
 public class TwistGame {
     private static final int nodecount=32;
     static BoardNode [] node=new BoardNode[nodecount];
+    static Vector<Pieces> piecesSet=new Vector<>();
 
     /**
      * Determine whether a piece or peg placement is well-formed according to the following:
@@ -104,7 +103,6 @@ public class TwistGame {
      */
     public static boolean isPlacementStringWellFormed(String placement) {
 
-        // FIXME Task 3: determine whether a placement is well-formed
         Vector position = new Vector();
         String temp = "";
         String single = "";
@@ -153,6 +151,8 @@ public class TwistGame {
             }
             return true;
         }
+
+        // FIXME Task 3: determine whether a placement is well-formed
     }
 
     /**
@@ -194,7 +194,9 @@ public class TwistGame {
      * @return True if the placement sequence is valid
      */
     public static boolean isPlacementStringValid(String placement) {
+        System.out.println('\n'+"--"+placement+"--"+'\n');
         char [][] decode=decodeTotype_position(placement);
+        node=new BoardNode[nodecount];
 
         for (int i = 0; i <decode.length ; i++){
             char type=decode[i][0];
@@ -205,21 +207,48 @@ public class TwistGame {
             int position=charPairToPosition(x,y);
 
             if (isPeg(type)){
-                node[position]=new BoardNode(new Peg(type),position);
-                System.out.print(type+" ");
-                System.out.println(node[position].getStatus());
 
+                if (node[position]==null){
+                    node[position]=new BoardNode(new Peg(type),position);
+                }
+
+                if (node[position].getStatus()==Full){
+                    return false;
+                }
+                else {
+                    BoardNode temp=new BoardNode(new Peg(type),position);
+                    if (temp.getColor()!=node[position].getColor()){
+                        return false;
+                    }
+                }
+                System.out.print(type+" put successfully");
             }
             else {
+                String piecesId=type+""+rotation+"";
+                piecesSet.add(new Pieces(piecesId));
 
+                if (PutonBoard(position,piecesSet.lastElement().getWidth(),piecesSet.lastElement().getHeight())){
 
+                    System.out.println(piecesSet.lastElement().getPiecesId()+" Good put.");
+
+                    if (updateBoard(piecesSet.lastElement().DecodetoBoardposition(position),piecesSet.lastElement().getColor())){
+
+                    }
+                    else {
+                        return false;
+                    }
+                }
+                else {
+                    System.out.println(piecesSet.lastElement().getPiecesId()+" Bad put!");
+                    return false;
+                }
             }
 
 
         }
-        // FIXME Task 5: determine whether a placement string is valid
 
-        return false;
+        return true;
+        // FIXME Task 5: determine whether a placement string is valid
 
     }
 
@@ -231,8 +260,8 @@ public class TwistGame {
      */
     public static int charPairToPosition(int x,char y){
         assert onBoard(x,y);
-
-        return (y-'A')*8+x-1;
+        System.out.println(y+""+x+" position:"+((y-'A')*8+x));
+        return (y-'A')*8+x;
     }
 
     /**
@@ -250,6 +279,61 @@ public class TwistGame {
         return false;
     }
 
+    public static boolean PutonBoard(int left_top_postion,int x, int y){
+
+        x=left_top_postion%8+x-1;
+        y=(int)left_top_postion/8+y-1;
+
+        if (x>7){
+            System.out.println(left_top_postion+" "+x+" x Off Board.");
+            return false;
+        }
+        if (y>3){
+            System.out.println(left_top_postion+" "+y+" y Off Board.");
+            return false;
+        }
+
+        return true;
+    }
+
+    private static boolean updateBoard(Map<Integer,Integer> m, Color color){
+
+        for (int key:m.keySet()) {
+            int status = m.get(key);
+            if (status==0){
+                continue;
+            }
+            if (node[key] == null) {
+                node[key] = new BoardNode(key, status, color);
+                System.out.println(key + " update successfully.");
+            }
+            else {
+                if (node[key].getStatus() != null  ) {
+                    System.out.println(key + " has been occupied.");
+                    return false;
+                }
+                else {
+                    if (node[key].getColor() != null && node[key].getColor() != color) {
+                        System.out.println(key + " color wrong.");
+                        return false;
+                    } else if (node[key].getStatus() == IamPeg && status == 1) {
+                        System.out.println(key + " not hole but put on peg.");
+                        return false;
+                    } else {
+                        node[key] = new BoardNode(key, status, color);
+                        System.out.println(key + " update successfully.");
+                    }
+                }
+
+            }
+        }
+        return true;
+    }
+    //TODO delete
+    public static void main(String[] args) {
+        isPlacementStringValid("c2A3d1A3");
+        System.out.println();
+    }
     /**
      * Nodes can be used
      * @return a int [] include nodes can be used

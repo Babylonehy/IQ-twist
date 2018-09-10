@@ -18,7 +18,7 @@ import static org.junit.Assert.assertTrue;
  */
 public class PlacementStringValidTest {
   @Rule
-  public Timeout globalTimeout = Timeout.millis(20000);
+  public Timeout globalTimeout = Timeout.millis(9999999);
 
   private void test(String in, String invalid, boolean expected) {
     boolean out = TwistGame.isPlacementStringValid(in);

@@ -30,10 +30,9 @@ import static comp1110.ass2.Elements.BoardStatus.*;
 public class BoardNode {
     private int[] useNode;
     Peg peg;
-    Pieces piece;
     BoardStatus Status=null;
     private int position;
-    Color color;
+    Color color=null;
 
     //TODO add  constructor.
 
@@ -45,6 +44,7 @@ public class BoardNode {
     public BoardNode(Peg peg, int position){
         this.peg=peg;
         this.position=position;
+        this.color=peg.getColor();
         this.Status=IamPeg;
 
     }
@@ -59,10 +59,13 @@ public class BoardNode {
         switch (status){
             case 1:
                 this.Status=Full;
+                break;
             case -1:
                 this.Status=Hole;
+                break;
             case 0:
                 this.Status=null;
+                break;
             default:
                 System.out.println("Wrong status input!");
         }
@@ -95,5 +98,7 @@ public class BoardNode {
         return Status;
     }
 
-
+    public Color getColor() {
+        return color;
+    }
 }

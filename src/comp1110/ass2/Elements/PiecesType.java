@@ -56,7 +56,7 @@ public class PiecesType {
 
 
     static final int[][] e0 = {
-            { 1, 1,-1, 0},
+            { 1,-1, 0, 0},
             { 0,-1, 0, 0},
             { 0, 0, 0, 0},
             { 0, 0, 0, 0}
@@ -120,6 +120,7 @@ public class PiecesType {
         int[][] result = matrix;
         if (z>=4){
             matrix=Flip(result);
+            result=matrix;
         }
         for (int i = 0; i < z%4; i++) {
             result=RotateRight(matrix);
@@ -139,15 +140,16 @@ public class PiecesType {
         System.out.println("---------");
     }
 
-//    public static void main(String[] args) {
-//        int[][] a1=Flip_Rotate(a0,7);
-//        for (int i = 0; i <a1.length ; i++) {
-//            for (int j = 0; j < a1[i].length; j++) {
-//                System.out.print(a1[i][j]+"  ");
-//            }
-//            System.out.println();
-//        }
-//    }
+    //TODO delete
+    public static void main(String[] args) {
+        int[][] a1=Flip_Rotate(e0,4);
+        for (int i = 0; i <a1.length ; i++) {
+            for (int j = 0; j < a1[i].length; j++) {
+                System.out.print(a1[i][j]+"  ");
+            }
+            System.out.println();
+        }
+    }
 
     public  static int[][] getTypeset(char type,int rotation){
         switch (type){

@@ -2,9 +2,10 @@ package comp1110.ass2.Game;
 
 
 import comp1110.ass2.Elements.Color;
-import comp1110.ass2.Elements.Direction;
 
-import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Vector;
 
 import static comp1110.ass2.Elements.Color.*;
 import static comp1110.ass2.Elements.PiecesType.getTypeset;
@@ -15,17 +16,19 @@ import static comp1110.ass2.Elements.PiecesType.getTypeset;
  *This class will produce all the 64 pieces used.
  * All the change based on PiecesType.
  *
- * Last modify: 2018-08-22 02:54:19 by Stella
+ * Last modify: 2018-09-10 21:47:08 by Sean
  */
 
 public class Pieces {
 
-    private  String piecesId; //length 2 chars
+    private static  String piecesId; //length 2 chars
     private  int[][] pieces_matrix;
     private  char type;
     private  int rotate;
     Color color;
-
+    private int Width;
+    private int Height;
+    Vector<Vector> piecesSet=new Vector<Vector>();
 
     public Pieces(String piecesId){
         this.piecesId=piecesId;
@@ -36,9 +39,10 @@ public class Pieces {
             this.pieces_matrix=getTypeset(type,rotate);
             WriteColor(type);
             System.out.println("Create "+piecesId+" successful.");
+            compress(pieces_matrix);
         }
         else {
-            System.out.println("Wrong PiecesId!");
+            System.out.println(piecesId+" Wrong PiecesId!");
         }
 
     }
@@ -78,14 +82,24 @@ public class Pieces {
 
         }
     }
-    /**
-     * The method decodes pieces to 4*4.
-     * @return A set new rotated and fliped Pieces.
-     */
-    private static int[][] DecodetoBoard(int position){
 
-        return null;
+    /**
+     *
+     * @param position left_and_top_position.
+     * @return A map of position and status(int)
+     */
+    public Map DecodetoBoardposition(int position){
+        Map<Integer,Integer> BoardPosition=new HashMap<>();
+        for (int i = 0; i < this.getHeight(); i++) {
+            int index=position+i*8;
+            for (int j = 0; j <this.getWidth() ; j++) {
+                BoardPosition.put(index,(int)piecesSet.elementAt(i).get(j));
+                index=index+1;
+            }
+        }
+        return BoardPosition;
     }
+
 
 
     /**
@@ -101,8 +115,100 @@ public class Pieces {
         return 1;
     }
 
-    public static void main(String[] args) {
-        Pieces x=new Pieces("a6");
+
+    public  Vector<Vector> compress(int[][] m){
+        Vector s1=new Vector();
+
+        int startCol=-1;
+        int endCol=-1;
+        int startRow=-1;
+        int endRow=-1;
+
+        for (int i = 0; i < m[0].length; i++) {
+            for (int j = 0; j < m.length; j++) {
+                if (m[j][i]!=0 && startCol<0){
+                    startCol=i;
+                    break;
+                }
+                else if (m[j][i]!=0 && startCol>=0){
+                    endCol=i;
+                    break;
+                }
+            }
+            if (endCol==-1){
+                endCol=startCol;
+            }
+        }
+
+        for (int i = 0; i < m.length; i++) {
+            for (int j = 0; j < m[i].length; j++) {
+                if (m[i][j]!=0&&startRow<0){
+                    startRow=i;
+                    break;
+                }
+                else if (m[i][j]!=0&&startRow>=0){
+                    endRow=i;
+                    break;
+                }
+            }
+            if (endRow==-1){
+                endRow=startRow;
+            }
+        }
+
+        this.Height=endRow-startRow+1;
+        this.Width=endCol-startCol+1;
+        System.out.println(piecesId+" Height:"+Height+" Width:"+Width);
+
+        for (int i = startRow; i <=endRow; i++) {
+            for (int j = startCol; j <=endCol ; j++) {
+                s1.add(m[i][j]);
+            }
+            piecesSet.add((Vector) s1.clone());
+            s1.clear();
+        }
+        System.out.println(piecesId+" compressed successful.");
+
+        return piecesSet;
     }
 
+
+    public int[][] getPieces_matrix() {
+        return pieces_matrix;
+    }
+
+    public String getPiecesId() {
+        return piecesId;
+    }
+
+    public Color getColor() {
+        return color;
+    }
+
+    public int getHeight() {
+        return Height;
+    }
+
+    public int getWidth() {
+        return Width;
+    }
+
+    public char getType() {
+        return type;
+    }
+
+    public int getRotate() {
+        return rotate;
+    }
+
+    public Vector<Vector> getPiecesSet() {
+        return piecesSet;
+    }
+
+// TODO delete
+    public static void main(String[] args) {
+        Pieces x=new Pieces("c3");
+        Map<Integer,Integer> y=x.DecodetoBoardposition(1);
+        System.out.println();
+    }
 }
