@@ -353,7 +353,11 @@ public class TwistGame {
 
     //TODO delete
     public static void main(String[] args) {
-       // getViablePiecePlacements("c1A3d2A6e2C3f3C4g4A7h6D0i6B0j2B0j1C0k3C0l4B0l5C0");[a6A0, a6A2, a6A4, a6A7, a6B0, a7A1, a7A3, a7A5, a7A7, b6A0, b6A7, b7A1, b7A5],
+       // getViablePiecePlacements("c1A3d2A6e2C3f3C4g4A7h6D0i6B0j2B0j1C0k3C0l4B0l5C0");
+       /*
+        [a6A0, a6A2, a6A4, a6A7, a6B0, a7A1, a7A3, a7A5, a7A7, b6A0, b6A7, b7A1, b7A5]
+        [a6A0, a6A2, a6A4, a6A7, a6B0, a7A1, a7A3, a7A5, a7A7, b6A0, b6A2, b6A7, b7A1, b7A3, b7A5, b7A7]
+       */
         getViablePiecePlacements("a6B0b6C0d1B3e4A5f4C2g2B3h1A2i7D0j7A0k5B0k5C0l3A0l3D0"); //[c5A2]
 
         System.out.println();
@@ -420,7 +424,7 @@ public class TwistGame {
 
     public static Set<String> getViablePiecePlacements(String placement) {
         assert isPlacementStringValid(placement);
-        Set<String> set=new HashSet();
+        Set<String> Allset=new HashSet();
 
         isPlacementStringValid(placement);
         Set<String> canUseNode=getNotUseNode();
@@ -433,7 +437,7 @@ public class TwistGame {
                     String tryPut=placement+tryPieces;
                     System.out.println("try:"+tryPieces);
                     if (isPlacementStringValid(tryPut)){
-                        set.add(tryPieces);
+                        Allset.add(tryPieces);
                         System.out.println(tryPieces+" is OK try.");
                     }
                     else {
@@ -445,18 +449,25 @@ public class TwistGame {
         }
 
         System.out.println('\n'+"Next placement:");
-        for (String each:set) {
-            System.out.println(each);
+        for (String each:Allset) {
+            System.out.print(each+", ");
         }
 
-        if (set.isEmpty()){
+        Allset=RemoveSymmetry(Allset);
+
+        if (Allset.isEmpty()){
             return null;
         }
-        return set;
+
+        return Allset;
 
         // FIXME Task 6: determine the set of valid next piece placements
     }
 
+    public static Set<String> RemoveSymmetry(Set<String> set){
+
+        return null;
+    }
     /**
      * Return an array of all unique solutions for a given starting placement.
      * <p>
