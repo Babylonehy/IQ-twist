@@ -1,7 +1,6 @@
 package comp1110.ass2.Elements;
 
 
-import static comp1110.ass2.Elements.BoardStatus.*;
 import static comp1110.ass2.Elements.Color.*;
 
 
@@ -14,7 +13,7 @@ import static comp1110.ass2.Elements.Color.*;
  *
  * Last modify: 2018-08-21 10:15:05 by Zhi Wang
  */
-//TODO Finished this commit about this class
+
 public class Peg {
 
     private  char type;
@@ -26,7 +25,6 @@ public class Peg {
      * @param type  one of the params to define peg
      */
     public Peg(char type){
-        //TODO initialize for a certain BoardPosition.
         this.type=type;
         insertColor(type);
     }

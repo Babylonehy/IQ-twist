@@ -326,7 +326,7 @@ public class TwistGame {
             }
             if (node[key] == null) {
                 node[key] = new BoardNode(key, status, color);
-               // //System.out.println(key + " update successfully.");
+                // System.out.println(key + " update successfully.");
             }
             else {
                 if (node[key].getStatus() != null && node[key].getStatus()!=IamPeg ) {
