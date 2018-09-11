@@ -1,5 +1,11 @@
 package comp1110.ass2.Game;
 
+/**
+ * Create by Sean 2018-09-11
+ * Color include all the possible color used in Pegs and Pieces.
+ * <p>
+ * Last modify: 2018-09-11 23:40:10 by Sean
+ */
 import java.util.HashMap;
 import java.util.Map;
 

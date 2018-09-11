@@ -1,8 +1,8 @@
 package comp1110.ass2.Game;
 
+import comp1110.ass2.Elements.BoardStatus;
 import comp1110.ass2.Elements.Color;
 import comp1110.ass2.Elements.Peg;
-import comp1110.ass2.Elements.BoardStatus;
 
 import static comp1110.ass2.Elements.BoardStatus.*;
 
@@ -25,7 +25,6 @@ import static comp1110.ass2.Elements.BoardStatus.*;
  * Last modify: 2018-08-23 15:24:06 by Stella
  */
 
-//TODO Finished this commit about this class
 
 public class BoardNode {
     private int[] useNode;
@@ -33,8 +32,6 @@ public class BoardNode {
     BoardStatus Status=null;
     private int position;
     Color color=null;
-
-    //TODO add  constructor.
 
     /**
      * This two method set up the link between node and Peg, Pieces.

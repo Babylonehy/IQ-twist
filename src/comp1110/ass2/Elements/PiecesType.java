@@ -1,12 +1,5 @@
 package comp1110.ass2.Elements;
 
-import comp1110.ass2.Game.Pieces;
-
-import java.util.HashMap;
-import java.util.Map;
-
-import static comp1110.ass2.Elements.Color.*;
-
 /**
  * Create by Sean 2018-08-21
  * We use enum type to represent 8 different shapes of pieces, which are a,b,c,d,e,f,g,h;
@@ -140,16 +133,6 @@ public class PiecesType {
         System.out.println("---------");
     }
 
-    //TODO delete
-    public static void main(String[] args) {
-        int[][] a1=Flip_Rotate(e0,4);
-        for (int i = 0; i <a1.length ; i++) {
-            for (int j = 0; j < a1[i].length; j++) {
-                System.out.print(a1[i][j]+"  ");
-            }
-            System.out.println();
-        }
-    }
 
     public  static int[][] getTypeset(char type,int rotation){
         switch (type){

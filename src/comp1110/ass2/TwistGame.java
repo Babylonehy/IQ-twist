@@ -4,13 +4,15 @@ import comp1110.ass2.Elements.Color;
 import comp1110.ass2.Elements.Peg;
 import comp1110.ass2.Game.BoardNode;
 import comp1110.ass2.Game.Pieces;
+
+import java.util.HashSet;
+import java.util.Map;
+import java.util.Set;
+import java.util.Vector;
+
+import static comp1110.ass2.Elements.BoardStatus.Full;
+import static comp1110.ass2.Elements.BoardStatus.IamPeg;
 import static comp1110.ass2.Game.Constant.*;
-
-import java.util.*;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
-
-import static comp1110.ass2.Elements.BoardStatus.*;
 
 /**
  * This class provides the text interface for the Twist Game
@@ -23,8 +25,6 @@ public class TwistGame {
     private static final int nodecount=32;
     static BoardNode [] node;
     static Vector<Pieces> piecesSet=new Vector<>();
-
-
 
     /**
      * Determine whether a piece or peg placement is well-formed according to the following:
@@ -88,6 +88,7 @@ public class TwistGame {
     }
     return true;
     // FIXME Task 2: determine whether a piece or peg placement is well-formed
+
 //        Pattern p=Pattern.compile("[a-h][1-8][A-D][0-7]$|[i-l][1-8][A-D]0$");
 //        Matcher m=p.matcher(piecePlacement);
 //        while (m.find()){
@@ -350,26 +351,6 @@ public class TwistGame {
             }
         }
         return true;
-    }
-
-    //TODO delete
-    public static void main(String[] args) {
-
-       // getViablePiecePlacements("a6A0b4A2c3A3d1A3e1C4g6B2h5D0i5A0j2B0j3C0k2C0k2D0l8C0l8D0");
-        getViablePiecePlacements("a7A7b6A7d2A6e2C3f3C2g4A7h6D0i6B0j2B0j1C0k3C0l4B0l5C0");
-
-       /*
-        [a6A0, a6A2, a6A4, a6A7, a6B0, a7A1, a7A3, a7A5, a7A7, b6A0, b6A7, b7A1, b7A5]
-        [a6A0, a6A2, a6A4, a6A7, a6B0, a7A1, a7A3, a7A5, a7A7, b6A0, b6A2, b6A7, b7A1, b7A3, b7A5, b7A7]
-       */
-       // getViablePiecePlacements("a6B0b6C0d1B3e4A5f4C2g2B3h1A2i7D0j7A0k5B0k5C0l3A0l3D0"); //[c5A2]
-
-       //getViablePiecePlacements("a7A7b6A7c1A3d2A6e2C3f3C2h6D0i6B0j2B0j1C0k3C0l4B0l5C0"); //[g4A7]
-
-       //getViablePiecePlacements("a7A7b6A7d2A6e2C3f3C2g4A7h6D0i6B0j2B0j1C0k3C0l4B0l5C0");
-
-        //getViablePiecePlacements("a6B0b6C0c5A2d1B3e4A5g2B3h1A2i7D0j7A0k5B0k5C0l3A0l3D0"); // [f4C2]
-        //System.out.println();
     }
 
     /**
