@@ -1,5 +1,6 @@
 package comp1110.ass2.gui;
 
+import comp1110.ass2.Game.Constant;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -18,6 +19,7 @@ import javafx.scene.text.Text;
 import javafx.scene.text.TextAlignment;
 import javafx.stage.Stage;
 
+import static comp1110.ass2.Game.Constant.*;
 import static comp1110.ass2.TwistGame.*;
 
 /**
@@ -60,8 +62,6 @@ public class Viewer extends Application {
     private final Text wrongInput = new Text("Wrong Input!");
 
 
-    char[] pegs={'i','j','j','k','k','l','l'};
-    char[] pieces={'a','b','c','d','e','f','g','h'};
     /**
      * Create the message to be displayed when the player wrongInput.
      */
@@ -341,7 +341,7 @@ public class Viewer extends Application {
 
         makeControls();
         makeBoard();
-        makeStart(pegs,pieces);
+        makeStart(pegs, Constant.pieces);
 
         primaryStage.setResizable(false);
         primaryStage.setScene(scene);
