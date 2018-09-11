@@ -38,7 +38,7 @@ public class Pieces {
         if (type>='a'&&type<='h'&&rotate<=7){
             this.pieces_matrix=getTypeset(type,rotate);
             WriteColor(type);
-            System.out.println("Create "+piecesId+" successful.");
+       //     System.out.println("Create "+piecesId+" successful.");
             compress(pieces_matrix);
         }
         else {
@@ -158,7 +158,7 @@ public class Pieces {
 
         this.Height=endRow-startRow+1;
         this.Width=endCol-startCol+1;
-        System.out.println(piecesId+" Height:"+Height+" Width:"+Width);
+      //  System.out.println(piecesId+" Height:"+Height+" Width:"+Width);
 
         for (int i = startRow; i <=endRow; i++) {
             for (int j = startCol; j <=endCol ; j++) {
@@ -167,7 +167,7 @@ public class Pieces {
             piecesSet.add((Vector) s1.clone());
             s1.clear();
         }
-        System.out.println(piecesId+" compressed successful.");
+      //  System.out.println(piecesId+" compressed successful.");
 
         return piecesSet;
     }

@@ -5,10 +5,7 @@ import comp1110.ass2.Elements.Peg;
 import comp1110.ass2.Game.BoardNode;
 import comp1110.ass2.Game.Pieces;
 
-import java.util.HashSet;
-import java.util.Map;
-import java.util.Set;
-import java.util.Vector;
+import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -27,6 +24,31 @@ public class TwistGame {
     static Vector<Pieces> piecesSet=new Vector<>();
 
     static char[] pieces={'a','b','c','d','e','f','g','h'};
+    static String[] StrictSymmetry={"c4","c5","c6","c7","h4","h5","h6","h7"};
+    static Map<String,String> WeakSymmetry=new HashMap<String, String>()
+    {
+       {
+           put("b0","b2");
+           put("b1","b3");
+           put("b4","b6");
+           put("b5","b7");
+
+           put("e0","e7");
+           put("e1","e4");
+           put("e2","e5");
+           put("e3","e6");
+
+           put("f0","f6");
+           put("f1","f7");
+           put("f2","f4");
+           put("f3","f5");
+
+           put("c0","c2");
+           put("c1","c3");
+           put("h0","h2");
+           put("h1","h2");
+       }
+    };
 
     /**
      * Determine whether a piece or peg placement is well-formed according to the following:
@@ -39,10 +61,10 @@ public class TwistGame {
      * @param piecePlacement A string describing a single piece or peg placement
      * @return True if the placement is well-formed
      */
-    // FIXME Task 2: determine whether a piece or peg placement is well-formed
+
     public static boolean isPlacementWellFormed(String piecePlacement) {
 
-   /* int l = piecePlacement.length();
+    int l = piecePlacement.length();
     int a = 0;
     if(l%4 !=0){
       return false;
@@ -68,6 +90,12 @@ public class TwistGame {
       char4[i]= piecePlacement.charAt(4*i+3);
     }
     for(int i = 0;i<a;i++){
+
+      if (char1[i]>'h'&&char1[i]<='l'){
+          if (char4[i]!='0'){
+              return false;
+          }
+      }
       if(char1[i]<'a'|| char1[i]>'l'){
         return false;
       }
@@ -77,19 +105,19 @@ public class TwistGame {
       if(char3[i]<'A'|| char3[i]>'D'){
         return false;
       }
-      if(char4[i]<'0'||char4[i] >'8'){
+      if(char4[i]<'0'||char4[i] >'7'){
         return false;
       }
+
     }
-
-    */
-
-        Pattern p=Pattern.compile("[a-h][1-8][A-D][0-7]$|[i-l][1-8][A-D]0$");
-        Matcher m=p.matcher(piecePlacement);
-        while (m.find()){
-            return true;
-        }
-        return false;
+    return true;
+    // FIXME Task 2: determine whether a piece or peg placement is well-formed
+//        Pattern p=Pattern.compile("[a-h][1-8][A-D][0-7]$|[i-l][1-8][A-D]0$");
+//        Matcher m=p.matcher(piecePlacement);
+//        while (m.find()){
+//            return true;
+//        }
+//        return false;
     }
 
     /**
@@ -201,7 +229,7 @@ public class TwistGame {
     public static boolean isPlacementStringValid(String placement) {
 
 
-        System.out.println('\n'+"--"+placement+"--"+'\n');
+        System.out.println('\n'+"--"+placement+"--");
         char [][] decode=decodeTotype_position(placement);
 
         //Fixme this satement should be deleted......
@@ -232,8 +260,6 @@ public class TwistGame {
                         return false;
                     }
                 }
-                System.out.println(type+" put successfully");
-                System.out.println();
             }
             else {
                 String piecesId=type+""+rotation+"";
@@ -244,7 +270,6 @@ public class TwistGame {
                     if (updateBoard(piecesSet.lastElement().DecodetoBoardposition(position),piecesSet.lastElement().getColor())==false){
                         return false;
                     }
-                    System.out.println(piecesSet.lastElement().getPiecesId()+" Good put.");
                 }
                 else {
                     System.out.println(piecesSet.lastElement().getPiecesId()+" Bad put!");
@@ -268,7 +293,7 @@ public class TwistGame {
      */
     public static int charPairToPosition(int x,char y){
         assert onBoard(x,y);
-        System.out.println((x+1)+""+y+" position:"+((y-'A')*8+x));
+     //   System.out.println((x+1)+""+y+" position:"+((y-'A')*8+x));
         return (y-'A')*8+x;
     }
 
@@ -304,11 +329,11 @@ public class TwistGame {
         y=(int)left_top_postion/8+y-1;
 
         if (x>7){
-            System.out.println(left_top_postion+" "+x+" x Off Board.");
+            System.out.println(positionToPlaceCode(left_top_postion)+" "+x+">7 X Off Board.");
             return false;
         }
         if (y>3){
-            System.out.println(left_top_postion+" "+y+" y Off Board.");
+            System.out.println(positionToPlaceCode(left_top_postion)+" "+y+">3 Y Off Board.");
             return false;
         }
 
@@ -324,25 +349,25 @@ public class TwistGame {
             }
             if (node[key] == null) {
                 node[key] = new BoardNode(key, status, color);
-                System.out.println(key + " update successfully.");
+               // System.out.println(key + " update successfully.");
             }
             else {
                 if (node[key].getStatus() != null && node[key].getStatus()!=IamPeg ) {
-                    System.out.println(key + " has been occupied.");
+                    System.out.println(positionToPlaceCode(key)+" ("+key +") has been occupied.");
                     return false;
                 }
                 else {
                     if (node[key].getColor() != null && node[key].getColor() != color) {
-                        System.out.println(key + " color wrong.");
+                        System.out.println(positionToPlaceCode(key)+" ("+key +") color wrong.");
                         return false;
                     }
                     else if (node[key].getStatus() == IamPeg && status == 1) {
-                        System.out.println(key + " not hole but put on peg.");
+                        System.out.println(positionToPlaceCode(key)+" ("+key +") not hole but put on peg.");
                         return false;
                     }
                     else {
                         node[key] = new BoardNode(key, status, color);
-                        System.out.println(key + " update successfully.");
+                        System.out.println(positionToPlaceCode(key)+" ("+key +") update successfully.");
                     }
                 }
 
@@ -353,29 +378,50 @@ public class TwistGame {
 
     //TODO delete
     public static void main(String[] args) {
-       // getViablePiecePlacements("c1A3d2A6e2C3f3C4g4A7h6D0i6B0j2B0j1C0k3C0l4B0l5C0");
+
+       // getViablePiecePlacements("a6A0b4A2c3A3d1A3e1C4g6B2h5D0i5A0j2B0j3C0k2C0k2D0l8C0l8D0");
+        getViablePiecePlacements("a7A7b6A7d2A6e2C3f3C2g4A7h6D0i6B0j2B0j1C0k3C0l4B0l5C0");
+
        /*
         [a6A0, a6A2, a6A4, a6A7, a6B0, a7A1, a7A3, a7A5, a7A7, b6A0, b6A7, b7A1, b7A5]
         [a6A0, a6A2, a6A4, a6A7, a6B0, a7A1, a7A3, a7A5, a7A7, b6A0, b6A2, b6A7, b7A1, b7A3, b7A5, b7A7]
        */
-        getViablePiecePlacements("a6B0b6C0d1B3e4A5f4C2g2B3h1A2i7D0j7A0k5B0k5C0l3A0l3D0"); //[c5A2]
+       // getViablePiecePlacements("a6B0b6C0d1B3e4A5f4C2g2B3h1A2i7D0j7A0k5B0k5C0l3A0l3D0"); //[c5A2]
 
+       //getViablePiecePlacements("a7A7b6A7c1A3d2A6e2C3f3C2h6D0i6B0j2B0j1C0k3C0l4B0l5C0"); //[g4A7]
+
+       //getViablePiecePlacements("a7A7b6A7d2A6e2C3f3C2g4A7h6D0i6B0j2B0j1C0k3C0l4B0l5C0");
+
+        //getViablePiecePlacements("a6B0b6C0c5A2d1B3e4A5g2B3h1A2i7D0j7A0k5B0k5C0l3A0l3D0"); // [f4C2]
         System.out.println();
     }
 
     /**
      * Nodes can be used
      * @return a set [] include nodes can be used
+     * (not only the null node , but also some full node because top_left can be 0)
      */
     public static  Set<String> getNotUseNode() {
         Set<String> use=new HashSet<>();
         for (int i = 0; i < node.length; i++) {
             if (node[i]==null || node[i].getStatus()==IamPeg){
-                System.out.println(positionToPlaceCode(i));
+               // System.out.println(i+" "+positionToPlaceCode(i));
                 use.add(positionToPlaceCode(i));
+
+                if (i%8>0){
+                 //   System.out.println((i-1)+" "+positionToPlaceCode(i-1));
+                    use.add(positionToPlaceCode(i-1));
+                    if (i%8>1){
+                     //   System.out.println((i-2)+" "+positionToPlaceCode(i-2));
+                        use.add(positionToPlaceCode(i-2));
+                    }
+                }
+
+
             }
         }
 
+        System.out.println("Can used Position:"+'\n'+use.toString());
         return use;
     }
 
@@ -423,7 +469,8 @@ public class TwistGame {
 
 
     public static Set<String> getViablePiecePlacements(String placement) {
-        assert isPlacementStringValid(placement);
+       // assert isPlacementStringValid(placement);
+
         Set<String> Allset=new HashSet();
 
         isPlacementStringValid(placement);
@@ -435,7 +482,7 @@ public class TwistGame {
                 for (int i = 0; i < 8; i++) {
                     String tryPieces=type+""+position+""+i+"";
                     String tryPut=placement+tryPieces;
-                    System.out.println("try:"+tryPieces);
+                    System.out.print('\n'+"----"+"try:"+tryPieces+"----");
                     if (isPlacementStringValid(tryPut)){
                         Allset.add(tryPieces);
                         System.out.println(tryPieces+" is OK try.");
@@ -448,12 +495,10 @@ public class TwistGame {
             }
         }
 
-        System.out.println('\n'+"Next placement:");
-        for (String each:Allset) {
-            System.out.print(each+", ");
-        }
+        System.out.println('\n'+"Next placement:"+Allset.toString());
 
-        Allset=RemoveSymmetry(Allset);
+
+        Allset=RemoveSymmetry((HashSet<String>)Allset);
 
         if (Allset.isEmpty()){
             return null;
@@ -464,9 +509,49 @@ public class TwistGame {
         // FIXME Task 6: determine the set of valid next piece placements
     }
 
-    public static Set<String> RemoveSymmetry(Set<String> set){
+    /**
+     *
+     * @param set
+     * @return a set that have been removed Symmetry Pieces.
+     */
 
-        return null;
+    public static Set<String> RemoveSymmetry(HashSet<String> set){
+
+        //Remove Strict Symmetry.
+        HashSet <String> setTemp= new HashSet<>();
+        setTemp= (HashSet<String>) set.clone();
+        for (String each: setTemp) {
+            char [] Char_each=each.toCharArray();
+            String id=Char_each[0]+""+Char_each[3]+"";
+
+            for (String symmetry: StrictSymmetry) {
+                String temp=symmetry;
+                if (id.equals(temp)){
+                    set.remove(each);
+                }
+            }
+        }
+
+        //Remove Weak Symmetry.
+        for (String each: setTemp) {
+            char [] Char_each=each.toCharArray();
+            String id=Char_each[0]+""+Char_each[3]+"";
+
+            for (String key: WeakSymmetry.keySet()) {
+              //  System.out.println(key+": "+WeakSymmetry.get(key));
+                String temp=WeakSymmetry.get(key);
+                if (id.equals(temp)){
+                        char [] weak=key.toCharArray();
+                        String place=weak[0]+""+Char_each[1]+""+Char_each[2]+""+weak[1]+"";
+                        if (setTemp.contains(place)){
+                            set.remove(each);
+                        }
+                    }
+                }
+            }
+
+        System.out.println("Remove: "+set.toString());
+        return set;
     }
     /**
      * Return an array of all unique solutions for a given starting placement.
@@ -486,6 +571,7 @@ public class TwistGame {
      * unordered solution to the game given the starting point provided by placement.
      */
     public static String[] getSolutions(String placement) {
+
         // FIXME Task 9: determine all solutions to the game, given a particular starting placement
         return null;
     }
