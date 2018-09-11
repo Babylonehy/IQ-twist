@@ -5,6 +5,7 @@ import comp1110.ass2.Elements.Peg;
 import comp1110.ass2.Game.BoardNode;
 import comp1110.ass2.Game.Pieces;
 
+import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 import java.util.Vector;
@@ -24,6 +25,8 @@ public class TwistGame {
     private static final int nodecount=32;
     static BoardNode [] node;
     static Vector<Pieces> piecesSet=new Vector<>();
+
+    static char[] pieces={'a','b','c','d','e','f','g','h'};
 
     /**
      * Determine whether a piece or peg placement is well-formed according to the following:
@@ -161,7 +164,9 @@ public class TwistGame {
      * @return
      */
     public static char [][] decodeTotype_position(String placement){
-        assert isPlacementStringWellFormed(placement);
+
+       // assert isPlacementStringWellFormed(placement);
+
         char[] placementChar = placement.toCharArray();
         int paircount=4;
         char [][] decode=new char[placement.length()/paircount][paircount];
@@ -195,7 +200,6 @@ public class TwistGame {
      */
     public static boolean isPlacementStringValid(String placement) {
 
-        assert (isPlacementStringWellFormed(placement));
 
         System.out.println('\n'+"--"+placement+"--"+'\n');
         char [][] decode=decodeTotype_position(placement);
@@ -203,6 +207,7 @@ public class TwistGame {
         //Fixme this satement should be deleted......
 
         node=new BoardNode[nodecount];
+        piecesSet.clear();
 
         for (int i = 0; i <decode.length ; i++){
             char type=decode[i][0];
@@ -228,6 +233,7 @@ public class TwistGame {
                     }
                 }
                 System.out.println(type+" put successfully");
+                System.out.println();
             }
             else {
                 String piecesId=type+""+rotation+"";
@@ -235,12 +241,10 @@ public class TwistGame {
 
                 if (PutonBoard(position,piecesSet.lastElement().getWidth(),piecesSet.lastElement().getHeight())){
 
-                    System.out.println(piecesSet.lastElement().getPiecesId()+" Good put.");
-
                     if (updateBoard(piecesSet.lastElement().DecodetoBoardposition(position),piecesSet.lastElement().getColor())==false){
-
                         return false;
                     }
+                    System.out.println(piecesSet.lastElement().getPiecesId()+" Good put.");
                 }
                 else {
                     System.out.println(piecesSet.lastElement().getPiecesId()+" Bad put!");
@@ -264,8 +268,19 @@ public class TwistGame {
      */
     public static int charPairToPosition(int x,char y){
         assert onBoard(x,y);
-        System.out.println(y+""+x+" position:"+((y-'A')*8+x));
+        System.out.println((x+1)+""+y+" position:"+((y-'A')*8+x));
         return (y-'A')*8+x;
+    }
+
+    /**
+     *
+     * @param position
+     * @return
+     */
+    private static String positionToPlaceCode(int position){
+        int x=position%8+1;
+        char y=(char) (Integer.valueOf('A')+position/8);
+        return x+""+y+"";
     }
 
     /**
@@ -312,7 +327,7 @@ public class TwistGame {
                 System.out.println(key + " update successfully.");
             }
             else {
-                if (node[key].getStatus() != null  ) {
+                if (node[key].getStatus() != null && node[key].getStatus()!=IamPeg ) {
                     System.out.println(key + " has been occupied.");
                     return false;
                 }
@@ -338,23 +353,51 @@ public class TwistGame {
 
     //TODO delete
     public static void main(String[] args) {
-        isPlacementStringValid("a7A7c1A3d2A6e2C3f3C2g4A7h6D0i6B0j2B0j1C0k3C0l4B0l5C0");
-        getNotUseNode();
+       // getViablePiecePlacements("c1A3d2A6e2C3f3C4g4A7h6D0i6B0j2B0j1C0k3C0l4B0l5C0");[a6A0, a6A2, a6A4, a6A7, a6B0, a7A1, a7A3, a7A5, a7A7, b6A0, b6A7, b7A1, b7A5],
+        getViablePiecePlacements("a6B0b6C0d1B3e4A5f4C2g2B3h1A2i7D0j7A0k5B0k5C0l3A0l3D0"); //[c5A2]
+
         System.out.println();
     }
+
     /**
      * Nodes can be used
-     * @return a int [] include nodes can be used
+     * @return a set [] include nodes can be used
      */
-    public static  Integer[] getNotUseNode() {
-        Vector<Integer> use=new Vector();
+    public static  Set<String> getNotUseNode() {
+        Set<String> use=new HashSet<>();
         for (int i = 0; i < node.length; i++) {
             if (node[i]==null || node[i].getStatus()==IamPeg){
-                System.out.println(i);
-                use.add(i);
+                System.out.println(positionToPlaceCode(i));
+                use.add(positionToPlaceCode(i));
             }
         }
-        Integer [] result=(Integer []) use.toArray();
+
+        return use;
+    }
+
+
+    /**
+     * Pieces can be used
+     * @return a char [] include pieces can be used
+     */
+    public static Character[] getNotUsePieces() {
+        Vector<Character> use=new Vector<>();
+        for (char each:pieces) {
+            boolean flag=true;
+            for (int i = 0; i < piecesSet.size(); i++) {
+                if (piecesSet.elementAt(i).getType()==each){
+                    flag=false;
+                    break;
+                }
+            }
+
+            if (flag){
+                System.out.println("Not used pieces:"+each);
+                use.add(each);
+            }
+
+        }
+        Character[] result=use.toArray(new Character[use.size()]);
         return result;
     }
 
@@ -377,10 +420,41 @@ public class TwistGame {
 
     public static Set<String> getViablePiecePlacements(String placement) {
         assert isPlacementStringValid(placement);
-        Integer[] canUseNode=getNotUseNode();
+        Set<String> set=new HashSet();
+
+        isPlacementStringValid(placement);
+        Set<String> canUseNode=getNotUseNode();
+        Character[] canUsePieces=getNotUsePieces();
+
+        for (char type :canUsePieces){
+            for (String position:canUseNode) {
+                for (int i = 0; i < 8; i++) {
+                    String tryPieces=type+""+position+""+i+"";
+                    String tryPut=placement+tryPieces;
+                    System.out.println("try:"+tryPieces);
+                    if (isPlacementStringValid(tryPut)){
+                        set.add(tryPieces);
+                        System.out.println(tryPieces+" is OK try.");
+                    }
+                    else {
+                        System.out.println(tryPieces+" is Bad try.");
+                    }
+
+                }
+            }
+        }
+
+        System.out.println('\n'+"Next placement:");
+        for (String each:set) {
+            System.out.println(each);
+        }
+
+        if (set.isEmpty()){
+            return null;
+        }
+        return set;
 
         // FIXME Task 6: determine the set of valid next piece placements
-        return null;
     }
 
     /**

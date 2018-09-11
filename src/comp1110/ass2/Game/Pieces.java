@@ -21,7 +21,7 @@ import static comp1110.ass2.Elements.PiecesType.getTypeset;
 
 public class Pieces {
 
-    private static  String piecesId; //length 2 chars
+    private  String piecesId; //length 2 chars
     private  int[][] pieces_matrix;
     private  char type;
     private  int rotate;
