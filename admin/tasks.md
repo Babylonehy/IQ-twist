@@ -44,19 +44,19 @@ Hope we can get  Final Version tomorrow(Mon 20/8/2018) night. We can discuss the
 
 
 ## Week 5
-Stage C
-Finish task2-task5.
+Stage C  
+Finish task2-task5.  
 
 
 ## Week 6
-Task2-Task4 done. 2018-08-28
-Prepare for mid-exam, Free time.
+Task2-Task4 done. 2018-08-28  
+Prepare for mid-exam, Free time.  
 
 ## Mid-Semester Break
-Stage D
-Ning Cai & Zhi Wang : UI (JavaFx)
-Xiang Li: Logical 
-Xiang Li: Finished Task5&6 2018-09-12
+Stage D  
+Ning Cai & Zhi Wang : UI (JavaFx)  
+Xiang Li: Logical   
+Xiang Li: Finished Task5&6 2018-09-12  
 
 ## Week 7
 Stage E
