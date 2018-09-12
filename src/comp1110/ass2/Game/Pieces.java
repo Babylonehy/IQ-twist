@@ -16,7 +16,7 @@ import static comp1110.ass2.Elements.PiecesType.getTypeset;
  *This class will produce all the 64 pieces used.
  * All the change based on PiecesType.
  *
- * Last modify: 2018-09-10 21:47:08 by Sean
+ * Last modify: 2018-09-13 00:42:53 by Sean
  */
 
 public class Pieces {
@@ -84,7 +84,7 @@ public class Pieces {
     }
 
     /**
-     *
+     * Give a position on board, Return a map of [position: status]
      * @param position left_and_top_position.
      * @return A map of position and status(int)
      */
@@ -115,6 +115,12 @@ public class Pieces {
         return 1;
     }
 
+    /**
+     * Compress 4*4 to a appropriate Vector just for fast put_on_board.
+     * And set a certain pieces's height & wight.
+     * @param m
+     * @return
+     */
 
     public  Vector<Vector> compress(int[][] m){
         Vector s1=new Vector();
@@ -205,10 +211,4 @@ public class Pieces {
         return piecesSet;
     }
 
-// TODO delete
-    public static void main(String[] args) {
-        Pieces x=new Pieces("c3");
-        Map<Integer,Integer> y=x.DecodetoBoardposition(1);
-        System.out.println();
-    }
 }

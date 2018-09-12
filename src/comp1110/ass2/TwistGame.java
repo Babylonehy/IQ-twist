@@ -184,6 +184,8 @@ public class TwistGame {
 
         return decode;
     }
+
+
     public static boolean isPeg(char peg){
         if (peg>='i'&& peg <='l') {
             return true;
@@ -203,6 +205,7 @@ public class TwistGame {
      * @param placement A placement sequence string
      * @return True if the placement sequence is valid
      */
+
     public static boolean isPlacementStringValid(String placement) {
 
 
@@ -223,14 +226,15 @@ public class TwistGame {
             int position=charPairToPosition(x,y);
 
             if (isPeg(type)){
-
+                //If position is empty, peg can be put on the board.
                 if (node[position]==null){
                     node[position]=new BoardNode(new Peg(type),position);
                 }
-
+                //If position has been occupied, peg can not be put on the board.
                 if (node[position].getStatus()==Full){
                     return false;
                 }
+                //If position is hole, peg may be put on the board.
                 else {
                     BoardNode temp=new BoardNode(new Peg(type),position);
                     if (temp.getColor()!=node[position].getColor()){
@@ -275,9 +279,10 @@ public class TwistGame {
     }
 
     /**
-     *
+     * Position decode to a string of position.
+     * For example: 0->'1A', 31->'8D'
      * @param position
-     * @return
+     * @return a string of position
      */
     private static String positionToPlaceCode(int position){
         int x=position%8+1;
@@ -286,7 +291,7 @@ public class TwistGame {
     }
 
     /**
-     *
+     * Determine if the position is on the board or not
      * @param x
      * @param y
      * @return onBoard or not
@@ -300,6 +305,13 @@ public class TwistGame {
         return false;
     }
 
+    /**
+     * Determine if the position is out of board or not
+     * @param left_top_postion
+     * @param x
+     * @param y
+     * @return
+     */
     public static boolean PutonBoard(int left_top_postion,int x, int y){
 
         x=left_top_postion%8+x-1;
@@ -317,6 +329,12 @@ public class TwistGame {
         return true;
     }
 
+    /**
+     * Put pieces to Board and Update status of node.
+     * @param m
+     * @param color
+     * @return
+     */
     private static boolean updateBoard(Map<Integer,Integer> m, Color color){
 
         for (int key:m.keySet()) {
@@ -467,7 +485,7 @@ public class TwistGame {
     }
 
     /**
-     *
+     * Remove the symmetry blocks that may exist in set.
      * @param set
      * @return a set that have been removed Symmetry Pieces.
      */

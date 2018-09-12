@@ -108,6 +108,12 @@ public class PiecesType {
 
     }
 
+    /**
+     * Flip first and then rotate.
+     * @param matrix
+     * @param z
+     * @return
+     */
     private static int[][] Flip_Rotate(int[][]matrix,int z){
 
         int[][] result = matrix;
@@ -133,6 +139,12 @@ public class PiecesType {
         System.out.println("---------");
     }
 
+    /**
+     * Generate a given pieces.
+     * @param type
+     * @param rotation
+     * @return int[][] 4*4
+     */
 
     public  static int[][] getTypeset(char type,int rotation){
         switch (type){

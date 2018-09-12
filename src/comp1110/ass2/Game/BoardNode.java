@@ -68,29 +68,6 @@ public class BoardNode {
         }
     }
 
-
-    /**
-     * Put a pieces to board and update Board.
-     * Must Check if this placement is valid.
-     * @return if update successful, return true.
-     */
-
-    public boolean updateBoard(){
-        return false;
-    }
-
-    /**
-     * Put a pieces to board and update Board.
-     * Must Check if this placement is valid.
-     * @return if Valid successful, return true.
-     */
-    public boolean isValid() {
-        return false;
-    }
-
-    /**
-     *
-     */
     public BoardStatus getStatus(){
         return Status;
     }
