@@ -2,7 +2,8 @@ I declare that the work I have submitted for Stage D of this assignment and all 
 
 * The idea of creating Class <Constant> came from  <comp1110.ass2.TestUtility>
 
-* The code in class <TwistGame> uses an idea came from <comp1110.ass1>
+* The code in class <TwistGame:BoardNode [] node、 piecesSet=new Vector<>();> uses an idea came from <comp1110.ass1>  
+this vector can be altered by Hashset.  
 
 * The idea of  <Vector.toArray> came from <https://docs.oracle.com/javase/8/docs/api/java/util/Vector.html>
 
