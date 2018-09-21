@@ -10,6 +10,10 @@ import static comp1110.ass2.TestUtility.GOOD_PLACEMENTS;
 import static comp1110.ass2.TwistGame.ReorderPieces;
 import static org.junit.Assert.assertTrue;
 
+/**
+ * Create by Sean 2018-09-22
+ * Last modify: 2018-09-22 00:04:40 by Sean
+ */
 public class ReorderPiecesTest {
     @Rule
     public Timeout globalTimeout = Timeout.millis(2000);

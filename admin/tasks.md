@@ -59,10 +59,15 @@ Xiang Li: Logical
 Xiang Li: Finished Task5&6 2018-09-12  
 
 ## Week 7
-Stage E
+Stage E  
+Xiang Li finished task9 2018-09-20  
+Xiang Li Finished ReorderPiecesTest 2018-09-22  
 
 ## Week 8
-
+**Task Distribution**  
+Ning Cai & Zhi Wang: Task7&PositionAndPlaceCodeTest,GetNotUsePiecesTest,GetNotUseNodeTest     
+Xiang Li: Add other Test & Finished function about next step hints.  
+  
 ## Week 9
 
 ## Week 10
