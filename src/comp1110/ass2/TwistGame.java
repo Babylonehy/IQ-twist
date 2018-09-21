@@ -569,8 +569,8 @@ public class TwistGame {
                     }
                     else {
                         if (isPlacementStringValid(temp)&&checkString(temp)){
-                         //   System.out.println("Done:"+temp);
-                            result.add(reArrange(temp));
+                           System.out.println("Done:"+temp);
+                            result.add(ReorderPieces(temp));
                         }
                     }
                 }
@@ -582,13 +582,13 @@ public class TwistGame {
 
 
         String[] s= (String[]) result.toArray(new String[0]);
-      //  System.out.println(result.toString());
+        System.out.println(result.toString());
         return s;
 
         // FIXME Task 9: determine all solutions to the game, given a particular starting placement
     }
 
-    static String reArrange(String placement){
+    static String ReorderPieces (String placement) {
         Vector result=new Vector();
         Pattern p=Pattern.compile("[a-h][1-8][A-D][0-7]");
         Matcher m=p.matcher(placement);
@@ -599,12 +599,12 @@ public class TwistGame {
         String[] s= (String[]) result.toArray(new String[0]);
 
         List<String> list = (List<String>)Arrays.asList(s);
-        Collections.sort(list);
+        Collections.sort(list );
         String newstring="";
         for (String each: list) {
             newstring+=each;
         }
-        //System.out.println(newstring);
+
         return newstring;
     }
     static boolean checkStringFinal(Vector<Vector> steps){
@@ -639,7 +639,7 @@ public class TwistGame {
         //d2A6e2C3f3C2g4A7h6D0i6B0j2B0j1C0k3C0l4B0l5C0a7A3c1A3
         //System.out.println(getViablePiecePlacements("d2A6e2C3f3C2g4A7h6D0i6B0j2B0j1C0k3C0l4B0l5C0").toString());
        // System.out.println(getViablePiecePlacements("d2A6e2C3f3C2g4A7h6D0i6B0j2B0j1C0k3C0l4B0l5C0a7A7c1A3").toString());
-        getSolutions("c1A3d2A6e2C3f3C2g4A7h6D0j2B0j1C0k3C0l4B0l5C0");
+       // getSolutions("c1A3");
         //reArrange("c1A3d2A6e2C3f3C2g4A7h6D0j2B0j1C0k3C0l4B0l5C0a7A7b6A5");
        // System.out.println(isPlacementStringValid("d2A6e2C3f3C2g4A7h6D0i6B0j2B0j1C0k3C0l4B0l5C0a7A3c1A3b6A3"));
 
