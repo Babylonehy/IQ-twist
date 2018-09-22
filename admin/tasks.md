@@ -59,9 +59,19 @@ Xiang Li: Logical
 Xiang Li: Finished Task5&6 2018-09-12  
 
 ## Week 7
-Stage E
+Stage E  
+Xiang Li finished task9 2018-09-20  
+Xiang Li Finished ReorderPiecesTest 2018-09-22  
 
 ## Week 8
+**Task Distribution**  
+Ning Cai & Zhi Wang: PositionAndPlaceCodeTest(Test:comp1110.ass2.TwistGame.positionToPlaceCode & comp1110.ass2.TwistGame.charPairToPosition),  
+GetNotUsePiecesTest(Test: comp1110.ass2.TwistGame.getNotUsePieces),GetNotUseNodeTest(Test:comp1110.ass2.TwistGame.getNotUseNode)  
+Dealine:2018-09-24 24:00  
+*****(Please complete push before deadline to get enough time for other members to complete this tasks.)*****  
+Xiang Li: Add other test & Task7 & Finished function about next step hints.     
+Deadline:2018-09-25 24:00   
+*****(Please feel free to ask any questions and share your progress. Hope we have good job.)*****   
 
 ## Week 9
 

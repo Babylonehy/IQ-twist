@@ -5,10 +5,9 @@ import comp1110.ass2.Elements.Peg;
 import comp1110.ass2.Game.BoardNode;
 import comp1110.ass2.Game.Pieces;
 
-import java.util.HashSet;
-import java.util.Map;
-import java.util.Set;
-import java.util.Vector;
+import java.util.*;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import static comp1110.ass2.Elements.BoardStatus.Full;
 import static comp1110.ass2.Elements.BoardStatus.IamPeg;
@@ -308,8 +307,8 @@ public class TwistGame {
     /**
      * Determine if the position is out of board or not
      * @param left_top_postion
-     * @param x
-     * @param y
+     * @param x Width
+     * @param y Height
      * @return
      */
     public static boolean PutonBoard(int left_top_postion,int x, int y){
@@ -546,8 +545,103 @@ public class TwistGame {
      * unordered solution to the game given the starting point provided by placement.
      */
     public static String[] getSolutions(String placement) {
+        HashSet <String> setnext= new HashSet<>();
+        HashSet <String> settemp= new HashSet<>();
+        HashSet<String> result=new HashSet<>();
+
+        Vector<Vector> steps=new Vector<>();
+        Vector<String> step=new Vector<>();
+        step.add(placement);
+        steps.add((Vector) step.clone());
+        step.clear();
+
+            do {
+                int count=0;
+                for (int i = 0; i < steps.lastElement().size(); i++) {
+                String placementstr= (String) steps.lastElement().get(i);
+                setnext = (HashSet<String>) getViablePiecePlacements(placementstr);
+
+                for (String each : setnext) {
+                    String temp = placementstr + each;
+                    settemp = (HashSet<String>) getViablePiecePlacements(temp);
+                    if (settemp!=null) {
+                        step.add(temp);
+                    }
+                    else {
+                        if (isPlacementStringValid(temp)&&checkString(temp)){
+                           System.out.println("Done:"+temp);
+                            result.add(ReorderPieces(temp));
+                        }
+                    }
+                }
+                }
+                steps.add((Vector) step.clone());
+                step.clear();
+
+            } while (checkStringFinal(steps));
+
+
+        String[] s= (String[]) result.toArray(new String[0]);
+        System.out.println(result.toString());
+        return s;
 
         // FIXME Task 9: determine all solutions to the game, given a particular starting placement
-        return null;
+    }
+
+    static String ReorderPieces (String placement) {
+        Vector result=new Vector();
+        Pattern p=Pattern.compile("[a-h][1-8][A-D][0-7]");
+        Matcher m=p.matcher(placement);
+        //Fixme regex too slow.....
+        while (m.find()){
+            result.add(m.group());
+        }
+        String[] s= (String[]) result.toArray(new String[0]);
+
+        List<String> list = (List<String>)Arrays.asList(s);
+        Collections.sort(list );
+        String newstring="";
+        for (String each: list) {
+            newstring+=each;
+        }
+
+        return newstring;
+    }
+    static boolean checkStringFinal(Vector<Vector> steps){
+        for (int i = 0; i < steps.lastElement().size(); i++) {
+            if (checkString(steps.lastElement().get(i).toString())==false){
+                return true;
+            }
+        }
+        return false;
+    }
+    static boolean checkString(String placement){
+        int i=0;
+        for (char each:pieces) {
+            if (placement.contains(each+"")){
+                i++;
+            }
+            else {
+                return false;
+            }
+        }
+        if (i!=pieces.length){
+            return false;
+        }
+        return true;
+    }
+
+    public static void main(String[] args) {
+        //c1A3d2A6e2C3f3C2g4A7h6D0j2B0j1C0k3C0l4B0l5C0
+        //[a6A0b6B0c1A3d2A6e2C3f3C2g4A7h6D0, a7A7b6A5c1A3d2A6e2C3f3C2g4A7h6D0]
+        //d2A6e2C3f3C2g4A7h6D0i6B0j2B0j1C0k3C0l4B0l5C0
+        //a7A7b6A7c1A3d2A6e2C3f3C2g4A7h6D0
+        //d2A6e2C3f3C2g4A7h6D0i6B0j2B0j1C0k3C0l4B0l5C0a7A3c1A3
+        //System.out.println(getViablePiecePlacements("d2A6e2C3f3C2g4A7h6D0i6B0j2B0j1C0k3C0l4B0l5C0").toString());
+       // System.out.println(getViablePiecePlacements("d2A6e2C3f3C2g4A7h6D0i6B0j2B0j1C0k3C0l4B0l5C0a7A7c1A3").toString());
+       // getSolutions("c1A3");
+        //reArrange("c1A3d2A6e2C3f3C2g4A7h6D0j2B0j1C0k3C0l4B0l5C0a7A7b6A5");
+       // System.out.println(isPlacementStringValid("d2A6e2C3f3C2g4A7h6D0i6B0j2B0j1C0k3C0l4B0l5C0a7A3c1A3b6A3"));
+
     }
 }
