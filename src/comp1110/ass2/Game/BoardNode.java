@@ -1,8 +1,8 @@
 package comp1110.ass2.Game;
 
+import comp1110.ass2.Elements.BoardStatus;
 import comp1110.ass2.Elements.Color;
 import comp1110.ass2.Elements.Peg;
-import comp1110.ass2.Elements.BoardStatus;
 
 import static comp1110.ass2.Elements.BoardStatus.*;
 
@@ -25,17 +25,13 @@ import static comp1110.ass2.Elements.BoardStatus.*;
  * Last modify: 2018-08-23 15:24:06 by Stella
  */
 
-//TODO Finished this commit about this class
 
 public class BoardNode {
     private int[] useNode;
     Peg peg;
-    Pieces piece;
-    BoardStatus Status;
+    BoardStatus Status=null;
     private int position;
-    Color color;
-
-    //TODO add  constructor.
+    Color color=null;
 
     /**
      * This two method set up the link between node and Peg, Pieces.
@@ -45,56 +41,38 @@ public class BoardNode {
     public BoardNode(Peg peg, int position){
         this.peg=peg;
         this.position=position;
+        this.color=peg.getColor();
         this.Status=IamPeg;
 
     }
 
-//    public BoardNode(Pieces piece, int position){
-//        this.piece=piece;
-//        this.position=position;
-//        this.Status=IamPeg;
-//
-//    }
-
-    public BoardNode(BoardStatus Status, int position,Color color){
-            this.Status=Status;
+    public BoardNode(int position,int status,Color color){
+            WriteStatus(status);
             this.color=color;
             this.position=position;
     }
 
-    /**
-     * Nodes can be used
-     * @return a int [] include nodes can be used
-     */
-    public int[] getUseNode() {
-        return null;
+    private void WriteStatus(int status){
+        switch (status){
+            case 1:
+                this.Status=Full;
+                break;
+            case -1:
+                this.Status=Hole;
+                break;
+            case 0:
+                this.Status=null;
+                break;
+            default:
+                System.out.println("Wrong status input!");
+        }
     }
 
-    /**
-     * Put a pieces to board and update Board.
-     * Must Check if this placement is valid.
-     * @return if update successful, return true.
-     */
-
-    public boolean updateBoard(){
-        return false;
-    }
-
-    /**
-     * Put a pieces to board and update Board.
-     * Must Check if this placement is valid.
-     * @return if Valid successful, return true.
-     */
-    public boolean isValid() {
-        return false;
-    }
-
-    /**
-     *
-     */
     public BoardStatus getStatus(){
         return Status;
     }
 
-
+    public Color getColor() {
+        return color;
+    }
 }
