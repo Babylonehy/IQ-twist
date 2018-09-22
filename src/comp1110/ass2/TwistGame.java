@@ -203,7 +203,7 @@ public class TwistGame {
             }
             else {
                 //FIXME please finished this part about pieces decode.
-                // int[][] piecestemp=PiecesType.getA0(type,rotation);
+               // int[][] piecestemp=PiecesType.getA0(type,rotation);
 
 //                BoardStatus Status=Full;
 //               node[position]=new BoardNode(Status,position);

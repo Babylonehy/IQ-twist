@@ -44,7 +44,8 @@ Hope we can get  Final Version tomorrow(Mon 20/8/2018) night. We can discuss the
 
 
 ## Week 5
-
+Stage C
+Finished task2-task5.
 
 ## Week 6
 

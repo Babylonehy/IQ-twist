@@ -19,7 +19,7 @@ import static org.junit.Assert.assertTrue;
  */
 public class PlacementStringWellFormedTest {
   @Rule
-  public Timeout globalTimeout = Timeout.millis(20000);
+  public Timeout globalTimeout = Timeout.millis(2000);
 
   private void test(String in, boolean expected) {
     boolean out = TwistGame.isPlacementStringWellFormed(in);

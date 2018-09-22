@@ -1,14 +1,14 @@
 <component name="ProjectRunConfigurationManager">
   <configuration default="false" name="T3 PlacementStringWellFormedTest" type="JUnit" factoryName="JUnit">
-    <module name="comp1110-ass2" />
+    <module name="comp1110-ass2-thu18a" />
     <extension name="coverage">
       <pattern>
         <option name="PATTERN" value="comp1110.ass2.*" />
         <option name="ENABLED" value="true" />
       </pattern>
     </extension>
-    <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-    <option name="ALTERNATIVE_JRE_PATH" />
+    <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
+    <option name="ALTERNATIVE_JRE_PATH" value="1.8" />
     <option name="PACKAGE_NAME" value="comp1110.ass2" />
     <option name="MAIN_CLASS_NAME" value="comp1110.ass2.PlacementStringWellFormedTest" />
     <option name="METHOD_NAME" value="" />
