@@ -381,7 +381,6 @@ public class TwistGame {
             if (node[i]==null || node[i].getStatus()==IamPeg){
                // System.out.println(i+" "+positionToPlaceCode(i));
                 use.add(positionToPlaceCode(i));
-
                 if (i%8>0){
                 // System.out.println((i-1)+" "+positionToPlaceCode(i-1));
                     use.add(positionToPlaceCode(i-1));
@@ -392,7 +391,7 @@ public class TwistGame {
                 }
             }
         }
-       // System.out.println("Can used Position:"+'\n'+use.toString());
+       //System.out.println("Can used Position:"+'\n'+use.toString());
         return use;
     }
 
@@ -468,9 +467,9 @@ public class TwistGame {
             }
         }
 
-        //System.out.println('\n'+"Next placement:"+Allset.toString());
+        //System.out.println(placement+'\n'+"Next placement:"+Allset.toString());
         Allset=RemoveSymmetry((HashSet<String>)Allset);
-
+        //System.out.println(placement+'\n'+"Next placement:"+Allset.toString());
         if (Allset.isEmpty()){
             return null;
         }
@@ -645,7 +644,8 @@ public class TwistGame {
         //[a7A7b3B5c3A0d1A3e5C2f1C4g6B7h4B0, a7A7b3B5c3A2d1A3e5C2f1C4g6B7h4B0]
         //System.out.println(getViablePiecePlacements("e5C2f1C4g6B7h4B0k3D0k5D0l6C0").toString());
        // System.out.println(getViablePiecePlacements("d2A6e2C3f3C2g4A7h6D0i6B0j2B0j1C0k3C0l4B0l5C0a7A7c1A3").toString());
-        getSolutions("e5C2f1C4g6B7h4B0k3D0k5D0l6C0");
+        //getSolutions("b2B0e5C2f1C4g6B7h4B0k3D0k5D0l6C0");
+        getViablePiecePlacements("b2B0e5C2f1C4g6B7h4B0k3D0k5D0l6C0");
         //reArrange("c1A3d2A6e2C3f3C2g4A7h6D0j2B0j1C0k3C0l4B0l5C0a7A7b6A5");
        // System.out.println(isPlacementStringValid("d2A6e2C3f3C2g4A7h6D0i6B0j2B0j1C0k3C0l4B0l5C0a7A3c1A3b6A3"));
 
