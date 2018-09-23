@@ -207,7 +207,6 @@ public class TwistGame {
 
     public static boolean isPlacementStringValid(String placement) {
 
-
         //System.out.println('\n'+"--"+placement+"--");
         char [][] decode=decodeTotype_position(placement);
 
@@ -244,7 +243,6 @@ public class TwistGame {
             else {
                 String piecesId=type+""+rotation+"";
                 piecesSet.add(new Pieces(piecesId));
-
                 if (PutonBoard(position,piecesSet.lastElement().getWidth(),piecesSet.lastElement().getHeight())){
 
                     if (updateBoard(piecesSet.lastElement().DecodetoBoardposition(position),piecesSet.lastElement().getColor())==false){
@@ -375,27 +373,26 @@ public class TwistGame {
      * @return a set [] include nodes can be used
      * (not only the null node , but also some full node because top_left can be 0)
      */
-    public static  Set<String> getNotUseNode() {
+    public static  Set<String> getNotUseNode(String piecesId) {
         Set<String> use=new HashSet<>();
+        Pieces temp=new Pieces(piecesId);
+        int FirstRowEmpty=temp.getFirstRowEmpty();
         for (int i = 0; i < node.length; i++) {
             if (node[i]==null || node[i].getStatus()==IamPeg){
                // System.out.println(i+" "+positionToPlaceCode(i));
                 use.add(positionToPlaceCode(i));
 
                 if (i%8>0){
-                 //   System.out.println((i-1)+" "+positionToPlaceCode(i-1));
+                // System.out.println((i-1)+" "+positionToPlaceCode(i-1));
                     use.add(positionToPlaceCode(i-1));
-                    if (i%8>1){
+                    if (FirstRowEmpty>1&&i%8>1){
                      //  System.out.println((i-2)+" "+positionToPlaceCode(i-2));
                         use.add(positionToPlaceCode(i-2));
                     }
                 }
-
-
             }
         }
-
-        //System.out.println("Can used Position:"+'\n'+use.toString());
+       // System.out.println("Can used Position:"+'\n'+use.toString());
         return use;
     }
 
@@ -448,12 +445,14 @@ public class TwistGame {
         Set<String> Allset=new HashSet();
 
         isPlacementStringValid(placement);
-        Set<String> canUseNode=getNotUseNode();
+
         Character[] canUsePieces=getNotUsePieces();
 
         for (char type :canUsePieces){
-            for (String position:canUseNode) {
                 for (int i = 0; i < 8; i++) {
+                    String PiecesId=type+""+i+"";
+                    Set<String> canUseNode=getNotUseNode(PiecesId);
+                    for (String position:canUseNode) {
                     String tryPieces=type+""+position+""+i+"";
                     String tryPut=placement+tryPieces;
                     //System.out.print('\n'+"----"+"try:"+tryPieces+"----");
@@ -470,8 +469,6 @@ public class TwistGame {
         }
 
         //System.out.println('\n'+"Next placement:"+Allset.toString());
-
-
         Allset=RemoveSymmetry((HashSet<String>)Allset);
 
         if (Allset.isEmpty()){
@@ -490,7 +487,6 @@ public class TwistGame {
      */
 
     public static Set<String> RemoveSymmetry(HashSet<String> set){
-
         //Remove Strict Symmetry.
         HashSet <String> setTemp= new HashSet<>();
         setTemp= (HashSet<String>) set.clone();
@@ -524,7 +520,7 @@ public class TwistGame {
                 }
             }
 
-        //System.out.println("Remove: "+set.toString());
+     //   System.out.println("Remove: "+set.toString());
         return set;
     }
     /**
@@ -568,10 +564,14 @@ public class TwistGame {
                         step.add(temp);
                     }
                     else {
-                        if (isPlacementStringValid(temp)&&checkString(temp)){
-                           System.out.println("Done:"+temp);
-                            result.add(ReorderPieces(temp));
+                        String retemp=ReorderPieces(temp);
+                        if (!result.contains(retemp)){
+                            if (isPlacementStringValid(temp)&&checkString(temp)){
+                                //  System.out.println("Done:"+temp);
+                                result.add(retemp);
+                            }
                         }
+
                     }
                 }
                 }
@@ -579,15 +579,19 @@ public class TwistGame {
                 step.clear();
 
             } while (checkStringFinal(steps));
-
-
+        result= (HashSet<String>) RemoveSymmetry(result);
         String[] s= (String[]) result.toArray(new String[0]);
-        System.out.println(result.toString());
+        //System.out.println(result.toString());
         return s;
 
         // FIXME Task 9: determine all solutions to the game, given a particular starting placement
     }
 
+    /**
+     *
+     * @param placement
+     * @return
+     */
     static String ReorderPieces (String placement) {
         Vector result=new Vector();
         Pattern p=Pattern.compile("[a-h][1-8][A-D][0-7]");
@@ -604,7 +608,6 @@ public class TwistGame {
         for (String each: list) {
             newstring+=each;
         }
-
         return newstring;
     }
     static boolean checkStringFinal(Vector<Vector> steps){
@@ -637,9 +640,12 @@ public class TwistGame {
         //d2A6e2C3f3C2g4A7h6D0i6B0j2B0j1C0k3C0l4B0l5C0
         //a7A7b6A7c1A3d2A6e2C3f3C2g4A7h6D0
         //d2A6e2C3f3C2g4A7h6D0i6B0j2B0j1C0k3C0l4B0l5C0a7A3c1A3
-        //System.out.println(getViablePiecePlacements("d2A6e2C3f3C2g4A7h6D0i6B0j2B0j1C0k3C0l4B0l5C0").toString());
+        //e5C2f1C4g6B7h4B0k3D0k5D0l6C0
+        //[a7A7b3B5c3A0d1A3e5C2f1C4g6B7h4B0]
+        //[a7A7b3B5c3A0d1A3e5C2f1C4g6B7h4B0, a7A7b3B5c3A2d1A3e5C2f1C4g6B7h4B0]
+        //System.out.println(getViablePiecePlacements("e5C2f1C4g6B7h4B0k3D0k5D0l6C0").toString());
        // System.out.println(getViablePiecePlacements("d2A6e2C3f3C2g4A7h6D0i6B0j2B0j1C0k3C0l4B0l5C0a7A7c1A3").toString());
-       // getSolutions("c1A3");
+        getSolutions("e5C2f1C4g6B7h4B0k3D0k5D0l6C0");
         //reArrange("c1A3d2A6e2C3f3C2g4A7h6D0j2B0j1C0k3C0l4B0l5C0a7A7b6A5");
        // System.out.println(isPlacementStringValid("d2A6e2C3f3C2g4A7h6D0i6B0j2B0j1C0k3C0l4B0l5C0a7A3c1A3b6A3"));
 

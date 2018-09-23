@@ -261,7 +261,6 @@ public class Viewer extends Application {
                         setScaleY(-1*getScaleY());
                 }
             });
-
     }
     }
 
@@ -270,11 +269,6 @@ public class Viewer extends Application {
      */
     class Pieces extends Nodes {
         char pieces;
-
-        Pieces(){
-
-        }
-
         Pieces(char pieces) {
             if (pieces >= 'a' && pieces <= 'h') {
                 Image img = new Image(Viewer.class.getResource(URI_BASE + pieces + ".png").toString());
@@ -334,8 +328,6 @@ public class Viewer extends Application {
             if (peg >= 'i' && peg <= 'l') {
                 setImage(new Image(Viewer.class.getResource(URI_BASE + peg + ".png").toString()));
                 this.peg = peg;
-//                this.type = peg;
-//                this.peg_index = index;
                 System.out.println("peg = " + peg + " " + index);
                 setFitHeight(SQUARE_SIZE);
                 setFitWidth(SQUARE_SIZE);
