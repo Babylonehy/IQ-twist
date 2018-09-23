@@ -5,13 +5,14 @@ import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Group;
-import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseButton;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
@@ -20,7 +21,8 @@ import javafx.scene.text.Text;
 import javafx.scene.text.TextAlignment;
 import javafx.stage.Stage;
 
-import static comp1110.ass2.Game.Constant.*;
+import static comp1110.ass2.Game.Constant.pegs;
+import static comp1110.ass2.Game.Constant.pieces;
 import static comp1110.ass2.TwistGame.*;
 
 /**
@@ -177,6 +179,7 @@ public class Viewer extends Application {
 
         Nodes() {
             setOnMousePressed(event -> {
+                setOpacity(0.7);
                 mouse_x = event.getSceneX();
                 mouse_y = event.getSceneY();
             });
@@ -194,6 +197,8 @@ public class Viewer extends Application {
                 event.consume();
             });
             setOnMouseReleased(event -> {
+                setOpacity(1);
+                System.out.println(this.type+" Flip:"+getScaleY()+" X:"+getLayoutX()+",Y:"+getLayoutY());
                 double raw, coloumn;
                 coloumn = (getLayoutX() - 240) / 60;
                 raw = (getLayoutY() - 120) / 60;
@@ -240,14 +245,24 @@ public class Viewer extends Application {
                 }
 
             });
+
             setOnScroll(event -> {
                 double current_rotate = getRotate();
                 double rotation = current_rotate + 90 % 360;
                 setRotate(rotation);
                 this.rotation++;
+                System.out.println(type+" Flip:"+getScaleY()+" R:"+getRotate()%360);
                 event.consume();
             });
-        }
+
+            //Flip
+            setOnMouseClicked(event->{
+                if (event.getButton().equals( MouseButton.MIDDLE)&& event.getEventType().equals(MouseEvent.MOUSE_CLICKED)){
+                        setScaleY(-1*getScaleY());
+                }
+            });
+
+    }
     }
 
     /**
@@ -313,15 +328,14 @@ public class Viewer extends Application {
     /**
      * A inner class that represent pegs used in game
      */
-    class Peg extends Nodes {
+    class Peg extends ImageView {
         char peg;
-
         Peg(char peg, int index) throws IllegalAccessException {
             if (peg >= 'i' && peg <= 'l') {
                 setImage(new Image(Viewer.class.getResource(URI_BASE + peg + ".png").toString()));
                 this.peg = peg;
-                this.type = peg;
-                this.peg_index = index;
+//                this.type = peg;
+//                this.peg_index = index;
                 System.out.println("peg = " + peg + " " + index);
                 setFitHeight(SQUARE_SIZE);
                 setFitWidth(SQUARE_SIZE);
@@ -336,13 +350,11 @@ public class Viewer extends Application {
             if (peg >= 'i' && peg <= 'l') {
                 setImage(new Image(Viewer.class.getResource(URI_BASE + peg + ".png").toString()));
                 this.peg = peg;
-                type = peg;
                 setFitHeight(SQUARE_SIZE);
                 setFitWidth(SQUARE_SIZE);
                 setLayoutX(x);
                 setLayoutY(y);
             }
-
 
         }
 
