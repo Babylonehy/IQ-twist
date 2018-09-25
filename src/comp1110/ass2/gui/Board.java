@@ -1,12 +1,16 @@
 package comp1110.ass2.gui;
 
 import javafx.application.Application;
-import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 public class Board extends Application {
-    private static final int BOARD_WIDTH = 933;
-    private static final int BOARD_HEIGHT = 700;
+    @Override
+    public void start(Stage primaryStage) throws Exception {
+
+    }
+//    private static final int BOARD_WIDTH = 933;
+//    private static final int BOARD_HEIGHT = 700;
+
 
 
     // FIXME Task 7: Implement a basic playable Twist Game in JavaFX that only allows pieces to be placed in valid places
@@ -17,10 +21,4 @@ public class Board extends Application {
 
     // FIXME Task 11: Generate interesting starting placements
 
-    @Override
-    public void start(Stage primaryStage) throws Exception {
-        primaryStage.setTitle("TwistGame Viewer");
-        Viewer x=new Viewer();
-        x.start(primaryStage);
-    }
 }

@@ -281,7 +281,7 @@ public class TwistGame {
      * @param position
      * @return a string of position
      */
-    private static String positionToPlaceCode(int position){
+    public static String positionToPlaceCode(int position){
         int x=position%8+1;
         char y=(char) (Integer.valueOf('A')+position/8);
         return x+""+y+"";
@@ -381,7 +381,7 @@ public class TwistGame {
             if (node[i]==null || node[i].getStatus()==IamPeg){
                // System.out.println(i+" "+positionToPlaceCode(i));
                 use.add(positionToPlaceCode(i));
-                if (i%8>0){
+                if (FirstRowEmpty>0&&i%8>0){
                 // System.out.println((i-1)+" "+positionToPlaceCode(i-1));
                     use.add(positionToPlaceCode(i-1));
                     if (FirstRowEmpty>1&&i%8>1){
@@ -580,7 +580,7 @@ public class TwistGame {
             } while (checkStringFinal(steps));
         result= (HashSet<String>) RemoveSymmetry(result);
         String[] s= (String[]) result.toArray(new String[0]);
-        //System.out.println(result.toString());
+        System.out.println(result.toString());
         return s;
 
         // FIXME Task 9: determine all solutions to the game, given a particular starting placement
@@ -641,11 +641,12 @@ public class TwistGame {
         //d2A6e2C3f3C2g4A7h6D0i6B0j2B0j1C0k3C0l4B0l5C0a7A3c1A3
         //e5C2f1C4g6B7h4B0k3D0k5D0l6C0
         //[a7A7b3B5c3A0d1A3e5C2f1C4g6B7h4B0]
-        //[a7A7b3B5c3A0d1A3e5C2f1C4g6B7h4B0, a7A7b3B5c3A2d1A3e5C2f1C4g6B7h4B0]
+        //[a7A7b3B5c3A0d1A3e5C2f1C4g6B7h4B0,
+        // a7A7b3B5c3A2d1A3e5C2f1C4g6B7h4B0]
         //System.out.println(getViablePiecePlacements("e5C2f1C4g6B7h4B0k3D0k5D0l6C0").toString());
        // System.out.println(getViablePiecePlacements("d2A6e2C3f3C2g4A7h6D0i6B0j2B0j1C0k3C0l4B0l5C0a7A7c1A3").toString());
-        //getSolutions("b2B0e5C2f1C4g6B7h4B0k3D0k5D0l6C0");
-        getViablePiecePlacements("b2B0e5C2f1C4g6B7h4B0k3D0k5D0l6C0");
+        getSolutions("e5C2f1C4g6B7h4B0k3D0k5D0l6C0");
+        //getViablePiecePlacements("b2B0e5C2f1C4g6B7h4B0k3D0k5D0l6C0");
         //reArrange("c1A3d2A6e2C3f3C2g4A7h6D0j2B0j1C0k3C0l4B0l5C0a7A7b6A5");
        // System.out.println(isPlacementStringValid("d2A6e2C3f3C2g4A7h6D0i6B0j2B0j1C0k3C0l4B0l5C0a7A3c1A3b6A3"));
 

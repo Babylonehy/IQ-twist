@@ -66,7 +66,7 @@ public class Viewer extends Application {
 
     private Pieces startPieces[] = new Pieces[8];
 
-
+    Scene scene = new Scene(root, VIEWER_WIDTH, VIEWER_HEIGHT);
     /**
      * Create the message to be displayed when the player wrongInput.
      */
@@ -197,11 +197,12 @@ public class Viewer extends Application {
                 event.consume();
             });
             setOnMouseReleased(event -> {
+                int z=(int) getRotate()/90+(getScaleY()==1?0:1)*4;
                 setOpacity(1);
                 System.out.println(this.type+" Flip:"+getScaleY()+" X:"+getLayoutX()+",Y:"+getLayoutY());
                 double raw, coloumn;
-                coloumn = (getLayoutX() - 240) / 60;
-                raw = (getLayoutY() - 120) / 60;
+                coloumn = (int)(getLayoutX() - 240) / 60;
+                raw = (int)(getLayoutY() - 120) / 60;
                 if (getLayoutX() > 80 && getLayoutX() < 700 && getLayoutY() > 90 && getLayoutY() < 340) {
                     if (true) {
                         setLayoutX(BOARD_X + 58 + SQUARE_SIZE * (int) coloumn);
@@ -238,12 +239,12 @@ public class Viewer extends Application {
                         setLayoutX(SQUARE_SIZE * 4 * (type - 97));
                         setLayoutY(BOAED_FitHeight + SQUARE_SIZE);
                     }
-                    if (type >= 'i') {
-                        setLayoutY(0);
-                        setLayoutX(PEG_X + peg_index * SQUARE_SIZE);
-                    }
+//                    if (type >= 'i') {
+//                        setLayoutY(0);
+//                        setLayoutX(PEG_X + peg_index * SQUARE_SIZE);
+//                    }
                 }
-
+                System.out.println(raw+","+coloumn);
             });
 
             setOnScroll(event -> {
@@ -271,6 +272,7 @@ public class Viewer extends Application {
         char pieces;
         Pieces(char pieces) {
             if (pieces >= 'a' && pieces <= 'h') {
+                setId(String.valueOf(pieces));
                 Image img = new Image(Viewer.class.getResource(URI_BASE + pieces + ".png").toString());
                 setImage(img);
                 this.pieces = pieces;
@@ -295,6 +297,7 @@ public class Viewer extends Application {
 
         Pieces(char pieces, int x, int y, int z) {
             if (pieces >= 'a' && pieces <= 'h') {
+                setId(String.valueOf(pieces));
                 Image img = new Image(Viewer.class.getResource(URI_BASE + pieces + ".png").toString());
                 setImage(img);
 
@@ -317,6 +320,9 @@ public class Viewer extends Application {
                 System.out.println(getLayoutX() + " " + getLayoutY());
             }
         }
+        public char getPieces() {
+            return pieces;
+        }
     }
 
     /**
@@ -324,11 +330,13 @@ public class Viewer extends Application {
      */
     class Peg extends ImageView {
         char peg;
+
         Peg(char peg, int index) throws IllegalAccessException {
             if (peg >= 'i' && peg <= 'l') {
+                setId(String.valueOf(peg));
                 setImage(new Image(Viewer.class.getResource(URI_BASE + peg + ".png").toString()));
                 this.peg = peg;
-                System.out.println("peg = " + peg + " " + index);
+                //System.out.println("peg = " + peg + " " + index);
                 setFitHeight(SQUARE_SIZE);
                 setFitWidth(SQUARE_SIZE);
                 setLayoutX(PEG_X + index * SQUARE_SIZE);
@@ -340,6 +348,7 @@ public class Viewer extends Application {
 
         Peg(char peg, int x, int y) {
             if (peg >= 'i' && peg <= 'l') {
+                setId(String.valueOf(peg));
                 setImage(new Image(Viewer.class.getResource(URI_BASE + peg + ".png").toString()));
                 this.peg = peg;
                 setFitHeight(SQUARE_SIZE);
@@ -349,6 +358,7 @@ public class Viewer extends Application {
             }
 
         }
+
 
     }
 
@@ -421,18 +431,20 @@ public class Viewer extends Application {
             Peg startPeg = new Peg(each, i);
             i++;
             peg.getChildren().add(startPeg);
+            peg.getChildren().get(peg.getChildren().size()-1).setId(String.valueOf(startPeg.getId()));
         }
         int j = 0;
         for (char each : pieces) {
             startPieces[j] = new Pieces(each);
-            piece.getChildren().add(startPieces[j++]);
+            piece.getChildren().add(startPieces[j]);
+            piece.getChildren().get(j).setId(String.valueOf(startPieces[j].getId()));
+            j++;
         }
     }
 
     @Override
     public void start(Stage primaryStage) throws Exception {
         primaryStage.setTitle("TwistGame Viewer");
-        Scene scene = new Scene(root, VIEWER_WIDTH, VIEWER_HEIGHT);
 
         root.getChildren().add(board);
         root.getChildren().add(controls);
@@ -446,5 +458,22 @@ public class Viewer extends Application {
         primaryStage.setResizable(false);
         primaryStage.setScene(scene);
         primaryStage.show();
+        System.out.println();
+    }
+
+    public Scene getScene() {
+        return scene;
+    }
+
+    public Group getPeg() {
+        return peg;
+    }
+
+    public Group getBoard() {
+        return board;
+    }
+
+    public Group getPiece() throws Exception {
+        return piece;
     }
 }
