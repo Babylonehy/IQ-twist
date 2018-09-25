@@ -22,16 +22,16 @@
     <orderEntry type="module-library" exported="">
       <library>
         <CLASSES>
-          <root url="jar://$USER_HOME$/Desktop/testfx-junit-4.0.14-alpha.jar!/" />
+          <root url="jar://$MODULE_DIR$/tests/testfx-core-4.0.14-alpha.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />
       </library>
     </orderEntry>
-    <orderEntry type="module-library">
+    <orderEntry type="module-library" exported="">
       <library>
         <CLASSES>
-          <root url="jar://$USER_HOME$/Desktop/testfx-core-4.0.14-alpha.jar!/" />
+          <root url="jar://$MODULE_DIR$/tests/testfx-junit-4.0.14-alpha.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />
