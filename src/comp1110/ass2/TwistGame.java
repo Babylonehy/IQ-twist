@@ -587,9 +587,13 @@ public class TwistGame {
     }
 
     /**
-     *
-     * @param placement
-     * @return
+     * This method is used to reorder scrambled code. Returns a new coded and ordered string.
+     * Every four words in the input string meet the requirements of "[a-h][1-8][A-D][0-7]",
+     * and the returned string is sorted by [a-h] with the first letter of four characters.
+     * If there are pegs in the input string, the output string will be stripped of all peg encoding.
+     * If only peg is entered, "" is returned.
+     * @param placement a Valid scrambled string
+     * @return The ordered pieces string
      */
     static String ReorderPieces (String placement) {
         Vector result=new Vector();

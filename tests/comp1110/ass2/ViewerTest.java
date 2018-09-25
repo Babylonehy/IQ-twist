@@ -21,11 +21,15 @@ public class ViewerTest extends ApplicationTest {
         stage.toFront();
     }
 
+    /**
+     * Test size of viewer is 955*720 or not
+     */
     @Test
     public void Width_HeightTest() {
         assertTrue("Width is"+test.getScene().getWidth()+" excepted: 955",test.getScene().getWidth()==955);
         assertTrue("Height is"+test.getScene().getHeight()+" excepted: 720",test.getScene().getHeight()==720);
     }
+
 
     @Test
     public void PiecesTest() throws Exception {

@@ -461,6 +461,11 @@ public class Viewer extends Application {
         System.out.println();
     }
 
+
+    /**
+     * The following 4 function is used for testing and is not allowed to change.
+     */
+
     public Scene getScene() {
         return scene;
     }
