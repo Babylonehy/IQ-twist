@@ -369,7 +369,8 @@ public class TwistGame {
     }
 
     /**
-     * Nodes can be used
+     * Nodes can be used.Specify a piecesId and get the possible placement.
+     * Placement is not necessarily legal.
      * @return a set [] include nodes can be used
      * (not only the null node , but also some full node because top_left can be 0)
      */
@@ -381,7 +382,7 @@ public class TwistGame {
             if (node[i]==null || node[i].getStatus()==IamPeg){
                // System.out.println(i+" "+positionToPlaceCode(i));
                 use.add(positionToPlaceCode(i));
-                if (FirstRowEmpty>0&&i%8>0){
+                if (i%8>0){
                 // System.out.println((i-1)+" "+positionToPlaceCode(i-1));
                     use.add(positionToPlaceCode(i-1));
                     if (FirstRowEmpty>1&&i%8>1){
@@ -391,7 +392,7 @@ public class TwistGame {
                 }
             }
         }
-       //System.out.println("Can used Position:"+'\n'+use.toString());
+        //System.out.println("Can used Position:"+'\n'+use.toString());
         return use;
     }
 
@@ -496,6 +497,7 @@ public class TwistGame {
             for (String symmetry: StrictSymmetry) {
                 String temp=symmetry;
                 if (id.equals(temp)){
+                    System.out.print(each+",");
                     set.remove(each);
                 }
             }
@@ -513,13 +515,15 @@ public class TwistGame {
                         char [] weak=key.toCharArray();
                         String place=weak[0]+""+Char_each[1]+""+Char_each[2]+""+weak[1]+"";
                         if (setTemp.contains(place)){
+                            System.out.print(each+",");
                             set.remove(each);
                         }
                     }
                 }
             }
-
-     //   System.out.println("Remove: "+set.toString());
+        System.out.println();
+        System.out.println("Before Remove:" +setTemp.toString() );
+        System.out.println("After Remove: "+set.toString());
         return set;
     }
     /**
@@ -546,6 +550,7 @@ public class TwistGame {
 
         Vector<Vector> steps=new Vector<>();
         Vector<String> step=new Vector<>();
+        HashSet<String> stepset=new HashSet<>();
         step.add(placement);
         steps.add((Vector) step.clone());
         step.clear();
@@ -558,29 +563,35 @@ public class TwistGame {
 
                 for (String each : setnext) {
                     String temp = placementstr + each;
+                    temp=Reorder(temp);
                     settemp = (HashSet<String>) getViablePiecePlacements(temp);
                     if (settemp!=null) {
-                        step.add(temp);
+                        stepset.add(temp);
+                        System.out.println(each+" "+temp);
                     }
                     else {
-                        String retemp=ReorderPieces(temp);
-                        if (!result.contains(retemp)){
-                            if (isPlacementStringValid(temp)&&checkString(temp)){
-                                //  System.out.println("Done:"+temp);
-                                result.add(retemp);
+                        String retemp=temp;
+                        if (retemp.length()>=32 && !result.contains(retemp.substring(0,32))){
+                            if (isPlacementStringValid(retemp) && checkString(retemp)){
+                                System.out.println(each+" Done: "+temp);
+                                result.add(retemp.substring(0,32));
                             }
                         }
-
                     }
                 }
                 }
+
+                for (String each:stepset) {
+                    step.add(each);
+                }
+                stepset.clear();
                 steps.add((Vector) step.clone());
                 step.clear();
 
             } while (checkStringFinal(steps));
-        result= (HashSet<String>) RemoveSymmetry(result);
+
         String[] s= (String[]) result.toArray(new String[0]);
-        System.out.println(result.toString());
+        //System.out.println(result.toString());
         return s;
 
         // FIXME Task 9: determine all solutions to the game, given a particular starting placement
@@ -613,6 +624,25 @@ public class TwistGame {
         }
         return newstring;
     }
+
+    static String Reorder(String placement) {
+        char[] placements=placement.toCharArray();
+        String[] s=new String[placement.length()/4];
+        List<String> list = new ArrayList<>();
+
+        for (int i = 0; i < placements.length; i+=4) {
+            String temp=placements[i]+""+placements[i+1]+""+placements[i+2]+""+placements[i+3]+"";
+            list.add(temp);
+        }
+        Collections.sort(list );
+        String newstring="";
+        for (String each: list) {
+            newstring+=each;
+        }
+        return newstring;
+    }
+
+
     static boolean checkStringFinal(Vector<Vector> steps){
         for (int i = 0; i < steps.lastElement().size(); i++) {
             if (checkString(steps.lastElement().get(i).toString())==false){

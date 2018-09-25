@@ -9,6 +9,11 @@ import org.testfx.framework.junit.ApplicationTest;
 
 import static org.junit.Assert.assertTrue;
 
+/**
+ * Create by Sean 2018-09-25
+ * Last modify: 2018-09-25 23:40:46 by Sean
+ */
+
 public class ViewerTest extends ApplicationTest {
 
     Viewer test;
