@@ -5,6 +5,7 @@ import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Group;
+import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -104,23 +105,22 @@ public class Viewer extends Application {
      *
      * @param placement A valid placement string
      */
-    void makePlacement(String placement) {
-        if (isPlacementStringWellFormed(placement)) {
+    public void makePlacement(String placement) {
+        if (isPlacementStringValid(placement)) {
             hidewrongInput();
             System .out.println(placement);
             char[][] decode = decodeTotype_position(placement);
+
             for (int i = 0; i < decode.length; i++) {
+                int x=(decode[i][1] - '1' + 1);
+                int y=(decode[i][2] - 'A' + 1);
                 if (isPeg(decode[i][0])) {
-                    int X = BOARD_X + SQUARE_SIZE * (decode[i][1] - '1' + 1);
-                    int Y = MARGIN_Y + SQUARE_SIZE * (decode[i][2] - 'A' + 1);
                     int index = getGroupIndex(decode[i][0]);
-                    Peg Peg_change = new Peg(decode[i][0], X, Y);
+                    Peg Peg_change = new Peg(decode[i][0], x, y);
                     peg.getChildren().set(index, Peg_change);
                 } else {
-                    int X = BOARD_X + SQUARE_SIZE * (decode[i][1] - '1' + 1);
-                    int Y = MARGIN_Y + SQUARE_SIZE * (decode[i][2] - 'A' + 1);
                     int Z = decode[i][3] - '0';
-                    Pieces Piece_change = new Pieces(decode[i][0], X, Y, Z);
+                    Pieces Piece_change = new Pieces(decode[i][0], x, y, Z);
                     piece.getChildren().set(decode[i][0] - 'a', Piece_change);
                 }
 
@@ -131,6 +131,7 @@ public class Viewer extends Application {
         }
         // FIXME Task 4: implement the simple placement viewer
     }
+
 
 
     /**
@@ -175,7 +176,7 @@ public class Viewer extends Application {
         int peg_index = -1;
         char type = 'z';
         double mouse_x, mouse_y;
-        int node_width, node_height;
+        int width, height;
 
         Nodes() {
             setOnMousePressed(event -> {
@@ -214,7 +215,7 @@ public class Viewer extends Application {
                             }
                         }
                     }
-                } else if (node_width != 0) {
+                } else if (width != 0) {
                     for (Pieces each : startPieces) {
                         if (getLayoutX() > mouse_x && getLayoutX() < mouse_x + each.getFitWidth()
                                 && getLayoutY() > mouse_y && getLayoutY() < mouse_y + each.getFitHeight()) {
@@ -264,12 +265,12 @@ public class Viewer extends Application {
             });
     }
     }
-
     /**
      * A inner class that represent pieces used in game
      */
     class Pieces extends Nodes {
         char pieces;
+
         Pieces(char pieces) {
             if (pieces >= 'a' && pieces <= 'h') {
                 setId(String.valueOf(pieces));
@@ -277,22 +278,23 @@ public class Viewer extends Application {
                 setImage(img);
                 this.pieces = pieces;
                 this.type = pieces;
-                node_width = (int) img.getWidth();
-                node_height = (int) img.getHeight();
                 setFitHeight((img.getHeight() / 100) * SQUARE_SIZE);
                 setFitWidth(img.getWidth() / 100 * SQUARE_SIZE);
+                width = (int) getFitWidth();
+                height =(int) getFitHeight();
                 setLayoutX(SQUARE_SIZE * 4 * (pieces - 'a'));
 
                 if (SQUARE_SIZE * 4 * (pieces - 'a') + img.getWidth() / 100 * SQUARE_SIZE > VIEWER_WIDTH) {
                     setLayoutX(SQUARE_SIZE * 4 * (pieces - 'a' - 4));
-                    setLayoutY(BOAED_FitHeight + SQUARE_SIZE * 3);
+                    setLayoutY(BOAED_FitHeight + SQUARE_SIZE * 3.5);
                 } else {
-                    setLayoutY(BOAED_FitHeight + SQUARE_SIZE);
+                    setLayoutY(BOAED_FitHeight + SQUARE_SIZE*1.5);
                 }
 
             } else {
                 System.out.println("Bad pieces: \"" + pieces + "\'");
             }
+            setId(pieces+"0");
         }
 
         Pieces(char pieces, int x, int y, int z) {
@@ -300,7 +302,10 @@ public class Viewer extends Application {
                 setId(String.valueOf(pieces));
                 Image img = new Image(Viewer.class.getResource(URI_BASE + pieces + ".png").toString());
                 setImage(img);
-
+                int X = BOARD_X + SQUARE_SIZE * x;
+                int Y = MARGIN_Y + SQUARE_SIZE * y;
+                x=x-1;
+                y=y-1;
                 if (z >= 4) {
                     setScaleY(-1);
                 }
@@ -312,17 +317,19 @@ public class Viewer extends Application {
                 setFitHeight(height);
                 setFitWidth(weight);
                 if ((z % 4) % 2 != 0) {
-                    x = x - (int) (weight - height) / 2;
-                    y = y + (int) (weight - height) / 2;
+                    X = X - (int) (weight - height) / 2;
+                    Y = Y + (int) (weight - height) / 2;
                 }
-                setLayoutX(x);
-                setLayoutY(y);
-                System.out.println(getLayoutX() + " " + getLayoutY());
+                setLayoutX(X);
+                setLayoutY(Y);
+                setId(pieces+""+positionToPlaceCode(8*y+x)+""+z);
+                //System.out.println(getLayoutX() + " " + getLayoutY());
             }
         }
         public char getPieces() {
             return pieces;
         }
+
     }
 
     /**
@@ -336,30 +343,59 @@ public class Viewer extends Application {
                 setId(String.valueOf(peg));
                 setImage(new Image(Viewer.class.getResource(URI_BASE + peg + ".png").toString()));
                 this.peg = peg;
-                //System.out.println("peg = " + peg + " " + index);
+
                 setFitHeight(SQUARE_SIZE);
                 setFitWidth(SQUARE_SIZE);
                 setLayoutX(PEG_X + index * SQUARE_SIZE);
+                setId(peg+"0");
 
             } else {
                 throw new IllegalAccessException("Bad peg: \"" + peg + "\'");
             }
+
         }
 
         Peg(char peg, int x, int y) {
             if (peg >= 'i' && peg <= 'l') {
+                int X = BOARD_X + SQUARE_SIZE * x;
+                int Y = MARGIN_Y + SQUARE_SIZE * y;
                 setId(String.valueOf(peg));
                 setImage(new Image(Viewer.class.getResource(URI_BASE + peg + ".png").toString()));
                 this.peg = peg;
                 setFitHeight(SQUARE_SIZE);
                 setFitWidth(SQUARE_SIZE);
-                setLayoutX(x);
-                setLayoutY(y);
+                setLayoutX(X);
+                setLayoutY(Y);
+                x--;
+                y--;
+                setId(peg+positionToPlaceCode(8*y+x)+"0");
             }
 
         }
 
 
+    }
+
+    /**
+     * Generates the string for the current board.
+     * @return A string
+     */
+    public String generateBoardStr(){
+        String temp="";
+        for (Node each:piece.getChildren()) {
+            if (each.getId().length()==4){
+                temp+=each.getId();
+                // System.out.println(each.getId());
+            }
+
+        }
+        for (Node each:peg.getChildren()) {
+            if (each.getId().length()==4){
+                temp+=each.getId();
+                //System.out.println(each.getId());
+            }
+        }
+        return temp;
     }
 
 
@@ -454,7 +490,7 @@ public class Viewer extends Application {
         makeControls();
         makeBoard();
         makeStart(pegs, Constant.pieces);
-
+        System.out.println(generateBoardStr());
         primaryStage.setResizable(false);
         primaryStage.setScene(scene);
         primaryStage.show();

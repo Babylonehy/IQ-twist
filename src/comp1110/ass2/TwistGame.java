@@ -591,7 +591,7 @@ public class TwistGame {
             } while (checkStringFinal(steps));
 
         String[] s= (String[]) result.toArray(new String[0]);
-        //System.out.println(result.toString());
+        System.out.println(result.toString());
         return s;
 
         // FIXME Task 9: determine all solutions to the game, given a particular starting placement
@@ -679,7 +679,7 @@ public class TwistGame {
         // a7A7b3B5c3A2d1A3e5C2f1C4g6B7h4B0]
         //System.out.println(getViablePiecePlacements("e5C2f1C4g6B7h4B0k3D0k5D0l6C0").toString());
        // System.out.println(getViablePiecePlacements("d2A6e2C3f3C2g4A7h6D0i6B0j2B0j1C0k3C0l4B0l5C0a7A7c1A3").toString());
-        getSolutions("e5C2f1C4g6B7h4B0k3D0k5D0l6C0");
+        getSolutions("e5C2f1C4g6B7l6C0");
         //getViablePiecePlacements("b2B0e5C2f1C4g6B7h4B0k3D0k5D0l6C0");
         //reArrange("c1A3d2A6e2C3f3C2g4A7h6D0j2B0j1C0k3C0l4B0l5C0a7A7b6A5");
        // System.out.println(isPlacementStringValid("d2A6e2C3f3C2g4A7h6D0i6B0j2B0j1C0k3C0l4B0l5C0a7A3c1A3b6A3"));

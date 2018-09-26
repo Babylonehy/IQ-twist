@@ -7,6 +7,7 @@ import javafx.stage.Stage;
 import org.junit.Test;
 import org.testfx.framework.junit.ApplicationTest;
 
+import static comp1110.ass2.TestUtility.GOOD_PLACEMENTS;
 import static org.junit.Assert.assertTrue;
 
 /**
@@ -17,7 +18,6 @@ import static org.junit.Assert.assertTrue;
 public class ViewerTest extends ApplicationTest {
 
     Viewer test;
-
     @Override
     public void start(Stage stage) throws Exception{
         test=new Viewer();
@@ -44,12 +44,12 @@ public class ViewerTest extends ApplicationTest {
             String id=pieces.getChildren().get(i).getId();
             boolean flag=false;
             for (char each:Constant.pieces) {
-                if (id.equals(String.valueOf(each))){
+                if (id.equals(String.valueOf(each)+"0")){
                     flag=true;
                     break;
                 }
             }
-            assertTrue("Pieces "+pieces.getChildren().get(i).getId()+"should be included, but not",flag );
+            assertTrue("Pieces "+pieces.getChildren().get(i).getId()+" should not be included, but include",flag );
         }
     }
 
@@ -61,14 +61,27 @@ public class ViewerTest extends ApplicationTest {
             String id=pegs.getChildren().get(i).getId();
             boolean flag=false;
             for (char each:Constant.pegs) {
-                if (id.equals(String.valueOf(each))){
+                if (id.equals(String.valueOf(each)+"0")){
                     flag=true;
                     break;
                 }
             }
-            assertTrue("Pegs "+pegs.getChildren().get(i).getId()+"should be included, but not",flag );
+            assertTrue("Pegs "+pegs.getChildren().get(i).getId()+" should not be included, but include",flag );
         }
     }
 
+    @Test
+    public void SimplemakePlacementTest() throws Exception {
+
+        String first=GOOD_PLACEMENTS[0];
+//        for (String each:GOOD_PLACEMENTS) {
+//            test.makePlacement(each);
+//            //String out=test.generateBoardStr();
+//        }
+            test.makePlacement(first);
+           // String out=test.generateBoardStr();
+          //assertTrue("Excepted: "+first+"but get:"+out,first.equals(out) );
+
+    }
 
 }

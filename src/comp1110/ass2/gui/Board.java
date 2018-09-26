@@ -419,6 +419,7 @@ public class Board extends Application {
             homeX=getLayoutX();
             homeY=getLayoutY();
             status=NOT_PLACED;
+            setId(pieces+"0");
         }
 
         Pieces(char pieces, int x, int y, int z) {
@@ -615,11 +616,12 @@ public class Board extends Application {
         root.getChildren().add(imageView);
         root.toBack();
 
+
     }
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-        primaryStage.setTitle("TwistGame Viewer");
+        primaryStage.setTitle("TwistGame");
         addBackground();
         root.getChildren().add(board);
         root.getChildren().add(controls);
