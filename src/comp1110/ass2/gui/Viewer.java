@@ -458,7 +458,6 @@ public class Viewer extends Application {
         primaryStage.setResizable(false);
         primaryStage.setScene(scene);
         primaryStage.show();
-        System.out.println();
     }
 
 
