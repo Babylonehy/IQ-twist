@@ -207,7 +207,7 @@ public class TwistGame {
 
     public static boolean isPlacementStringValid(String placement) {
 
-        //System.out.println('\n'+"--"+placement+"--");
+        System.out.println('\n'+"--"+placement+"--");
         char [][] decode=decodeTotype_position(placement);
 
         //Fixme this satement should be deleted......
@@ -651,7 +651,7 @@ public class TwistGame {
         }
         return false;
     }
-    static boolean checkString(String placement){
+    public static boolean checkString(String placement){
         int i=0;
         for (char each:pieces) {
             if (placement.contains(each+"")){

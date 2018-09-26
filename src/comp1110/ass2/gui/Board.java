@@ -5,6 +5,7 @@ import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Group;
+import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -32,7 +33,7 @@ public class Board extends Application {
     private static final int MARGIN_Y = 60;
     private static final int SQUARE_SIZE = 60;
     private static final int VIEWER_WIDTH = 933;
-    private static final int VIEWER_HEIGHT = 700;
+    private static final int VIEWER_HEIGHT = 730;
     private static final int BOAED_FitWidth = 9 * SQUARE_SIZE;
     private static final int BOAED_FitHeight = 5 * SQUARE_SIZE;
     private static final int BOARD_X = 180;
@@ -56,14 +57,16 @@ public class Board extends Application {
     private final Group piece = new Group();
 
     /*message*/
-    private final Text wrongInput = new Text("Wrong Input!");
+    private final Text wrongInput = new Text();
 
     private Pieces startPieces[] = new Pieces[8];
 
     /* marker for unplaced tiles */
     public static final int NOT_PLACED = 255;
-    public static final int Percsion = 3;
+    public static final int Percsion = SQUARE_SIZE;
 
+    public static String BoardStr="";
+    public static boolean Finished=false;
 
 
     Scene scene = new Scene(root, VIEWER_WIDTH, VIEWER_HEIGHT);
@@ -71,14 +74,17 @@ public class Board extends Application {
      * Create the message to be displayed when the player wrongInput.
      */
 
-    private void makeWrongInput() {
+    private void makeWrongInput(String out,int size) {
+        wrongInput.setText(out);
         wrongInput.setFill(Color.RED);
         wrongInput.setCache(true);
-        wrongInput.setFont(Font.font("Arial", FontWeight.EXTRA_BOLD, 12));
+        wrongInput.setFont(Font.font("Arial", FontWeight.EXTRA_BOLD, size));
         wrongInput.setLayoutX(30);
         wrongInput.setLayoutY(VIEWER_HEIGHT - 20);
         wrongInput.setTextAlignment(TextAlignment.CENTER);
-        root.getChildren().add(wrongInput);
+        if (!root.getChildren().contains(wrongInput)){
+            root.getChildren().add(wrongInput);
+        }
     }
 
     /**
@@ -105,28 +111,27 @@ public class Board extends Application {
      * @param placement A valid placement string
      */
     void makePlacement(String placement) {
-        if (isPlacementStringWellFormed(placement)) {
+        if (isPlacementStringValid(placement)) {
             hidewrongInput();
             System .out.println(placement);
             char[][] decode = decodeTotype_position(placement);
+
             for (int i = 0; i < decode.length; i++) {
+                int x=(decode[i][1] - '1' + 1);
+                int y=(decode[i][2] - 'A' + 1);
                 if (isPeg(decode[i][0])) {
-                    int X = BOARD_X + SQUARE_SIZE * (decode[i][1] - '1' + 1);
-                    int Y = MARGIN_Y + SQUARE_SIZE * (decode[i][2] - 'A' + 1);
                     int index = getGroupIndex(decode[i][0]);
-                    Peg Peg_change = new Peg(decode[i][0], X, Y);
+                    Peg Peg_change = new Peg(decode[i][0], x, y);
                     peg.getChildren().set(index, Peg_change);
                 } else {
-                    int X = BOARD_X + SQUARE_SIZE * (decode[i][1] - '1' + 1);
-                    int Y = MARGIN_Y + SQUARE_SIZE * (decode[i][2] - 'A' + 1);
                     int Z = decode[i][3] - '0';
-                    Pieces Piece_change = new Pieces(decode[i][0], X, Y, Z);
+                    Pieces Piece_change = new Pieces(decode[i][0], x, y, Z);
                     piece.getChildren().set(decode[i][0] - 'a', Piece_change);
                 }
 
             }
         } else {
-            makeWrongInput();
+            makeWrongInput("Wrong Input!",12);
             showwrongInput();
         }
         // FIXME Task 4: implement the simple placement viewer
@@ -137,11 +142,11 @@ public class Board extends Application {
      * Create a basic text field for input and a refresh button.
      */
     private void makeControls() throws Exception {
-        Label label1 = new Label("Placement:");
+        Label label1 = new Label("Start—Placement:");
         textField = new TextField();
         textField.setPrefWidth(300);
-        Button button = new Button("Refresh");
-        Button button2 = new Button("Clear");
+        Button button = new Button("Start");
+        Button button2 = new Button("Reset");
         button.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent e) {
@@ -177,10 +182,13 @@ public class Board extends Application {
         double width, height;
         double homeX, homeY;
         int status;
-
+        int z=0;
+        String position="";
 
         DraggablePieces(){
             /* event handlers */
+            toFront();
+            if (Finished==false){
 
             setOnMousePressed(event -> {// mouse press indicates begin of drag
                 toFront();
@@ -193,21 +201,24 @@ public class Board extends Application {
             });
 
             setOnScroll(event -> {// scroll to change orientation
-                if(PiecesOffBoard()){
+                if (status==NOT_PLACED){
                     rotate();
-                    System.out.println(getLayoutX()+" "+getLayoutY()+" "+width+" "+height);
+                    //System.out.println(getLayoutX()+" "+getLayoutY()+" "+width+" "+height);
                     codePieces();
                     event.consume();
                 }
-
             });
 
             //Flip
             setOnMouseClicked(event->{
-                if (event.getButton().equals( MouseButton.MIDDLE)&& event.getEventType().equals(MouseEvent.MOUSE_CLICKED)){
+                if (event.getButton().equals( MouseButton.MIDDLE)&& event.getEventType().equals(MouseEvent.MOUSE_CLICKED)&&status==NOT_PLACED){
                     setScaleY(-1*getScaleY());
                     codePieces();
                 }
+                if (event.getButton().equals( MouseButton.SECONDARY)&& event.getEventType().equals(MouseEvent.MOUSE_CLICKED)){
+                    snapToHome();
+                }
+                event.consume();
             });
 
             setOnMouseDragged(event -> {      // mouse is being dragged
@@ -228,30 +239,27 @@ public class Board extends Application {
                 setOpacity(1);
                 snapToGrid();
             });
-
+            }
         }
 
-
         private void rotate(){
-            double current_rotate = getRotate();
-            double rotation = current_rotate + 90 % 360;
-            int z= (int) ((getRotate()%360)/90+(getScaleY()==1?0:1)*4);
-            if ((z%4)%2==1){
-                width=getFitHeight();
-                height=getFitWidth();
-            }
-            else {
-                width=getFitWidth();
-                height=getFitHeight();
-            }
-
-            setRotate(rotation);
-            this.rotation++;
-            System.out.println(type+" Flip:"+getScaleY()+" R:"+getRotate()%360);
+                double current_rotate = getRotate();
+                double rotation = current_rotate + 90 % 360;
+                setRotate(rotation);
+                z = (int) ((getRotate() % 360) / 90 + (getScaleY() == 1 ? 0 : 1) * 4);
+                if ((z % 4) % 2 == 1) {
+                    width = getFitHeight();
+                    height = getFitWidth();
+                } else {
+                    width = getFitWidth();
+                    height = getFitHeight();
+                }
+                this.rotation++;
+           // System.out.println(type+" Flip:"+getScaleY()+" R:"+getRotate()%360);
         }
 
         private  String codePieces(){
-            int z= (int) ((getRotate()%360)/90+(getScaleY()==1?0:1)*4);
+           // z= (int) ((getRotate()%360)/90+(getScaleY()==1?0:1)*4);
             String piecesId=type+""+z;
             setId(piecesId);
             System.out.println(piecesId);
@@ -261,12 +269,25 @@ public class Board extends Application {
          * @return true if the mask is on the board
          */
         private boolean onBoard() {
-            System.out.println("TL:"+getLayoutX()+" "+getLayoutY()+PointOnBoard(getLayoutX(),getLayoutY()));
-            System.out.println("DR:"+(getLayoutX()+width)+" "+(getLayoutY()+height)+PointOnBoard(getLayoutX()+width,getLayoutY()+height));
-            System.out.println("TR:"+(getLayoutX()+width)+" "+getLayoutY()+PointOnBoard(getLayoutX()+width,getLayoutY()));
-            System.out.println("DL:"+getLayoutX()+" "+(getLayoutY()+height)+PointOnBoard(getLayoutX(),getLayoutY()+height));
-            return PointOnBoard(getLayoutX(),getLayoutY())&&PointOnBoard(getLayoutX()+width,getLayoutY()+height)
-                    &&PointOnBoard(getLayoutX()+width,getLayoutY())&&PointOnBoard(getLayoutX(),getLayoutY()+height);
+            double x;
+            double y;
+            x=getLayoutX();
+            y=getLayoutY();
+            double max=Math.max(width,height);
+            double min=Math.min(width,height);
+            if ((z%4)%2!=0){
+                x=x+(max - min) / 2.0;
+                y=y-(max - min) / 2.0;
+            }
+
+//            System.out.println("W:"+width+" H:"+height);
+//            System.out.println("TL:"+x+" "+y+PointOnBoard(x,y));
+//            System.out.println("TR:"+(x+width)+" "+y+PointOnBoard(x+width,y));
+//            System.out.println("DL:"+x+" "+(y+height)+PointOnBoard(x,y+height));
+//            System.out.println("DR:"+(x+width)+" "+(y+height)+PointOnBoard(x+width,y+height));
+
+            return PointOnBoard(x,y)&&PointOnBoard(x+width,y+height)
+                    &&PointOnBoard(x+width,y)&&PointOnBoard(x,y+height);
 
         }
 
@@ -275,8 +296,12 @@ public class Board extends Application {
          * @return true if the mask is on the board
          */
         private boolean PointOnBoard(double x,double y) {
-            System.out.println((BOARD_X+SQUARE_SIZE)+" "+(BOARD_X+BOAED_FitWidth)+" "+(MARGIN_Y+SQUARE_SIZE)+" "+(MARGIN_Y+BOAED_FitHeight));
-            return  Math.abs(x-BOARD_X+SQUARE_SIZE)<Percsion&&x<=BOARD_X+BOAED_FitWidth&&y>=MARGIN_Y+SQUARE_SIZE&&y<=MARGIN_Y+BOAED_FitHeight;
+            double xmin=BOARD_X+SQUARE_SIZE-2*Percsion;
+            double xmax=BOARD_X+BOAED_FitWidth+2*Percsion;
+            double ymin=MARGIN_Y+SQUARE_SIZE-2*Percsion;
+            double ymax=MARGIN_Y+BOAED_FitHeight+2*Percsion;
+            //System.out.println((xmin)+" "+(xmax)+" "+(ymin)+" "+(ymax));
+            return x>=xmin && x<=xmax&& y>=ymin && y<=ymax;
         }
 
         private boolean PiecesOffBoard(){
@@ -294,12 +319,43 @@ public class Board extends Application {
          */
         private void snapToGrid() {
             if (onBoard()){
-                System.out.println("On Board!");
+              //  System.out.println("On Board!");
                 int row, coloumn;
-                coloumn = (int)(getLayoutX() - 240) / 60;
-                row = (int)(getLayoutY() - 120) / 60;
-                setLayoutX(BOARD_X + 58 + SQUARE_SIZE * coloumn);
-                setLayoutY(BOARD_X / 2 + 30 + SQUARE_SIZE * row);
+                double x=getLayoutX();
+                double y=getLayoutY();
+                double max=Math.max(width,height);
+                double min=Math.min(width,height);
+                if ((z%4)%2!=0){
+                    x=x+(max - min) / 2.0;
+                    y=y-(max - min) / 2.0;
+                }
+                coloumn = (int)(x - 240) / 60;
+                row = (int)(y - 120) / 60;
+                x=BOARD_X + SQUARE_SIZE+SQUARE_SIZE * coloumn;
+                y=MARGIN_Y+SQUARE_SIZE+SQUARE_SIZE*row;
+               // System.out.println("TopLeft:"+x+" "+y);
+                if (row<4 && coloumn<8){
+                    //System.out.println(row+" "+coloumn);
+                    String placeStep=type+positionToPlaceCode(row*8+coloumn)+z;
+                    System.out.println(generateBoardStr(placeStep));
+                    if (generateBoardStr(placeStep)){
+
+                        if ((z%4)%2!=0){
+                            x=x-(max - min) / 2.0;
+                            y=y+(max - min) / 2.0;
+                        }
+                        setLayoutX(x);
+                        setLayoutY(y);
+                        status=0;
+                        setId(placeStep);
+                        checkComplete();
+                    }
+                    else {
+                        snapToHome();
+                    }
+
+                }
+
             }
             else {
                 snapToHome();
@@ -310,17 +366,23 @@ public class Board extends Application {
          * Snap the mask to its home position (if it is not on the grid)
          */
         private void snapToHome() {
-            System.out.println(homeX+" "+homeY);
+           // System.out.println(homeX+" "+homeY);
             if (!PiecesOffBoard()){
                 setLayoutX(homeX);
                 setLayoutY(homeY);
                 setRotate(0);
+                setId(type+""+"0");
                 status = NOT_PLACED;
             }
-
         }
 
+        public int getStatus() {
+            return status;
+        }
 
+        public String getPosition() {
+            return position;
+        }
     }
 
 
@@ -337,8 +399,6 @@ public class Board extends Application {
                 setImage(img);
                 this.pieces = pieces;
                 this.type = pieces;
-                width = img.getWidth();
-                height = img.getHeight();
                 setFitHeight((img.getHeight() / 100) * SQUARE_SIZE);
                 setFitWidth(img.getWidth() / 100 * SQUARE_SIZE);
                 width = getFitWidth();
@@ -347,9 +407,9 @@ public class Board extends Application {
 
                 if (SQUARE_SIZE * 4 * (pieces - 'a') + img.getWidth() / 100 * SQUARE_SIZE > VIEWER_WIDTH) {
                     setLayoutX(SQUARE_SIZE * 4 * (pieces - 'a' - 4));
-                    setLayoutY(BOAED_FitHeight + SQUARE_SIZE * 3);
+                    setLayoutY(BOAED_FitHeight + SQUARE_SIZE * 3.5);
                 } else {
-                    setLayoutY(BOAED_FitHeight + SQUARE_SIZE);
+                    setLayoutY(BOAED_FitHeight + SQUARE_SIZE*1.5);
                 }
 
             } else {
@@ -365,7 +425,10 @@ public class Board extends Application {
                 setId(String.valueOf(pieces));
                 Image img = new Image(Viewer.class.getResource(URI_BASE + pieces + ".png").toString());
                 setImage(img);
-
+                int X = BOARD_X + SQUARE_SIZE * x;
+                int Y = MARGIN_Y + SQUARE_SIZE * y;
+                x=x-1;
+                y=y-1;
                 if (z >= 4) {
                     setScaleY(-1);
                 }
@@ -377,17 +440,19 @@ public class Board extends Application {
                 setFitHeight(height);
                 setFitWidth(weight);
                 if ((z % 4) % 2 != 0) {
-                    x = x - (int) (weight - height) / 2;
-                    y = y + (int) (weight - height) / 2;
+                    X = X - (int) (weight - height) / 2;
+                    Y = Y + (int) (weight - height) / 2;
                 }
-                setLayoutX(x);
-                setLayoutY(y);
-                System.out.println(getLayoutX() + " " + getLayoutY());
+                setLayoutX(X);
+                setLayoutY(Y);
+                setId(pieces+""+positionToPlaceCode(8*y+x)+""+z);
+                //System.out.println(getLayoutX() + " " + getLayoutY());
             }
         }
         public char getPieces() {
             return pieces;
         }
+
     }
 
     /**
@@ -405,6 +470,7 @@ public class Board extends Application {
                 setFitHeight(SQUARE_SIZE);
                 setFitWidth(SQUARE_SIZE);
                 setLayoutX(PEG_X + index * SQUARE_SIZE);
+                setId(peg+"0");
 
             } else {
                 throw new IllegalAccessException("Bad peg: \"" + peg + "\'");
@@ -414,13 +480,18 @@ public class Board extends Application {
 
         Peg(char peg, int x, int y) {
             if (peg >= 'i' && peg <= 'l') {
+                int X = BOARD_X + SQUARE_SIZE * x;
+                int Y = MARGIN_Y + SQUARE_SIZE * y;
                 setId(String.valueOf(peg));
                 setImage(new Image(Viewer.class.getResource(URI_BASE + peg + ".png").toString()));
                 this.peg = peg;
                 setFitHeight(SQUARE_SIZE);
                 setFitWidth(SQUARE_SIZE);
-                setLayoutX(x);
-                setLayoutY(y);
+                setLayoutX(X);
+                setLayoutY(Y);
+                x--;
+                y--;
+                setId(peg+positionToPlaceCode(8*y+x)+"0");
             }
 
         }
@@ -428,6 +499,37 @@ public class Board extends Application {
 
     }
 
+    public void checkComplete(){
+        if (checkString(BoardStr)){
+            Finished=true;
+            makeWrongInput("Well Done!",48);
+            showwrongInput();
+        }
+    }
+    public boolean generateBoardStr(String place){
+        String temp="";
+        for (Node each:piece.getChildren()) {
+            if (each.getId().length()==4){
+                temp+=each.getId();
+               // System.out.println(each.getId());
+            }
+
+        }
+        for (Node each:peg.getChildren()) {
+            if (each.getId().length()==4){
+                temp+=each.getId();
+                //System.out.println(each.getId());
+            }
+        }
+        temp+=place;
+        if(isPlacementStringValid(temp)){
+            BoardStr=temp;
+            System.out.println(BoardStr);
+            return true;
+        }else {
+            return false;
+        }
+    }
 
     /**
      * Set up the group that represents the places that make the board
@@ -442,12 +544,11 @@ public class Board extends Application {
         baseboard.setLayoutX(BOARD_X);
         baseboard.setLayoutY(MARGIN_Y);
         board.getChildren().add(baseboard);
-
-        board.toBack();
     }
 
     private void reset() throws Exception {
-
+        BoardStr="";
+        Finished=false;
         makeStart(pegs, pieces);
     }
 
@@ -506,12 +607,19 @@ public class Board extends Application {
             piece.getChildren().get(j).setId(String.valueOf(startPieces[j].getId()));
             j++;
         }
+
+    }
+    private void addBackground(){
+        ImageView imageView = new ImageView(new Image(getClass().getResource(URI_BASE +"BKG.jpg").toExternalForm()));
+        root.getChildren().add(imageView);
+        root.toBack();
+
     }
 
     @Override
     public void start(Stage primaryStage) throws Exception {
         primaryStage.setTitle("TwistGame Viewer");
-
+        addBackground();
         root.getChildren().add(board);
         root.getChildren().add(controls);
         root.getChildren().add(peg);
@@ -529,6 +637,8 @@ public class Board extends Application {
 
 
     // FIXME Task 7: Implement a basic playable Twist Game in JavaFX that only allows pieces to be placed in valid places
+
+
 
     // FIXME Task 8: Implement starting placements
 
