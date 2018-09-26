@@ -243,6 +243,7 @@ public class Board extends Application {
         }
 
         private void rotate(){
+                toFront();
                 double current_rotate = getRotate();
                 double rotation = current_rotate + 90 % 360;
                 setRotate(rotation);
