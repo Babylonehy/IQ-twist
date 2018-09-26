@@ -60,6 +60,12 @@ public class Board extends Application {
 
     private Pieces startPieces[] = new Pieces[8];
 
+    /* marker for unplaced tiles */
+    public static final int NOT_PLACED = 255;
+    public static final int Percsion = 3;
+
+
+
     Scene scene = new Scene(root, VIEWER_WIDTH, VIEWER_HEIGHT);
     /**
      * Create the message to be displayed when the player wrongInput.
@@ -169,13 +175,15 @@ public class Board extends Application {
         char type ;
         double mouseX, mouseY;
         double width, height;
+        double homeX, homeY;
+        int status;
+
 
         DraggablePieces(){
             /* event handlers */
-            width=getFitWidth();
-            height=getFitHeight();
 
             setOnMousePressed(event -> {// mouse press indicates begin of drag
+                toFront();
                 if (event.getButton().equals(MouseButton.PRIMARY)){
                     setOpacity(0.7);
                     mouseX = event.getSceneX();
@@ -204,17 +212,21 @@ public class Board extends Application {
 
             setOnMouseDragged(event -> {      // mouse is being dragged
                 toFront();
-                double movementX = event.getSceneX() - mouseX;
-                double movementY = event.getSceneY() - mouseY;
-                setLayoutX(getLayoutX() + movementX);
-                setLayoutY(getLayoutY() + movementY);
-                mouseX = event.getSceneX();
-                mouseY = event.getSceneY();
-                event.consume();
+                if (event.getButton().equals(MouseButton.PRIMARY)){
+                    double movementX = event.getSceneX() - mouseX;
+                    double movementY = event.getSceneY() - mouseY;
+                    setLayoutX(getLayoutX() + movementX);
+                    setLayoutY(getLayoutY() + movementY);
+                    mouseX = event.getSceneX();
+                    mouseY = event.getSceneY();
+                    event.consume();
+                }
+
             });
 
             setOnMouseReleased(event -> {     // drag is complete
                 setOpacity(1);
+                snapToGrid();
             });
 
         }
@@ -249,35 +261,65 @@ public class Board extends Application {
          * @return true if the mask is on the board
          */
         private boolean onBoard() {
-            return getLayoutX() > (BOARD_X +SQUARE_SIZE- (SQUARE_SIZE / 2)) && (getLayoutX() < (BOARD_X +BOAED_FitWidth+ 1.5 * SQUARE_SIZE))
-                    && getLayoutY() > (MARGIN_Y +SQUARE_SIZE- (SQUARE_SIZE / 2)) && (getLayoutY() < (MARGIN_Y + BOAED_FitHeight+1.5 * SQUARE_SIZE))
-                    && ((getLayoutX()+width)<(BOARD_X +BOAED_FitWidth+ 1.5 * SQUARE_SIZE)) && ((getLayoutY()+height)< (MARGIN_Y + BOAED_FitHeight+1.5 * SQUARE_SIZE))
-                    && ((getLayoutX()+width)>(BOARD_X +SQUARE_SIZE))&& ((getLayoutY()+height)>(MARGIN_Y +SQUARE_SIZE));
+            System.out.println("TL:"+getLayoutX()+" "+getLayoutY()+PointOnBoard(getLayoutX(),getLayoutY()));
+            System.out.println("DR:"+(getLayoutX()+width)+" "+(getLayoutY()+height)+PointOnBoard(getLayoutX()+width,getLayoutY()+height));
+            System.out.println("TR:"+(getLayoutX()+width)+" "+getLayoutY()+PointOnBoard(getLayoutX()+width,getLayoutY()));
+            System.out.println("DL:"+getLayoutX()+" "+(getLayoutY()+height)+PointOnBoard(getLayoutX(),getLayoutY()+height));
+            return PointOnBoard(getLayoutX(),getLayoutY())&&PointOnBoard(getLayoutX()+width,getLayoutY()+height)
+                    &&PointOnBoard(getLayoutX()+width,getLayoutY())&&PointOnBoard(getLayoutX(),getLayoutY()+height);
+
         }
 
-        /**
-         * @return true if the mask is on the board
-         */
-        private boolean nearBoard() {
-            return  ((getLayoutX())<(BOARD_X +BOAED_FitWidth+ 1.5 * SQUARE_SIZE)) || ((getLayoutY()+height)< (MARGIN_Y + BOAED_FitHeight+1.5 * SQUARE_SIZE))
-                   ||(((getLayoutX()+width)>(BOARD_X +SQUARE_SIZE))|| ((getLayoutY()+height)>(MARGIN_Y +SQUARE_SIZE)));
-        }
 
         /**
          * @return true if the mask is on the board
          */
         private boolean PointOnBoard(double x,double y) {
-            return  x>BOARD_X+SQUARE_SIZE&&x<BOARD_X+BOAED_FitWidth&&y>MARGIN_Y+SQUARE_SIZE&&y<MARGIN_Y+BOAED_FitHeight;
+            System.out.println((BOARD_X+SQUARE_SIZE)+" "+(BOARD_X+BOAED_FitWidth)+" "+(MARGIN_Y+SQUARE_SIZE)+" "+(MARGIN_Y+BOAED_FitHeight));
+            return  Math.abs(x-BOARD_X+SQUARE_SIZE)<Percsion&&x<=BOARD_X+BOAED_FitWidth&&y>=MARGIN_Y+SQUARE_SIZE&&y<=MARGIN_Y+BOAED_FitHeight;
         }
 
         private boolean PiecesOffBoard(){
-            System.out.println("TL:"+!PointOnBoard(getLayoutX(),getLayoutY()));
-            System.out.println("DR:"+!PointOnBoard(getLayoutX()+width,getLayoutY()+height));
-            System.out.println("TR:"+!PointOnBoard(getLayoutX()+width,getLayoutY()));
-            System.out.println("DL+"+!PointOnBoard(getLayoutX(),getLayoutY()+height));
+            double maxwidth=Math.max(height,width);
+//            System.out.println("TL:"+!PointOnBoard(getLayoutX(),getLayoutY()));
+//            System.out.println("DR:"+!PointOnBoard(getLayoutX()+width,getLayoutY()+height));
+//            System.out.println("TR:"+!PointOnBoard(getLayoutX()+width,getLayoutY()));
+//            System.out.println("DL+"+!PointOnBoard(getLayoutX(),getLayoutY()+height));
             return !PointOnBoard(getLayoutX(),getLayoutY())&&!PointOnBoard(getLayoutX()+width,getLayoutY()+height)
                     &&!PointOnBoard(getLayoutX()+width,getLayoutY())&&!PointOnBoard(getLayoutX(),getLayoutY()+height);
         }
+
+        /**
+         * Snap the tile to the nearest grid position (if it is over the grid)
+         */
+        private void snapToGrid() {
+            if (onBoard()){
+                System.out.println("On Board!");
+                int row, coloumn;
+                coloumn = (int)(getLayoutX() - 240) / 60;
+                row = (int)(getLayoutY() - 120) / 60;
+                setLayoutX(BOARD_X + 58 + SQUARE_SIZE * coloumn);
+                setLayoutY(BOARD_X / 2 + 30 + SQUARE_SIZE * row);
+            }
+            else {
+                snapToHome();
+            }
+        }
+
+        /**
+         * Snap the mask to its home position (if it is not on the grid)
+         */
+        private void snapToHome() {
+            System.out.println(homeX+" "+homeY);
+            if (!PiecesOffBoard()){
+                setLayoutX(homeX);
+                setLayoutY(homeY);
+                setRotate(0);
+                status = NOT_PLACED;
+            }
+
+        }
+
 
     }
 
@@ -287,6 +329,7 @@ public class Board extends Application {
      */
     class Pieces extends DraggablePieces {
         char pieces;
+
         Pieces(char pieces) {
             if (pieces >= 'a' && pieces <= 'h') {
                 setId(String.valueOf(pieces));
@@ -298,6 +341,8 @@ public class Board extends Application {
                 height = img.getHeight();
                 setFitHeight((img.getHeight() / 100) * SQUARE_SIZE);
                 setFitWidth(img.getWidth() / 100 * SQUARE_SIZE);
+                width = getFitWidth();
+                height = getFitHeight();
                 setLayoutX(SQUARE_SIZE * 4 * (pieces - 'a'));
 
                 if (SQUARE_SIZE * 4 * (pieces - 'a') + img.getWidth() / 100 * SQUARE_SIZE > VIEWER_WIDTH) {
@@ -310,6 +355,9 @@ public class Board extends Application {
             } else {
                 System.out.println("Bad pieces: \"" + pieces + "\'");
             }
+            homeX=getLayoutX();
+            homeY=getLayoutY();
+            status=NOT_PLACED;
         }
 
         Pieces(char pieces, int x, int y, int z) {
@@ -361,6 +409,7 @@ public class Board extends Application {
             } else {
                 throw new IllegalAccessException("Bad peg: \"" + peg + "\'");
             }
+
         }
 
         Peg(char peg, int x, int y) {
