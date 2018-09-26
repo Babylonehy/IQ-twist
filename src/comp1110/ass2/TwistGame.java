@@ -207,7 +207,7 @@ public class TwistGame {
 
     public static boolean isPlacementStringValid(String placement) {
 
-        System.out.println('\n'+"--"+placement+"--");
+       // System.out.println('\n'+"--"+placement+"--");
         char [][] decode=decodeTotype_position(placement);
 
         //Fixme this satement should be deleted......
@@ -497,7 +497,7 @@ public class TwistGame {
             for (String symmetry: StrictSymmetry) {
                 String temp=symmetry;
                 if (id.equals(temp)){
-                    System.out.print(each+",");
+                   // System.out.print(each+",");
                     set.remove(each);
                 }
             }
@@ -515,15 +515,15 @@ public class TwistGame {
                         char [] weak=key.toCharArray();
                         String place=weak[0]+""+Char_each[1]+""+Char_each[2]+""+weak[1]+"";
                         if (setTemp.contains(place)){
-                            System.out.print(each+",");
+                            //System.out.print(each+",");
                             set.remove(each);
                         }
                     }
                 }
             }
-        System.out.println();
-        System.out.println("Before Remove:" +setTemp.toString() );
-        System.out.println("After Remove: "+set.toString());
+       // System.out.println();
+       // System.out.println("Before Remove:" +setTemp.toString() );
+       // System.out.println("After Remove: "+set.toString());
         return set;
     }
     /**
@@ -567,13 +567,13 @@ public class TwistGame {
                     settemp = (HashSet<String>) getViablePiecePlacements(temp);
                     if (settemp!=null) {
                         stepset.add(temp);
-                        System.out.println(each+" "+temp);
+                        //System.out.println(each+" "+temp);
                     }
                     else {
                         String retemp=temp;
                         if (retemp.length()>=32 && !result.contains(retemp.substring(0,32))){
                             if (isPlacementStringValid(retemp) && checkString(retemp)){
-                                System.out.println(each+" Done: "+temp);
+                               // System.out.println(each+" Done: "+temp);
                                 result.add(retemp.substring(0,32));
                             }
                         }
