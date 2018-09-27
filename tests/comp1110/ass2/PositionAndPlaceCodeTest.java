@@ -23,6 +23,10 @@ public class PositionAndPlaceCodeTest {
     }
 
     @Test
+    public void Test15(){
+        test(15,"8B");
+    }
+    @Test
     public void Test31(){
         test(31,"8D");
 
