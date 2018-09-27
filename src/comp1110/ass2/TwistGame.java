@@ -282,7 +282,7 @@ public class TwistGame {
      * @param position
      * @return a string of position
      */
-    private static String positionToPlaceCode(int position){
+    public static String positionToPlaceCode(int position){
         int x=position%8+1;
         char y=(char) (Integer.valueOf('A')+position/8);
         String positionresult = x+""+y+"";
@@ -659,7 +659,7 @@ public class TwistGame {
         }
         return false;
     }
-    static boolean checkString(String placement){
+    public static boolean checkString(String placement){
         int i=0;
         for (char each:pieces) {
             if (placement.contains(each+"")){
