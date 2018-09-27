@@ -21,7 +21,34 @@ public class PositionAndPlaceCodeTest {
     public void Test00(){
         test(0,"1A");
     }
-
+    @Test
+    public void Test01(){
+        test(1,"2A");
+    }
+    @Test
+    public void Test02(){
+        test(2,"3A");
+    }
+    @Test
+    public void Test03(){
+        test(3,"4A");
+    }
+    @Test
+    public void Test04(){
+        test(4,"5A");
+    }
+    @Test
+    public void Test05(){
+        test(5,"6A");
+    }
+    @Test
+    public void Test06(){
+        test(6,"7A");
+    }
+    @Test
+    public void Test07(){
+        test(7,"8A");
+    }
     @Test
     public void Test15(){
         test(15,"8B");

@@ -24,30 +24,28 @@ public class GetNotUseNodeTest {
 
     public class getNotUseNodeTest {
 
-        private void test(String start, String expected) {
+
         public void test(String start, Set<String> expected) {
             Set<String> outSet = TwistGame.getNotUseNode(start);
             assertTrue("Input was '" + start + "', expected " + expected + " but got " + outSet, expected.equals(outSet));
-        }
 
-        }
+
             //@Test
             //public void singleNodeTest () {
-                //try {
-                //    test()
-               // } catch (InputMismatchException var2) {
-               //     Assert.assertTrue("Unexpected output", false);
-               // } catch (NoSuchElementException var3) {
-                //    Assert.assertTrue("No output", false);
-               // }
+            //try {
+            //    test()
+            // } catch (InputMismatchException var2) {
+            //     Assert.assertTrue("Unexpected output", false);
+            // } catch (NoSuchElementException var3) {
+            //    Assert.assertTrue("No output", false);
+            // }
             //  }
+        }
 
-
-            @Test
-            public void doubleNodeTest () {
-        test
-
-            }
-
+        @Test
+        public void doubleNodeTest () {
 
         }
+    }
+}
+
