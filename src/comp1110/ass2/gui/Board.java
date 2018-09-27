@@ -72,7 +72,7 @@ public class Board extends Application {
 
     /* music*/
     private AudioClip snap = new AudioClip(getClass().getResource(URI_BASE +"ouoh-error.mp3").toString());
-
+    ImageView complete= new ImageView(new Image(getClass().getResource(URI_BASE +"complete.jpg").toExternalForm()));
     Scene scene = new Scene(root, VIEWER_WIDTH, VIEWER_HEIGHT);
     /**
      * Create the message to be displayed when the player wrongInput.
@@ -83,8 +83,8 @@ public class Board extends Application {
         wrongInput.setFill(Color.RED);
         wrongInput.setCache(true);
         wrongInput.setFont(Font.font("Arial", FontWeight.EXTRA_BOLD, size));
-        wrongInput.setLayoutX(30);
-        wrongInput.setLayoutY(VIEWER_HEIGHT - 20);
+        wrongInput.setLayoutX(BOARD_X+3*SQUARE_SIZE);
+        wrongInput.setLayoutY(MARGIN_Y+3*SQUARE_SIZE);
         wrongInput.setTextAlignment(TextAlignment.CENTER);
         if (!root.getChildren().contains(wrongInput)){
             root.getChildren().add(wrongInput);
@@ -526,6 +526,7 @@ public class Board extends Application {
             Finished=true;
             makeWrongInput("Well Done!",48);
             showwrongInput();
+            ShowCompelte(1);
         }
     }
     public boolean generateBoardStr(String place){
@@ -572,6 +573,7 @@ public class Board extends Application {
         BoardStr="";
         Finished=false;
         hidewrongInput();
+        ShowCompelte(0);
         makeStart(pegs, pieces);
     }
 
@@ -655,6 +657,18 @@ public class Board extends Application {
         controls.getChildren().add(hb);
 
     }
+    private void ShowCompelte(int off){
+        complete.setX(BOARD_X+2*SQUARE_SIZE);
+        complete.setY(MARGIN_Y+SQUARE_SIZE);
+        if (off==1){
+            complete.toFront();
+            complete.setOpacity(1);
+        }
+        else {
+            complete.toBack();
+            complete.setOpacity(0);
+        }
+    }
 
 
     @Override
@@ -666,6 +680,9 @@ public class Board extends Application {
         root.getChildren().add(controls);
         root.getChildren().add(peg);
         root.getChildren().add(piece);
+
+        root.getChildren().add(complete);
+        ShowCompelte(0);
 
         makeControls();
         makeBoard();
