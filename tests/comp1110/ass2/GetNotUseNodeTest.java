@@ -1,9 +1,13 @@
 package comp1110.ass2;
 
+import com.sun.org.apache.xalan.internal.xsltc.runtime.Node;
+import org.junit.Assert;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.Timeout;
 
+import java.util.InputMismatchException;
+import java.util.NoSuchElementException;
 import java.util.Random;
 import java.util.Set;
 
@@ -20,20 +24,29 @@ public class GetNotUseNodeTest {
 
     public class getNotUseNodeTest {
 
-        private void test(String start, Set<String> expected) {
+        public void test(String start, Set<String> expected) {
             Set<String> outSet = TwistGame.getNotUseNode(start);
             assertTrue("Input was '" + start + "', expected " + expected + " but got " + outSet, expected.equals(outSet));
         }
 
         }
+            //@Test
+            //public void singleNodeTest () {
+                //try {
+                //    test()
+               // } catch (InputMismatchException var2) {
+               //     Assert.assertTrue("Unexpected output", false);
+               // } catch (NoSuchElementException var3) {
+                //    Assert.assertTrue("No output", false);
+               // }
+            //  }
+
+
             @Test
-            public void singleNodeTest () {
-
-            }
-
             public void doubleNodeTest () {
+        test
 
             }
 
-            public void
+
         }
