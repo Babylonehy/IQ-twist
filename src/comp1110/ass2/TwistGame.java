@@ -608,7 +608,7 @@ public class TwistGame {
      */
     static String ReorderPieces (String placement) {
         Vector result=new Vector();
-        Pattern p=Pattern.compile("[a-h][1-8][A-D][0-7]");
+        Pattern p=Pattern.compile("[a-h][1-8][A-D][0-7]|[i-l][1-8][A-D]0");
         Matcher m=p.matcher(placement);
         //Fixme regex too slow.....
         while (m.find()){

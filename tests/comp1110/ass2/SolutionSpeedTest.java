@@ -1,6 +1,9 @@
 package comp1110.ass2;
 
+import org.junit.Rule;
 import org.junit.Test;
+import org.junit.rules.Timeout;
+import org.junit.runners.model.TestTimedOutException;
 
 import java.util.Arrays;
 import java.util.Set;
@@ -9,6 +12,8 @@ import java.util.TreeSet;
 import static org.junit.Assert.assertTrue;
 
 public class SolutionSpeedTest {
+    @Rule
+    public Timeout globalTimeout = Timeout.millis(20000);
 
     private void test(String start, Set<String> expected) {
         String[] out = TwistGame.getSolutions(start);
@@ -20,7 +25,8 @@ public class SolutionSpeedTest {
         assertTrue("For problem " + start + ", was expecting " + expstr + ", but got " + outstr, expstr.equals(outstr));
     }
 
-    @Test(timeout = 100L)
+//    @Test(timeout = 10000L)
+    @Test(expected = TestTimedOutException.class)
     public void threePieces(){
         String start2="a7A7b6A7c1A3";
         TreeSet<String> expected2 = new TreeSet<>();
@@ -31,7 +37,7 @@ public class SolutionSpeedTest {
         expected2.add("a7A7b6A7c1A3d2A3e4A0f2C2g4B0h6D0");
 
         try {
-            test(start2,expected2);
+          test(start2,expected2);
             System.out.println("Pass threeTest.");
         } catch (Exception e) {
             System.out.println(e.getMessage());

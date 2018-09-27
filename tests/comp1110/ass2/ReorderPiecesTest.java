@@ -16,12 +16,12 @@ import static org.junit.Assert.assertTrue;
  */
 public class ReorderPiecesTest {
     @Rule
-    public Timeout globalTimeout = Timeout.millis(2000);
+    public Timeout globalTimeout = Timeout.millis(200);
 
     private void test(String input_placement,String expected){
         String out=ReorderPieces(input_placement);
-        assertTrue("Input was '"+input_placement+"', expected "+expected+" but got "+out, expected.equals(out));
-        System.out.println(Thread.currentThread().getStackTrace()[2].getMethodName()+ " '"+input_placement+ "'  Pass");
+        assertTrue("\nInput was '"+input_placement+"', \nexpected '"+expected+"'"+'\n'+ "but got '"+out+"'", expected.equals(out));
+        System.out.println(Thread.currentThread().getStackTrace()[2].getMethodName()+ " '"+input_placement+ "'");
     }
 
     private String exchange(String[] order ){
