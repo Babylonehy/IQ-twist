@@ -287,7 +287,8 @@ public class TwistGame {
     private static String positionToPlaceCode(int position){
         int x=position%8+1;
         char y=(char) (Integer.valueOf('A')+position/8);
-        return x+""+y+"";
+        String positionresult = x+""+y+"";
+        return positionresult;
     }
 
     /**
@@ -375,8 +376,9 @@ public class TwistGame {
      * Nodes can be used
      * @return a set [] include nodes can be used
      * (not only the null node , but also some full node because top_left can be 0)
+     * @param start
      */
-    public static  Set<String> getNotUseNode() {
+    public static  Set<String> getNotUseNode(String start) {
         Set<String> use=new HashSet<>();
         for (int i = 0; i < node.length; i++) {
             if (node[i]==null || node[i].getStatus()==IamPeg){
@@ -439,17 +441,18 @@ public class TwistGame {
      * with the lowest rotation should be included in the set.
      *
      * @param placement A valid placement string (comprised of peg and piece placements)
+     * @param start
      * @return An set of viable piece placements, or null if there are none.
      */
 
 
-    public static Set<String> getViablePiecePlacements(String placement) {
+    public static Set<String> getViablePiecePlacements(String placement, String start) {
        // assert isPlacementStringValid(placement);
 
         Set<String> Allset=new HashSet();
 
         isPlacementStringValid(placement);
-        Set<String> canUseNode=getNotUseNode();
+        Set<String> canUseNode=getNotUseNode(start);
         Character[] canUsePieces=getNotUsePieces();
 
         for (char type :canUsePieces){
@@ -542,10 +545,11 @@ public class TwistGame {
      * which has very many solutions.
      *
      * @param placement A valid piece placement string.
+     * @param start
      * @return An array of strings, each 32-characters long, describing a unique
      * unordered solution to the game given the starting point provided by placement.
      */
-    public static String[] getSolutions(String placement) {
+    public static String[] getSolutions(String placement, String start) {
         HashSet <String> setnext= new HashSet<>();
         HashSet <String> settemp= new HashSet<>();
         HashSet<String> result=new HashSet<>();
@@ -560,11 +564,11 @@ public class TwistGame {
                 int count=0;
                 for (int i = 0; i < steps.lastElement().size(); i++) {
                 String placementstr= (String) steps.lastElement().get(i);
-                setnext = (HashSet<String>) getViablePiecePlacements(placementstr);
+                setnext = (HashSet<String>) getViablePiecePlacements(placementstr, start);
 
                 for (String each : setnext) {
                     String temp = placementstr + each;
-                    settemp = (HashSet<String>) getViablePiecePlacements(temp);
+                    settemp = (HashSet<String>) getViablePiecePlacements(temp, start);
                     if (settemp!=null) {
                         step.add(temp);
                     }

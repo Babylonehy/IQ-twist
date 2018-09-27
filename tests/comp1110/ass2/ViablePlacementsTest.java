@@ -4,7 +4,6 @@ import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.Timeout;
 
-import java.util.HashSet;
 import java.util.Random;
 import java.util.Set;
 import java.util.TreeSet;
@@ -30,7 +29,7 @@ public class ViablePlacementsTest {
   public Timeout globalTimeout = Timeout.millis(20000);
 
   private void test(String start, Set<String> expected) {
-    Set<String> outSet = TwistGame.getViablePiecePlacements(start);
+    Set<String> outSet = TwistGame.getViablePiecePlacements(start, start);
     if (expected == null) {
       if (outSet != null) assertTrue("Expected null for input "+start+" but got "+outSet.toString(), outSet == null);
     } else {
