@@ -283,11 +283,10 @@ public class TwistGame {
      * @param position
      * @return a string of position
      */
-    private static String positionToPlaceCode(int position){
+    static String positionToPlaceCode(int position){
         int x=position%8+1;
         char y=(char) (Integer.valueOf('A')+position/8);
-        String positionresult = x+""+y+"";
-        return positionresult;
+        return x+""+y+"";
     }
 
     /**
