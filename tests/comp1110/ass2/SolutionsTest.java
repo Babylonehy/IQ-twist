@@ -8,9 +8,7 @@ import java.util.Arrays;
 import java.util.Set;
 import java.util.TreeSet;
 
-import static comp1110.ass2.TestUtility.GOOD_PLACEMENTS;
-import static comp1110.ass2.TestUtility.MULTI;
-import static comp1110.ass2.TestUtility.SINGLE;
+import static comp1110.ass2.TestUtility.*;
 import static org.junit.Assert.assertTrue;
 
 public class SolutionsTest {
@@ -66,5 +64,7 @@ public class SolutionsTest {
       expected.add(MULTI[1][i]);
     test(MULTI[1][0], expected);
   }
+
+
 
 }

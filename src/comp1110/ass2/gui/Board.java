@@ -641,8 +641,6 @@ public class Board extends Application {
 
     // FIXME Task 7: Implement a basic playable Twist Game in JavaFX that only allows pieces to be placed in valid places
 
-
-
     // FIXME Task 8: Implement starting placements
 
     // FIXME Task 10: Implement hints
