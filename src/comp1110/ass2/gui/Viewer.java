@@ -234,10 +234,10 @@ public class Viewer extends Application {
                     if (SQUARE_SIZE * 4 * (type - 'a') + 200 / 100 * SQUARE_SIZE > VIEWER_WIDTH) {
                         setLayoutX(SQUARE_SIZE * 4 * (type - 'a' - 4));
                         setLayoutY(BOAED_FitHeight + SQUARE_SIZE * 3);
-                        setLayoutY(BOAED_FitHeight + SQUARE_SIZE);
-                    }
                     } else {
                         setLayoutX(SQUARE_SIZE * 4 * (type - 97));
+                        setLayoutY(BOAED_FitHeight + SQUARE_SIZE);
+                    }
                     if (type >= 'i') {
                         setLayoutY(0);
                         setLayoutX(PEG_X + peg_index * SQUARE_SIZE);
@@ -245,6 +245,8 @@ public class Viewer extends Application {
                 }
 
             });
+
+
 
             setOnScroll(event -> {
                 double current_rotate = getRotate();

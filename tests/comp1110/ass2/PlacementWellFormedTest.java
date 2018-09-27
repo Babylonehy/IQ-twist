@@ -5,6 +5,7 @@ import org.junit.Test;
 import org.junit.rules.Timeout;
 
 import static comp1110.ass2.TestUtility.GOOD_PLACEMENTS;
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
 /**
@@ -20,9 +21,9 @@ public class PlacementWellFormedTest {
   public Timeout globalTimeout = Timeout.millis(20000);
 
 
-  private void test(String in, boolean expected) {
-    boolean out = TwistGame.isPlacementWellFormed(in);
-    assertTrue("Input was '"+in+"', expected "+expected+" but got "+out, out == expected);
+  private void test(String input, boolean expected) {
+    boolean out = TwistGame.isPlacementWellFormed(input);
+    assertTrue("Input was '"+input+"', expected "+expected+" but got "+out, out == expected);
   }
 
   @Test
@@ -75,4 +76,21 @@ public class PlacementWellFormedTest {
     }
   }
 
+  @Test
+  public void wellPlacement(){
+    String s1 = "a7A7b3B5c3A0d1A3e5C2f1C4g6B7h4B0k3D0k5D0l6C0";
+    String s2 = GOOD_PLACEMENTS[9];
+      assertTrue(s1.length() == s2.length());
+  }
+
+
+  @Test
+  public void wellString(){
+    for (String each:GOOD_PLACEMENTS) {
+      for (int i = 0; i <8; i++) {
+        int l = GOOD_PLACEMENTS[i].length();
+        assertTrue(l % 4 ==0 );
+      }
+  }
+}
 }
