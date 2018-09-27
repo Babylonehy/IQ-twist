@@ -1,0 +1,1468 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="9c150186-3f2c-436d-b19f-ab788048372f" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/runConfigurations/SelfT1_ViewerTest.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/comp1110/ass2/TwistGame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/comp1110/ass2/TwistGame.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/comp1110/ass2/gui/Viewer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/comp1110/ass2/gui/Viewer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/comp1110/ass2/ViewerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/tests/comp1110/ass2/ViewerTest.java" afterDir="false" />
+    </list>
+    <ignored path="$PROJECT_DIR$/out/" />
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FUSProjectUsageTrigger">
+    <session id="-226498114">
+      <usages-collector id="statistics.lifecycle.project">
+        <counts>
+          <entry key="project.closed" value="20" />
+          <entry key="project.open.time.0" value="2" />
+          <entry key="project.open.time.1" value="2" />
+          <entry key="project.open.time.10" value="5" />
+          <entry key="project.open.time.11" value="1" />
+          <entry key="project.open.time.12" value="2" />
+          <entry key="project.open.time.13" value="2" />
+          <entry key="project.open.time.14" value="1" />
+          <entry key="project.open.time.15" value="2" />
+          <entry key="project.open.time.2" value="1" />
+          <entry key="project.open.time.5" value="1" />
+          <entry key="project.open.time.8" value="2" />
+          <entry key="project.open.time.9" value="2" />
+          <entry key="project.opened" value="23" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.extensions.open">
+        <counts>
+          <entry key="class" value="1" />
+          <entry key="java" value="42" />
+          <entry key="md" value="3" />
+          <entry key="png" value="11" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.types.open">
+        <counts>
+          <entry key="CLASS" value="1" />
+          <entry key="Image" value="11" />
+          <entry key="JAVA" value="42" />
+          <entry key="Markdown" value="3" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.extensions.edit">
+        <counts>
+          <entry key="java" value="4237" />
+          <entry key="md" value="37" />
+          <entry key="txt" value="239" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.types.edit">
+        <counts>
+          <entry key="JAVA" value="4236" />
+          <entry key="Markdown" value="37" />
+          <entry key="PLAIN_TEXT" value="239" />
+          <entry key="RegExp" value="1" />
+        </counts>
+      </usages-collector>
+    </session>
+    <session id="-1184496735">
+      <usages-collector id="statistics.lifecycle.project">
+        <counts>
+          <entry key="project.closed" value="14" />
+          <entry key="project.open.time.1" value="1" />
+          <entry key="project.open.time.11" value="1" />
+          <entry key="project.open.time.13" value="3" />
+          <entry key="project.open.time.14" value="1" />
+          <entry key="project.open.time.15" value="1" />
+          <entry key="project.open.time.16" value="2" />
+          <entry key="project.open.time.2" value="2" />
+          <entry key="project.open.time.20" value="1" />
+          <entry key="project.open.time.27" value="1" />
+          <entry key="project.open.time.3" value="1" />
+          <entry key="project.opened" value="14" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.extensions.open">
+        <counts>
+          <entry key="class" value="4" />
+          <entry key="fxml" value="1" />
+          <entry key="iml" value="1" />
+          <entry key="java" value="100" />
+          <entry key="md" value="11" />
+          <entry key="png" value="14" />
+          <entry key="tld" value="1" />
+          <entry key="xml" value="6" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.types.open">
+        <counts>
+          <entry key="CLASS" value="4" />
+          <entry key="IDEA_MODULE" value="1" />
+          <entry key="Image" value="14" />
+          <entry key="JAVA" value="100" />
+          <entry key="Markdown" value="11" />
+          <entry key="XML" value="8" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.extensions.edit">
+        <counts>
+          <entry key="java" value="10532" />
+          <entry key="md" value="873" />
+          <entry key="txt" value="732" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.types.edit">
+        <counts>
+          <entry key="JAVA" value="10532" />
+          <entry key="Markdown" value="873" />
+          <entry key="PLAIN_TEXT" value="732" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.spring.boot.mvc.usages" />
+      <usages-collector id="statistics.js.language.service.starts" />
+      <usages-collector id="statistics.spring.boot.run.usages" />
+    </session>
+  </component>
+  <component name="FileEditorManager">
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/comp1110/ass2/TwistGame.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="36">
+              <caret line="572" selection-start-line="572" selection-end-line="572" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/comp1110/ass2/Game/Pieces.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="3276">
+              <caret line="98" column="9" selection-start-line="98" selection-start-column="9" selection-end-line="98" selection-end-column="9" />
+              <folding>
+                <element signature="e#4658#4659#0" expanded="true" />
+                <element signature="e#4694#4695#0" expanded="true" />
+                <element signature="e#4729#4730#0" expanded="true" />
+                <element signature="e#4760#4761#0" expanded="true" />
+                <element signature="e#4791#4792#0" expanded="true" />
+                <element signature="e#4819#4820#0" expanded="true" />
+                <element signature="e#4849#4850#0" expanded="true" />
+                <element signature="e#4878#4879#0" expanded="true" />
+                <element signature="e#4907#4908#0" expanded="true" />
+                <element signature="e#4935#4936#0" expanded="true" />
+                <element signature="e#4964#4965#0" expanded="true" />
+                <element signature="e#4991#4992#0" expanded="true" />
+                <element signature="e#5021#5022#0" expanded="true" />
+                <element signature="e#5050#5051#0" expanded="true" />
+                <element signature="e#5094#5095#0" expanded="true" />
+                <element signature="e#5126#5127#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/comp1110/ass2/gui/Board.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="432">
+              <caret line="13" selection-start-line="13" selection-end-line="13" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/tests/comp1110/ass2/ViewerTest.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="2052">
+              <caret line="68" selection-start-line="68" selection-end-line="68" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/tests/comp1110/ass2/ReorderPiecesTest.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="468">
+              <caret line="21" column="27" selection-start-line="21" selection-start-column="19" selection-end-line="21" selection-end-column="32" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/.idea/runConfigurations/T2_PlacementWellFormedTest.xml">
+          <provider selected="true" editor-type-id="text-editor" />
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/.idea/runConfigurations/T9_SolutionsTest.xml">
+          <provider selected="true" editor-type-id="text-editor" />
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/.idea/runConfigurations/T6_ViablePlacementsTest.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state>
+              <caret selection-end-line="25" selection-end-column="12" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/comp1110/ass2/gui/Viewer.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="15552">
+              <caret line="463" selection-start-line="463" selection-end-line="463" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="e#12508#12509#0" expanded="true" />
+                <element signature="e#12545#12546#0" expanded="true" />
+                <element signature="e#16542#16543#0" expanded="true" />
+                <element signature="e#16570#16571#0" expanded="true" />
+                <element signature="e#16599#16600#0" expanded="true" />
+                <element signature="e#16625#16626#0" expanded="true" />
+                <element signature="e#16656#16657#0" expanded="true" />
+                <element signature="e#16684#16685#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+        <option value="JavaFXApplication" />
+        <option value="FxmlFile" />
+        <option value="JUnit4 Test Class" />
+        <option value="Interface" />
+        <option value="Tag Library Descriptor" />
+      </list>
+    </option>
+  </component>
+  <component name="FindInProjectRecents">
+    <findStrings>
+      <find>MARGIN_X</find>
+      <find>MARGIN</find>
+      <find>No</find>
+      <find>position</find>
+      <find>position:</find>
+      <find>--</find>
+      <find>set</find>
+      <find>System</find>
+      <find>getNotUseNode</find>
+      <find>getNotUsePieces</find>
+      <find>RemoveSymmetry</find>
+      <find>piecesSet</find>
+      <find>raw</find>
+      <find>peg =</find>
+      <find>pieces</find>
+    </findStrings>
+    <replaceStrings>
+      <replace>//System</replace>
+      <replace>piecesVec</replace>
+      <replace>row</replace>
+      <replace>pegs</replace>
+    </replaceStrings>
+  </component>
+  <component name="Git.Settings">
+    <option name="PREVIOUS_COMMIT_AUTHORS">
+      <list>
+        <option value="Xiang Li &lt;xiang.li2@anu.edu.au&gt;" />
+      </list>
+    </option>
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="IdeDocumentHistory">
+    <option name="CHANGED_PATHS">
+      <list>
+        <option value="$PROJECT_DIR$/tests/comp1110/ass2/PlacementStringWellFormedTest.java" />
+        <option value="$PROJECT_DIR$/src/comp1110/ass2/Elements/BoardStatus.java" />
+        <option value="$PROJECT_DIR$/src/comp1110/ass2/Game/Constant.java" />
+        <option value="$PROJECT_DIR$/src/comp1110/ass2/Game/Objective.java" />
+        <option value="$PROJECT_DIR$/src/comp1110/ass2/Elements/Peg.java" />
+        <option value="$PROJECT_DIR$/src/comp1110/ass2/Game/BoardNode.java" />
+        <option value="$PROJECT_DIR$/src/comp1110/ass2/Elements/PiecesType.java" />
+        <option value="$PROJECT_DIR$/admin/D-originality-u6716878.md" />
+        <option value="$PROJECT_DIR$/tests/comp1110/ass2/PlacementStringValidTest.java" />
+        <option value="$PROJECT_DIR$/tests/comp1110/ass2/ReorderTest.java" />
+        <option value="$PROJECT_DIR$/tests/comp1110/ass2/ReorderPiecesTest.java" />
+        <option value="$PROJECT_DIR$/tests/comp1110/ass2/PositionAndPlaceCodeTest.java" />
+        <option value="$PROJECT_DIR$/admin/tasks.md" />
+        <option value="$PROJECT_DIR$/src/comp1110/ass2/gui/Menu.fxml" />
+        <option value="$PROJECT_DIR$/src/comp1110/ass2/Game/Pieces.java" />
+        <option value="$PROJECT_DIR$/src/comp1110/ass2/gui/Board.java" />
+        <option value="$PROJECT_DIR$/tests/comp1110/ass2/gui/ViewerTest.java" />
+        <option value="$PROJECT_DIR$/src/comp1110/ass2/FxImageComparison.java" />
+        <option value="$PROJECT_DIR$/admin/E-originality-u6716878.md" />
+        <option value="$PROJECT_DIR$/src/comp1110/ass2/TwistGame.java" />
+        <option value="$PROJECT_DIR$/tests/comp1110/ass2/ViewerTest.java" />
+        <option value="$PROJECT_DIR$/src/comp1110/ass2/gui/Viewer.java" />
+        <option value="$PROJECT_DIR$/.idea/runConfigurations/SelfT1_ViewerTest.tld" />
+        <option value="$PROJECT_DIR$/.idea/runConfigurations/SelfT1_ViewerTest.xml" />
+      </list>
+    </option>
+  </component>
+  <component name="JsBuildToolGruntFileManager" detection-done="true" sorting="DEFINITION_ORDER" />
+  <component name="JsBuildToolPackageJson" detection-done="true" sorting="DEFINITION_ORDER" />
+  <component name="JsGulpfileManager">
+    <detection-done>true</detection-done>
+    <sorting>DEFINITION_ORDER</sorting>
+  </component>
+  <component name="ProjectFrameBounds" extendedState="6">
+    <option name="y" value="23" />
+    <option name="width" value="1280" />
+    <option name="height" value="777" />
+  </component>
+  <component name="ProjectView">
+    <navigator proportions="" version="1">
+      <foldersAlwaysOnTop value="true" />
+    </navigator>
+    <panes>
+      <pane id="Scope" />
+      <pane id="PackagesPane" />
+      <pane id="ProjectPane">
+        <subPane>
+          <expand>
+            <path>
+              <item name="comp1110-ass2-thu18a" type="b2602c69:ProjectViewProjectNode" />
+              <item name="comp1110-ass2-thu18a" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="comp1110-ass2-thu18a" type="b2602c69:ProjectViewProjectNode" />
+              <item name="comp1110-ass2-thu18a" type="462c0819:PsiDirectoryNode" />
+              <item name=".idea" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="comp1110-ass2-thu18a" type="b2602c69:ProjectViewProjectNode" />
+              <item name="comp1110-ass2-thu18a" type="462c0819:PsiDirectoryNode" />
+              <item name=".idea" type="462c0819:PsiDirectoryNode" />
+              <item name="runConfigurations" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="comp1110-ass2-thu18a" type="b2602c69:ProjectViewProjectNode" />
+              <item name="comp1110-ass2-thu18a" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="comp1110-ass2-thu18a" type="b2602c69:ProjectViewProjectNode" />
+              <item name="comp1110-ass2-thu18a" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="ass2" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="comp1110-ass2-thu18a" type="b2602c69:ProjectViewProjectNode" />
+              <item name="comp1110-ass2-thu18a" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="ass2" type="462c0819:PsiDirectoryNode" />
+              <item name="Game" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="comp1110-ass2-thu18a" type="b2602c69:ProjectViewProjectNode" />
+              <item name="comp1110-ass2-thu18a" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="ass2" type="462c0819:PsiDirectoryNode" />
+              <item name="gui" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="comp1110-ass2-thu18a" type="b2602c69:ProjectViewProjectNode" />
+              <item name="comp1110-ass2-thu18a" type="462c0819:PsiDirectoryNode" />
+              <item name="tests" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="comp1110-ass2-thu18a" type="b2602c69:ProjectViewProjectNode" />
+              <item name="comp1110-ass2-thu18a" type="462c0819:PsiDirectoryNode" />
+              <item name="tests" type="462c0819:PsiDirectoryNode" />
+              <item name="ass2" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="comp1110-ass2-thu18a" type="b2602c69:ProjectViewProjectNode" />
+              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
+      <pane id="AndroidView" />
+    </panes>
+  </component>
+  <component name="PropertiesComponent">
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="aspect.path.notification.shown" value="true" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1537882337029" />
+    <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary" value="JUnit4" />
+    <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit4" value="" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/tests/testfx-junit-4.0.14-alpha.jar!/" />
+    <property name="project.structure.last.edited" value="Modules" />
+    <property name="project.structure.proportion" value="0.15" />
+    <property name="project.structure.side.proportion" value="0.2" />
+    <property name="settings.editor.selected.configurable" value="Errors" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CreateClassDialog.RecentsKey">
+      <recent name="comp1110.ass2" />
+    </key>
+    <key name="ExtractSuperBase.RECENT_KEYS">
+      <recent name="comp1110.ass2" />
+    </key>
+    <key name="CreateTestDialog.RecentsKey">
+      <recent name="comp1110.ass2.gui" />
+    </key>
+    <key name="CreateTestDialog.Recents.Supers">
+      <recent name="" />
+    </key>
+    <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
+      <recent name="comp1110.ass2" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/.idea/runConfigurations" />
+      <recent name="F:\OneDrive - Australian National University\6710 Structure P\comp1110-ass2-thu18a\admin\MeetingMemo" />
+      <recent name="$PROJECT_DIR$/admin" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="F:\OneDrive - Australian National University\6710 Structure P\comp1110-ass2-thu18a\tests" />
+      <recent name="F:\OneDrive - Australian National University\6710 Structure P\comp1110-ass2-thu18a\admin" />
+    </key>
+  </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
+  </component>
+  <component name="RunManager" selected="JUnit.SelfT1_ViewerTest">
+    <configuration name="Board" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="comp1110.ass2.gui.Board" />
+      <module name="comp1110-ass2-thu18a" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="comp1110.ass2.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Pieces" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="comp1110.ass2.Game.Pieces" />
+      <module name="comp1110-ass2-thu18a" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="comp1110.ass2.Game.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="TwistGame" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="comp1110.ass2.TwistGame" />
+      <module name="comp1110-ass2-thu18a" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="comp1110.ass2.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Viewer" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="comp1110.ass2.gui.Viewer" />
+      <module name="comp1110-ass2-thu18a" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="comp1110.ass2.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ReorderPiecesTest" type="JUnit" factoryName="JUnit" nameIsGenerated="true">
+      <output_file path="$PROJECT_DIR$/../.." is_save="true" />
+      <module name="comp1110-ass2-thu18a" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="comp1110.ass2.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="comp1110.ass2" />
+      <option name="MAIN_CLASS_NAME" value="comp1110.ass2.ReorderPiecesTest" />
+      <option name="METHOD_NAME" value="" />
+      <option name="PARAMETERS" value="" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ViewerTest" type="JUnit" factoryName="JUnit" nameIsGenerated="true">
+      <module name="comp1110-ass2-thu18a" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="comp1110.ass2.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="comp1110.ass2" />
+      <option name="MAIN_CLASS_NAME" value="comp1110.ass2.ViewerTest" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <list>
+      <item itemvalue="JUnit.ReorderPiecesTest" />
+      <item itemvalue="JUnit.T2 PlacementWellFormedTest" />
+      <item itemvalue="JUnit.T3 PlacementStringWellFormedTest" />
+      <item itemvalue="JUnit.T5 PlacementStringValidTest" />
+      <item itemvalue="JUnit.T6 ViablePlacementsTest" />
+      <item itemvalue="JUnit.T9 SolutionsTest" />
+      <item itemvalue="JUnit.ViewerTest" />
+      <item itemvalue="JUnit.SelfT1_ViewerTest" />
+      <item itemvalue="Application.Viewer" />
+      <item itemvalue="Application.Pieces" />
+      <item itemvalue="Application.TwistGame" />
+      <item itemvalue="Application.Board" />
+    </list>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.Viewer" />
+        <item itemvalue="Application.TwistGame" />
+        <item itemvalue="Application.Board" />
+        <item itemvalue="Application.Pieces" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="9c150186-3f2c-436d-b19f-ab788048372f" name="Default Changelist" comment="" />
+      <created>1535369911174</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1535369911174</updated>
+      <workItem from="1535369912691" duration="110000" />
+      <workItem from="1535370242250" duration="6284000" />
+      <workItem from="1535425329587" duration="9091000" />
+      <workItem from="1535441947779" duration="17178000" />
+      <workItem from="1535461130013" duration="2871000" />
+      <workItem from="1535503814920" duration="7106000" />
+      <workItem from="1535590641994" duration="1256000" />
+      <workItem from="1535605445946" duration="609000" />
+      <workItem from="1535977371594" duration="27000" />
+      <workItem from="1536137574633" duration="228000" />
+      <workItem from="1536141598001" duration="20000" />
+      <workItem from="1536226072547" duration="88000" />
+      <workItem from="1536306891093" duration="5000" />
+      <workItem from="1536496981238" duration="1416000" />
+      <workItem from="1536548720149" duration="48524000" />
+      <workItem from="1536673841367" duration="507000" />
+      <workItem from="1536761353359" duration="43000" />
+      <workItem from="1536761444258" duration="2356000" />
+      <workItem from="1536765480665" duration="21000" />
+      <workItem from="1537165655221" duration="647000" />
+      <workItem from="1537346872434" duration="10347000" />
+      <workItem from="1537359122796" duration="4336000" />
+      <workItem from="1537484931169" duration="356000" />
+      <workItem from="1537508025053" duration="535000" />
+      <workItem from="1537508582230" duration="389000" />
+      <workItem from="1537540375712" duration="700000" />
+      <workItem from="1537621296005" duration="740000" />
+      <workItem from="1537622144994" duration="8000" />
+      <workItem from="1537676806806" duration="6013000" />
+      <workItem from="1537696213034" duration="9073000" />
+      <workItem from="1537710501264" duration="5456000" />
+      <workItem from="1537715994045" duration="1166000" />
+      <workItem from="1537766300255" duration="261000" />
+      <workItem from="1537768926668" duration="2745000" />
+      <workItem from="1537778554922" duration="1972000" />
+      <workItem from="1537872852765" duration="7971000" />
+      <workItem from="1537882492029" duration="601000" />
+    </task>
+    <task id="LOCAL-00001" summary="Finished Task2 &amp; Task3.">
+      <created>1535376279796</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1535376279796</updated>
+    </task>
+    <task id="LOCAL-00002" summary="Task4 almost finished.">
+      <created>1535451728772</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1535451728772</updated>
+    </task>
+    <task id="LOCAL-00003" summary="Task4 Rotate unfinished. And logic should improve.">
+      <created>1535458973336</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1535458973336</updated>
+    </task>
+    <task id="LOCAL-00004" summary="Task4 finished.logic improve.">
+      <created>1535502811104</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1535502811104</updated>
+    </task>
+    <task id="LOCAL-00005" summary="Task4 bugs FIX.logic improve.">
+      <created>1535503336595</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1535503336595</updated>
+    </task>
+    <task id="LOCAL-00006" summary="Task4 bugs FIX.logic improve.">
+      <created>1535503599470</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1535503599470</updated>
+    </task>
+    <task id="LOCAL-00007" summary="Task4 bugs FIX.logic improve.">
+      <created>1535516678820</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1535516678820</updated>
+    </task>
+    <task id="LOCAL-00008" summary="Just for pull">
+      <created>1535591073298</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1535591073298</updated>
+    </task>
+    <task id="LOCAL-00009" summary="bug fixed, please continue finished distributed job!">
+      <created>1535591819016</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1535591819016</updated>
+    </task>
+    <task id="LOCAL-00010" summary="bug fixed, please continue finished distributed job!">
+      <created>1535591884666</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1535591884666</updated>
+    </task>
+    <task id="LOCAL-00011" summary="Delete unnecessary design of PiecesType.">
+      <created>1536498282416</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1536498282416</updated>
+    </task>
+    <task id="LOCAL-00012" summary="Rewrite the wrong Rotate Function &amp; Update PiecesType Function.">
+      <created>1536557495614</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1536557495614</updated>
+    </task>
+    <task id="LOCAL-00013" summary="Rewrite some Class &amp; Delete some unnecessary design.">
+      <created>1536561281031</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1536561281032</updated>
+    </task>
+    <task id="LOCAL-00014" summary="Rewrite some Class and method &amp; Task5 Finished.">
+      <created>1536588239100</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1536588239100</updated>
+    </task>
+    <task id="LOCAL-00015" summary="Prepare for task6, Finished some methods.">
+      <created>1536589991526</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1536589991526</updated>
+    </task>
+    <task id="LOCAL-00016" summary="Bug fixed. task6, Finished some methods.">
+      <created>1536648930026</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1536648930026</updated>
+    </task>
+    <task id="LOCAL-00017" summary="Bug fixed. Add Remove symmetry method.">
+      <created>1536651890729</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1536651890729</updated>
+    </task>
+    <task id="LOCAL-00018" summary="Task6 Finished. But logical redundant.">
+      <created>1536672129320</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1536672129320</updated>
+    </task>
+    <task id="LOCAL-00019" summary="Create Class &lt;Constant&gt; &amp; Board inherit from Viewer.">
+      <created>1536673175541</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1536673175541</updated>
+    </task>
+    <task id="LOCAL-00020" summary="Create Class &lt;Constant&gt; &amp; Board inherit from Viewer &amp; Delete redundant design&amp;TODO.">
+      <created>1536673639322</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1536673639322</updated>
+    </task>
+    <task id="LOCAL-00021" summary="Delete redundant TODO.">
+      <created>1536674333227</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1536674333229</updated>
+    </task>
+    <task id="LOCAL-00022" summary="Update Stage D originality.">
+      <created>1536762114035</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1536762114035</updated>
+    </task>
+    <task id="LOCAL-00023" summary="Update task.md">
+      <created>1536762450012</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1536762450012</updated>
+    </task>
+    <task id="LOCAL-00024" summary="Update task.md">
+      <created>1536762495180</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1536762495180</updated>
+    </task>
+    <task id="LOCAL-00025" summary="Add commits.">
+      <created>1536763570989</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL-00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1536763570989</updated>
+    </task>
+    <task id="LOCAL-00026" summary="Update Stage D originality.">
+      <created>1536763749951</created>
+      <option name="number" value="00026" />
+      <option name="presentableId" value="LOCAL-00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1536763749951</updated>
+    </task>
+    <task id="LOCAL-00027" summary="Task9 finished...But too slow....due to regex or not">
+      <created>1537357103831</created>
+      <option name="number" value="00027" />
+      <option name="presentableId" value="LOCAL-00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1537357103831</updated>
+    </task>
+    <task id="LOCAL-00028" summary="Finished ReorderPiecesTest.">
+      <created>1537538105146</created>
+      <option name="number" value="00028" />
+      <option name="presentableId" value="LOCAL-00028" />
+      <option name="project" value="LOCAL" />
+      <updated>1537538105147</updated>
+    </task>
+    <task id="LOCAL-00029" summary="Create some class of test,Update task.md">
+      <created>1537540110610</created>
+      <option name="number" value="00029" />
+      <option name="presentableId" value="LOCAL-00029" />
+      <option name="project" value="LOCAL" />
+      <updated>1537540110610</updated>
+    </task>
+    <task id="LOCAL-00030" summary="Update task.md">
+      <created>1537541061633</created>
+      <option name="number" value="00030" />
+      <option name="presentableId" value="LOCAL-00030" />
+      <option name="project" value="LOCAL" />
+      <updated>1537541061633</updated>
+    </task>
+    <task id="LOCAL-00031" summary="just for pull">
+      <created>1537676840064</created>
+      <option name="number" value="00031" />
+      <option name="presentableId" value="LOCAL-00031" />
+      <option name="project" value="LOCAL" />
+      <updated>1537676840064</updated>
+    </task>
+    <task id="LOCAL-00032" summary="Complete the Flip operation.">
+      <created>1537692283498</created>
+      <option name="number" value="00032" />
+      <option name="presentableId" value="LOCAL-00032" />
+      <option name="project" value="LOCAL" />
+      <updated>1537692283498</updated>
+    </task>
+    <task id="LOCAL-00033" summary="Search optimize.">
+      <created>1537703910613</created>
+      <option name="number" value="00033" />
+      <option name="presentableId" value="LOCAL-00033" />
+      <option name="project" value="LOCAL" />
+      <updated>1537703910613</updated>
+    </task>
+    <task id="LOCAL-00034" summary="Search optimize.">
+      <created>1537705481701</created>
+      <option name="number" value="00034" />
+      <option name="presentableId" value="LOCAL-00034" />
+      <option name="project" value="LOCAL" />
+      <updated>1537705481701</updated>
+    </task>
+    <task id="LOCAL-00035" summary="Simple ViewerTest.">
+      <created>1537880440997</created>
+      <option name="number" value="00035" />
+      <option name="presentableId" value="LOCAL-00035" />
+      <option name="project" value="LOCAL" />
+      <updated>1537880440997</updated>
+    </task>
+    <task id="LOCAL-00036" summary="Simple ViewerTest.">
+      <created>1537880846931</created>
+      <option name="number" value="00036" />
+      <option name="presentableId" value="LOCAL-00036" />
+      <option name="project" value="LOCAL" />
+      <updated>1537880846931</updated>
+    </task>
+    <option name="localTasksCounter" value="37" />
+    <servers />
+  </component>
+  <component name="TestHistory">
+    <history-entry file="ViewerTest - 2018.09.25 at 22h 44m 19s.xml">
+      <configuration name="ViewerTest" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="ViewerTest - 2018.09.25 at 22h 49m 52s.xml">
+      <configuration name="ViewerTest" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="ViewerTest - 2018.09.25 at 22h 51m 38s.xml">
+      <configuration name="ViewerTest" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="ViewerTest - 2018.09.25 at 22h 51m 43s.xml">
+      <configuration name="ViewerTest" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="ViewerTest - 2018.09.25 at 22h 53m 56s.xml">
+      <configuration name="ViewerTest" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="ViewerTest - 2018.09.25 at 22h 54m 18s.xml">
+      <configuration name="ViewerTest" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="ViewerTest - 2018.09.25 at 22h 54m 52s.xml">
+      <configuration name="ViewerTest" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="ViewerTest - 2018.09.25 at 23h 07m 10s.xml">
+      <configuration name="ViewerTest" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="ViewerTest - 2018.09.25 at 23h 08m 21s.xml">
+      <configuration name="ViewerTest" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="T2_PlacementWellFormedTest - 2018.09.25 at 23h 28m 53s.xml">
+      <configuration name="T2 PlacementWellFormedTest" configurationId="JUnit" />
+    </history-entry>
+  </component>
+  <component name="TimeTrackingManager">
+    <option name="totallyTimeSpent" value="166074000" />
+  </component>
+  <component name="TodoView" selected-index="2">
+    <todo-panel id="selected-file">
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
+    <todo-panel id="all">
+      <are-packages-shown value="true" />
+      <flatten-packages value="true" />
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
+  </component>
+  <component name="ToolWindowManager">
+    <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
+    <layout>
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.25479743" />
+      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
+      <window_info id="Image Layers" order="2" />
+      <window_info id="Designer" order="3" />
+      <window_info id="UI Designer" order="4" />
+      <window_info id="Capture Tool" order="5" />
+      <window_info id="Favorites" order="6" side_tool="true" />
+      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.329927" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.79886913" visible="true" weight="0.32846716" />
+      <window_info anchor="bottom" id="Debug" order="3" sideWeight="0.85927504" weight="0.39522257" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="bottom" id="TODO" order="6" sideWeight="0.49919224" weight="0.3270073" />
+      <window_info anchor="bottom" id="Version Control" order="7" sideWeight="0.78091687" weight="0.22668113" />
+      <window_info anchor="bottom" id="Database Changes" order="8" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Terminal" order="9" sideWeight="0.49757674" weight="0.329927" />
+      <window_info active="true" anchor="bottom" id="Event Log" order="10" sideWeight="0.20113085" side_tool="true" visible="true" weight="0.32790446" />
+      <window_info anchor="bottom" id="Messages" order="11" sideWeight="0.49626866" weight="0.32464713" />
+      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
+      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+      <window_info anchor="right" id="Palette" order="3" />
+      <window_info anchor="right" id="Capture Analysis" order="4" />
+      <window_info anchor="right" id="Database" order="5" />
+      <window_info anchor="right" id="Theme Preview" order="6" />
+      <window_info anchor="right" id="Palette&#9;" order="7" />
+      <window_info anchor="right" id="Maven Projects" order="8" />
+    </layout>
+    <layout-to-restore>
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.2595949" />
+      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
+      <window_info id="Image Layers" order="2" />
+      <window_info id="Designer" order="3" />
+      <window_info id="UI Designer" order="4" />
+      <window_info id="Capture Tool" order="5" />
+      <window_info id="Favorites" order="6" side_tool="true" />
+      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.329927" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.80371565" visible="true" weight="0.33116177" />
+      <window_info anchor="bottom" id="Debug" order="3" sideWeight="0.8610662" weight="0.39522257" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="bottom" id="TODO" order="6" weight="0.32790446" />
+      <window_info anchor="bottom" id="Version Control" order="7" sideWeight="0.49919224" weight="0.22692725" />
+      <window_info anchor="bottom" id="Database Changes" order="8" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Terminal" order="9" weight="0.329927" />
+      <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.13893376" side_tool="true" weight="0.39562044" />
+      <window_info anchor="bottom" id="Messages" order="11" sideWeight="0.49757674" weight="0.32464713" />
+      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
+      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+      <window_info anchor="right" id="Palette" order="3" />
+      <window_info anchor="right" id="Capture Analysis" order="4" />
+      <window_info anchor="right" id="Database" order="5" />
+      <window_info anchor="right" id="Theme Preview" order="6" />
+      <window_info anchor="right" id="Palette&#9;" order="7" />
+      <window_info anchor="right" id="Maven Projects" order="8" />
+    </layout-to-restore>
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State>
+              <option name="RECENTLY_FILTERED_USER_GROUPS">
+                <collection />
+              </option>
+              <option name="RECENTLY_FILTERED_BRANCH_GROUPS">
+                <collection />
+              </option>
+              <option name="COLUMN_ORDER">
+                <list>
+                  <option value="0" />
+                  <option value="1" />
+                  <option value="2" />
+                  <option value="3" />
+                </list>
+              </option>
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsContentAnnotationSettings">
+    <option name="myLimit" value="2678400000" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Task4 finished.logic improve." />
+    <MESSAGE value="Task4 bugs FIX.logic improve." />
+    <MESSAGE value="Just for pull" />
+    <MESSAGE value="bug fixed, please continue finished distributed job!" />
+    <MESSAGE value="Delete unnecessary design of PiecesType." />
+    <MESSAGE value="Rewrite the wrong Rotate Function &amp; Update PiecesType Function." />
+    <MESSAGE value="Rewrite some Class &amp; Delete some unnecessary design." />
+    <MESSAGE value="Rewrite some Class and method &amp; Task5 Finished." />
+    <MESSAGE value="Prepare for task6, Finished some methods." />
+    <MESSAGE value="Bug fixed. task6, Finished some methods." />
+    <MESSAGE value="Bug fixed. Add Remove symmetry method." />
+    <MESSAGE value="Task6 Finished. But logical redundant." />
+    <MESSAGE value="Create Class &lt;Constant&gt; &amp; Board inherit from Viewer." />
+    <MESSAGE value="Create Class &lt;Constant&gt; &amp; Board inherit from Viewer &amp; Delete redundant design&amp;TODO." />
+    <MESSAGE value="Delete redundant TODO." />
+    <MESSAGE value="Add commits." />
+    <MESSAGE value="Update Stage D originality." />
+    <MESSAGE value="Task9 finished...But too slow....due to regex or not" />
+    <MESSAGE value="Finished ReorderPiecesTest." />
+    <MESSAGE value="Create some class of test,Update task.md" />
+    <MESSAGE value="Update task.md" />
+    <MESSAGE value="just for pull" />
+    <MESSAGE value="Complete the Flip operation." />
+    <MESSAGE value="Search optimize." />
+    <MESSAGE value="Simple ViewerTest." />
+    <option name="LAST_COMMIT_MESSAGE" value="Simple ViewerTest." />
+    <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
+  </component>
+  <component name="XDebuggerManager">
+    <watches-manager>
+      <configuration name="Application">
+        <watch expression="step.get(0)" />
+      </configuration>
+    </watches-manager>
+  </component>
+  <component name="debuggerHistoryManager">
+    <expressions id="evaluateExpression">
+      <expression>
+        <expression-string>step.get(0)</expression-string>
+        <language-id>JAVA</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>((Peg)((HashSet)((Group)((Viewer)this).peg).childSet).toArray()[0]).peg</expression-string>
+        <language-id>JAVA</language-id>
+        <custom-info>comp1110.ass2.gui.Viewer.Peg,comp1110.ass2.gui.Viewer,javafx.scene.Group,java.util.HashSet</custom-info>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
+    </expressions>
+  </component>
+  <component name="editorHistoryManager">
+    <entry file="jar://$APPLICATION_HOME_DIR$/lib/junit-4.12.jar!/org/junit/internal/runners/statements/FailOnTimeout.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="128">
+          <caret line="182" selection-start-line="182" selection-end-line="182" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar:///Library/Java/JavaVirtualMachines/jdk1.8.0_131.jdk/Contents/Home/src.zip!/java/util/HashMap.java" />
+    <entry file="file://$PROJECT_DIR$/src/comp1110/ass2/Game/Objective.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="105">
+          <caret line="7" column="3" selection-start-line="7" selection-start-column="3" selection-end-line="7" selection-end-column="3" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/comp1110/ass2/Elements/Peg.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="390">
+          <caret line="26" column="26" selection-start-line="26" selection-start-column="26" selection-end-line="26" selection-end-column="26" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/admin/C-originality.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="SPLIT">
+          <first_editor />
+          <second_editor />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/admin/C-contribution.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="SPLIT">
+          <first_editor />
+          <second_editor />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/admin/D-originality-u1234567.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="SPLIT">
+          <first_editor />
+          <second_editor />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/admin/F-review-u1234567.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="SPLIT">
+          <first_editor />
+          <second_editor />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/comp1110/ass2/Elements/Color.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="30">
+          <caret line="2" selection-start-line="2" selection-end-line="8" selection-end-column="3" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/comp1110/ass2/Elements/BoardStatus.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="210">
+          <caret line="14" column="1" lean-forward="true" selection-start-line="14" selection-start-column="1" selection-end-line="14" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/admin/D-originality-u6716878.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="SECOND">
+          <first_editor relative-caret-position="75">
+            <caret line="5" column="40" selection-start-line="5" selection-start-column="40" selection-end-line="5" selection-end-column="40" />
+          </first_editor>
+          <second_editor />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/comp1110/ass2/gui/Menu.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-15">
+          <caret line="15" column="13" selection-start-line="15" selection-start-column="13" selection-end-line="15" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tests/comp1110/ass2/PlacementStringValidTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="263">
+          <caret line="32" column="19" lean-forward="true" selection-start-line="32" selection-start-column="19" selection-end-line="32" selection-end-column="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tests/comp1110/ass2/PlacementStringWellFormedTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="248">
+          <caret line="25" column="90" lean-forward="true" selection-start-line="25" selection-start-column="4" selection-end-line="25" selection-end-column="90" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tests/comp1110/ass2/PlacementWellFormedTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="219">
+          <caret line="22" column="46" lean-forward="true" selection-start-line="22" selection-start-column="39" selection-end-line="22" selection-end-column="46" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$APPLICATION_HOME_DIR$/lib/junit-4.12.jar!/org/junit/Assert.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="43">
+          <caret line="18" selection-start-line="18" selection-end-line="18" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tests/comp1110/ass2/TestUtility.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="60">
+          <caret line="4" column="24" selection-start-line="4" selection-start-column="24" selection-end-line="4" selection-end-column="24" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tests/comp1110/ass2/SolutionsTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="90">
+          <caret line="17" column="28" selection-start-line="17" selection-start-column="28" selection-end-line="17" selection-end-column="28" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.idea/comp1110-ass2-thu18a.iml">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.idea/workspace-李想的MacBook Pro.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-14182" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/assets/orientations.png">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/assets/a7A7b6A7c1A3d2A6e2C3f3C4g4A7h6D0i6B0j2B0j1C0k3C0l4B0l5C0.png">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/comp1110/ass2/gui/assets/board.png">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/comp1110/ass2/Game/Solution.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-86">
+          <caret line="7" column="2" selection-start-line="7" selection-start-column="2" selection-end-line="7" selection-end-column="2" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/comp1110/ass2/Game/BoardNode.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="313">
+          <caret line="47" lean-forward="true" selection-start-line="47" selection-end-line="47" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/comp1110/ass2/Elements/PiecesType.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-2129">
+          <caret line="10" lean-forward="true" selection-start-line="10" selection-end-line="10" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tests/comp1110/ass2/PositionAndPlaceCodeTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="45">
+          <caret line="3" column="4" selection-start-line="3" selection-start-column="4" selection-end-line="3" selection-end-column="4" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tests/comp1110/ass2/GetNotUsePiecesTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="30">
+          <caret line="2" column="32" selection-start-line="2" selection-start-column="32" selection-end-line="2" selection-end-column="32" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/admin/tasks.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="FIRST">
+          <first_editor relative-caret-position="798">
+            <caret line="72" column="28" selection-start-line="72" selection-start-column="28" selection-end-line="72" selection-end-column="28" />
+          </first_editor>
+          <second_editor />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/README.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="SECOND">
+          <first_editor />
+          <second_editor />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/comp1110/ass2/FxImageComparison.java" />
+    <entry file="jar://C:/Program Files/Java/jdk1.8.0_181/javafx-src.zip!/javafx/scene/Scene.java" />
+    <entry file="file://$PROJECT_DIR$/tests/comp1110/ass2/GetNotUseNodeTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="72">
+          <caret line="2" column="30" selection-start-line="2" selection-start-column="30" selection-end-line="2" selection-end-column="30" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tests/comp1110/ass2/ViablePlacementsTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="36">
+          <caret line="54" column="30" lean-forward="true" selection-start-line="54" selection-start-column="30" selection-end-line="54" selection-end-column="30" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://C:/Program Files/Java/jdk1.8.0_181/jre/lib/rt.jar!/sun/reflect/NativeMethodAccessorImpl.class" />
+    <entry file="file://$PROJECT_DIR$/admin/E-originality-u6716878.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="FIRST">
+          <first_editor relative-caret-position="60">
+            <caret line="2" selection-start-line="2" selection-end-line="2" />
+          </first_editor>
+          <second_editor />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/comp1110/ass2/Game/Constant.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="319">
+          <caret line="14" column="30" selection-start-line="14" selection-start-column="24" selection-end-line="14" selection-end-column="30" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://C:/Program Files/Java/jdk1.8.0_181/javafx-src.zip!/javafx/scene/Group.java" />
+    <entry file="jar://C:/Program Files/Java/jdk1.8.0_181/javafx-src.zip!/javafx/scene/Node.java" />
+    <entry file="file://$PROJECT_DIR$/src/comp1110/ass2/gui/Menu.fxml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="75">
+          <caret line="5" column="49" selection-start-line="5" selection-start-column="27" selection-end-line="5" selection-end-column="49" />
+        </state>
+      </provider>
+      <provider editor-type-id="JavaFX-Scene-Builder" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.idea/runConfigurations/SelfT1_ViewerTest.tld" />
+    <entry file="file://$PROJECT_DIR$/.idea/runConfigurations/SelfT1_ViewerTest.xml" />
+    <entry file="file://$PROJECT_DIR$/src/comp1110/ass2/TwistGame.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="36">
+          <caret line="572" selection-start-line="572" selection-end-line="572" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/comp1110/ass2/Game/Pieces.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="3276">
+          <caret line="98" column="9" selection-start-line="98" selection-start-column="9" selection-end-line="98" selection-end-column="9" />
+          <folding>
+            <element signature="e#4658#4659#0" expanded="true" />
+            <element signature="e#4694#4695#0" expanded="true" />
+            <element signature="e#4729#4730#0" expanded="true" />
+            <element signature="e#4760#4761#0" expanded="true" />
+            <element signature="e#4791#4792#0" expanded="true" />
+            <element signature="e#4819#4820#0" expanded="true" />
+            <element signature="e#4849#4850#0" expanded="true" />
+            <element signature="e#4878#4879#0" expanded="true" />
+            <element signature="e#4907#4908#0" expanded="true" />
+            <element signature="e#4935#4936#0" expanded="true" />
+            <element signature="e#4964#4965#0" expanded="true" />
+            <element signature="e#4991#4992#0" expanded="true" />
+            <element signature="e#5021#5022#0" expanded="true" />
+            <element signature="e#5050#5051#0" expanded="true" />
+            <element signature="e#5094#5095#0" expanded="true" />
+            <element signature="e#5126#5127#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/comp1110/ass2/gui/Board.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="432">
+          <caret line="13" selection-start-line="13" selection-end-line="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tests/comp1110/ass2/ViewerTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2052">
+          <caret line="68" selection-start-line="68" selection-end-line="68" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tests/comp1110/ass2/ReorderPiecesTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="468">
+          <caret line="21" column="27" selection-start-line="21" selection-start-column="19" selection-end-line="21" selection-end-column="32" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.idea/runConfigurations/T2_PlacementWellFormedTest.xml">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.idea/runConfigurations/T9_SolutionsTest.xml">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.idea/runConfigurations/T6_ViablePlacementsTest.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret selection-end-line="25" selection-end-column="12" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/comp1110/ass2/gui/Viewer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="15552">
+          <caret line="463" selection-start-line="463" selection-end-line="463" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#12508#12509#0" expanded="true" />
+            <element signature="e#12545#12546#0" expanded="true" />
+            <element signature="e#16542#16543#0" expanded="true" />
+            <element signature="e#16570#16571#0" expanded="true" />
+            <element signature="e#16599#16600#0" expanded="true" />
+            <element signature="e#16625#16626#0" expanded="true" />
+            <element signature="e#16656#16657#0" expanded="true" />
+            <element signature="e#16684#16685#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+  </component>
+  <component name="masterDetails">
+    <states>
+      <state key="ArtifactsStructureConfigurable.UI">
+        <settings>
+          <artifact-editor />
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="FacetStructureConfigurable.UI">
+        <settings>
+          <last-edited>No facets are configured</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="GlobalLibrariesConfigurable.UI">
+        <settings>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="JdkListConfigurable.UI">
+        <settings>
+          <last-edited>1.8</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="ModuleStructureConfigurable.UI">
+        <settings>
+          <last-edited>comp1110-ass2-thu18a</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="ProjectLibrariesConfigurable.UI">
+        <settings>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="ScopeChooserConfigurable.UI">
+        <settings>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+    </states>
+  </component>
+</project>

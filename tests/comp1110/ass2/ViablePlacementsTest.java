@@ -8,9 +8,7 @@ import java.util.Random;
 import java.util.Set;
 import java.util.TreeSet;
 
-import static comp1110.ass2.TestUtility.CONSTRAINED;
-import static comp1110.ass2.TestUtility.GOOD_PLACEMENTS;
-import static comp1110.ass2.TestUtility.NO_VIABLE;
+import static comp1110.ass2.TestUtility.*;
 import static org.junit.Assert.assertTrue;
 
 /**
@@ -29,7 +27,7 @@ public class ViablePlacementsTest {
   public Timeout globalTimeout = Timeout.millis(20000);
 
   private void test(String start, Set<String> expected) {
-    Set<String> outSet = TwistGame.getViablePiecePlacements(start, start);
+    Set<String> outSet = TwistGame.getViablePiecePlacements(start);
     if (expected == null) {
       if (outSet != null) assertTrue("Expected null for input "+start+" but got "+outSet.toString(), outSet == null);
     } else {

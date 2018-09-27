@@ -24,27 +24,7 @@ public class GetNotUseNodeTest {
             Set<String> outSet = TwistGame.getNotUseNode(start);
             assertTrue("Input was '" + start + "', expected " + expected + " but got " + outSet, expected.equals(outSet));
         }
-        //private String exchange(String[] order ){
-        //for(int index=order.length-1; index>=0; index--) {
-        //  Random rand=new Random();
-        //int x=rand.nextInt(index+1);
-        //String temp = order[index];
-        //order[index] = order[x];
-        //order[x] = temp;
-        // }
-        //String re="";
-        //for (String each :order){
-        //  re+=each;
-        //}
-        //return re;
-        //}
 
-
-        //public void nullNodeTest() {
-            //for (String each:NO_VIABLE) {
-            // if (each.length()>32){
-            // test(each.substring(32,each.length()),"");
-            // }}
         }
             @Test
             public void singleNodeTest () {
@@ -54,4 +34,6 @@ public class GetNotUseNodeTest {
             public void doubleNodeTest () {
 
             }
+
+
         }
