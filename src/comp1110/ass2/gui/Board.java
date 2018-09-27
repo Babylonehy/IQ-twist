@@ -111,17 +111,29 @@ public class Board extends Application {
      * @param placement A valid placement string
      */
     void makePlacement(String placement) {
-        if (isPlacementStringValid(placement)) {
+        if (isPlacementStringValid(placement)&&BoardStr.length()<1) {
             hidewrongInput();
+            BoardStr=placement;
             System .out.println(placement);
             char[][] decode = decodeTotype_position(placement);
-
             for (int i = 0; i < decode.length; i++) {
                 int x=(decode[i][1] - '1' + 1);
                 int y=(decode[i][2] - 'A' + 1);
                 if (isPeg(decode[i][0])) {
                     int index = getGroupIndex(decode[i][0]);
                     Peg Peg_change = new Peg(decode[i][0], x, y);
+                    for (Node each: peg.getChildren()) {
+                        if (each.getId().substring(0,1).equals(decode[i][0])){
+                            if (each.getId().length()==2){
+                                peg.getChildren().remove(each);
+                                peg.getChildren().add(Peg_change);
+                            }
+                            else {
+
+                            }
+                        }
+
+                    }
                     peg.getChildren().set(index, Peg_change);
                 } else {
                     int Z = decode[i][3] - '0';
@@ -183,13 +195,13 @@ public class Board extends Application {
         double homeX, homeY;
         int status;
         int z=0;
+        boolean fixedStatus=false;
         String position="";
 
         DraggablePieces(){
             /* event handlers */
             toFront();
-            if (Finished==false){
-
+            System.out.println("finished:"+Finished);
             setOnMousePressed(event -> {// mouse press indicates begin of drag
                 toFront();
                 if (event.getButton().equals(MouseButton.PRIMARY)){
@@ -201,7 +213,7 @@ public class Board extends Application {
             });
 
             setOnScroll(event -> {// scroll to change orientation
-                if (status==NOT_PLACED){
+                if (status==NOT_PLACED&&Finished==false){
                     rotate();
                     //System.out.println(getLayoutX()+" "+getLayoutY()+" "+width+" "+height);
                     codePieces();
@@ -211,11 +223,11 @@ public class Board extends Application {
 
             //Flip
             setOnMouseClicked(event->{
-                if (event.getButton().equals( MouseButton.MIDDLE)&& event.getEventType().equals(MouseEvent.MOUSE_CLICKED)&&status==NOT_PLACED){
+                if (event.getButton().equals(MouseButton.MIDDLE)&& event.getEventType().equals(MouseEvent.MOUSE_CLICKED)&&status==NOT_PLACED){
                     setScaleY(-1*getScaleY());
                     codePieces();
                 }
-                if (event.getButton().equals( MouseButton.SECONDARY)&& event.getEventType().equals(MouseEvent.MOUSE_CLICKED)){
+                if (event.getButton().equals(MouseButton.SECONDARY)&& event.getEventType().equals(MouseEvent.MOUSE_CLICKED)){
                     snapToHome();
                 }
                 event.consume();
@@ -223,7 +235,7 @@ public class Board extends Application {
 
             setOnMouseDragged(event -> {      // mouse is being dragged
                 toFront();
-                if (event.getButton().equals(MouseButton.PRIMARY)){
+                if (event.getButton().equals(MouseButton.PRIMARY)&&fixedStatus==false&&Finished==false){
                     double movementX = event.getSceneX() - mouseX;
                     double movementY = event.getSceneY() - mouseY;
                     setLayoutX(getLayoutX() + movementX);
@@ -237,9 +249,9 @@ public class Board extends Application {
 
             setOnMouseReleased(event -> {     // drag is complete
                 setOpacity(1);
+                RightBottomCode("");
                 snapToGrid();
             });
-            }
         }
 
         private void rotate(){
@@ -260,10 +272,12 @@ public class Board extends Application {
         }
 
         private  String codePieces(){
-           // z= (int) ((getRotate()%360)/90+(getScaleY()==1?0:1)*4);
             String piecesId=type+""+z;
-            setId(piecesId);
-            System.out.println(piecesId);
+            if (fixedStatus==false){
+                setId(piecesId);
+            }
+            RightBottomCode(getId());
+            System.out.println(getId());
             return piecesId;
         }
         /**
@@ -338,7 +352,7 @@ public class Board extends Application {
                 if (row<4 && coloumn<8){
                     //System.out.println(row+" "+coloumn);
                     String placeStep=type+positionToPlaceCode(row*8+coloumn)+z;
-                    System.out.println(generateBoardStr(placeStep));
+                   // System.out.println(generateBoardStr(placeStep));
                     if (generateBoardStr(placeStep)){
 
                         if ((z%4)%2!=0){
@@ -368,7 +382,7 @@ public class Board extends Application {
          */
         private void snapToHome() {
            // System.out.println(homeX+" "+homeY);
-            if (!PiecesOffBoard()){
+            if (!PiecesOffBoard()&&fixedStatus==false){
                 setLayoutX(homeX);
                 setLayoutY(homeY);
                 setRotate(0);
@@ -448,7 +462,9 @@ public class Board extends Application {
                 setLayoutX(X);
                 setLayoutY(Y);
                 setId(pieces+""+positionToPlaceCode(8*y+x)+""+z);
-                //System.out.println(getLayoutX() + " " + getLayoutY());
+                System.out.println(getId());
+                type=pieces;
+                fixedStatus=true;
             }
         }
         public char getPieces() {
@@ -551,6 +567,7 @@ public class Board extends Application {
     private void reset() throws Exception {
         BoardStr="";
         Finished=false;
+        hidewrongInput();
         makeStart(pegs, pieces);
     }
 
@@ -615,13 +632,31 @@ public class Board extends Application {
         ImageView imageView = new ImageView(new Image(getClass().getResource(URI_BASE +"BKG.jpg").toExternalForm()));
         root.getChildren().add(imageView);
         root.toBack();
+    }
 
+    private void RightBottomCode(String s){
+        Label label1 = new Label(s);
+        HBox hb = new HBox();
+        hb.getChildren().addAll(label1);
+        hb.setSpacing(10);
+        hb.setLayoutX(VIEWER_WIDTH - 35);
+        hb.setLayoutY(VIEWER_HEIGHT - 30);
+        hb.setId("hb");
+       for (Node each:controls.getChildren()){
+           if (each.getId()==hb.getId()){
+               controls.getChildren().remove(each);
+               break;
+           }
+       }
+        controls.getChildren().add(hb);
 
     }
+
 
     @Override
     public void start(Stage primaryStage) throws Exception {
         primaryStage.setTitle("TwistGame");
+        primaryStage.getIcons().add(new Image(getClass().getResource(URI_BASE +"Icon.jpg").toExternalForm()));
         addBackground();
         root.getChildren().add(board);
         root.getChildren().add(controls);
