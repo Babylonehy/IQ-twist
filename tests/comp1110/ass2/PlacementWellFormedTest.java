@@ -21,9 +21,9 @@ public class PlacementWellFormedTest {
   public Timeout globalTimeout = Timeout.millis(20000);
 
 
-  private void test(String input, boolean expected) {
-    boolean out = TwistGame.isPlacementWellFormed(input);
-    assertTrue("Input was '"+input+"', expected "+expected+" but got "+out, out == expected);
+  private void test(String in, boolean expected) {
+    boolean out = TwistGame.isPlacementWellFormed(in);
+    assertTrue("Input was '"+in+"', expected "+expected+" but got "+out, out == expected);
   }
 
   @Test
