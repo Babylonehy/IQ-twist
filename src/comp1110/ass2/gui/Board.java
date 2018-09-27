@@ -10,11 +10,13 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.effect.DropShadow;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
+import javafx.scene.media.AudioClip;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
@@ -68,6 +70,8 @@ public class Board extends Application {
     public static String BoardStr="";
     public static boolean Finished=false;
 
+    /* music*/
+    private AudioClip snap = new AudioClip(getClass().getResource(URI_BASE +"ouoh-error.mp3").toString());
 
     Scene scene = new Scene(root, VIEWER_WIDTH, VIEWER_HEIGHT);
     /**
@@ -201,6 +205,7 @@ public class Board extends Application {
         DraggablePieces(){
             /* event handlers */
             toFront();
+
             System.out.println("finished:"+Finished);
             setOnMousePressed(event -> {// mouse press indicates begin of drag
                 toFront();
@@ -244,7 +249,6 @@ public class Board extends Application {
                     mouseY = event.getSceneY();
                     event.consume();
                 }
-
             });
 
             setOnMouseReleased(event -> {     // drag is complete
@@ -354,7 +358,6 @@ public class Board extends Application {
                     String placeStep=type+positionToPlaceCode(row*8+coloumn)+z;
                    // System.out.println(generateBoardStr(placeStep));
                     if (generateBoardStr(placeStep)){
-
                         if ((z%4)%2!=0){
                             x=x-(max - min) / 2.0;
                             y=y+(max - min) / 2.0;
@@ -363,6 +366,7 @@ public class Board extends Application {
                         setLayoutY(y);
                         status=0;
                         setId(placeStep);
+
                         checkComplete();
                     }
                     else {
