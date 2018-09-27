@@ -19,7 +19,7 @@ public class SolutionsTest {
 
 
   private void test(String start, Set<String> expected) {
-    String[] out = TwistGame.getSolutions(start);
+    String[] out = TwistGame.getSolutions(start, start);
     assertTrue("No solutions returned for problem " + start + ", expected " + expected, out != null);
     TreeSet<String> outSet = new TreeSet<>();
     outSet.addAll(Arrays.asList(out));
