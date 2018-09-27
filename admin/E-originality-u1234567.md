@@ -3,6 +3,6 @@ following documented exceptions:
 
 * The idea of <...> came from a discussion with <...>
 
-* The code in class <...> uses an idea suggested by <...>
+* The code in class PositionandPlaceCodeTest uses an idea suggested by Assignment1 of comp1110.
 
-Signed: Mary Jones (u23445678)
+Signed: Ning Cai (u6456964)

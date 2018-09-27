@@ -28,7 +28,7 @@ public class Pieces {
     Color color;
     private int Width;
     private int Height;
-    Vector<Vector> piecesSet=new Vector<Vector>();
+    Vector<Vector> piecesVec=new Vector<Vector>();
 
     public Pieces(String piecesId){
         this.piecesId=piecesId;
@@ -93,7 +93,7 @@ public class Pieces {
         for (int i = 0; i < this.getHeight(); i++) {
             int index=position+i*8;
             for (int j = 0; j <this.getWidth() ; j++) {
-                BoardPosition.put(index,(int)piecesSet.elementAt(i).get(j));
+                BoardPosition.put(index,(int)piecesVec.elementAt(i).get(j));
                 index=index+1;
             }
         }
@@ -170,12 +170,12 @@ public class Pieces {
             for (int j = startCol; j <=endCol ; j++) {
                 s1.add(m[i][j]);
             }
-            piecesSet.add((Vector) s1.clone());
+            piecesVec.add((Vector) s1.clone());
             s1.clear();
         }
       //  System.out.println(piecesId+" compressed successful.");
 
-        return piecesSet;
+        return piecesVec;
     }
 
 
@@ -207,8 +207,25 @@ public class Pieces {
         return rotate;
     }
 
-    public Vector<Vector> getPiecesSet() {
-        return piecesSet;
+    public Vector<Vector> getpiecesVec() {
+        return piecesVec;
     }
 
+    public int getFirstRowEmpty(){
+        int count=0;
+        for (int i = 0; i <piecesVec.firstElement().size() ; i++) {
+            if ((Integer) piecesVec.firstElement().get(i)==0){
+             count++;
+            }
+            else {
+                return count;
+            }
+        }
+        return count;
+    }
+
+    public static void main(String[] args) {
+        Pieces a=new Pieces("c3");
+        System.out.println(a.getFirstRowEmpty());
+    }
 }

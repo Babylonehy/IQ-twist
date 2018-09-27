@@ -24,6 +24,7 @@ public class GetNotUseNodeTest {
 
     public class getNotUseNodeTest {
 
+        private void test(String start, String expected) {
         public void test(String start, Set<String> expected) {
             Set<String> outSet = TwistGame.getNotUseNode(start);
             assertTrue("Input was '" + start + "', expected " + expected + " but got " + outSet, expected.equals(outSet));
