@@ -248,6 +248,8 @@ public class Viewer extends Application {
                 System.out.println(raw+","+coloumn);
             });
 
+
+
             setOnScroll(event -> {
                 double current_rotate = getRotate();
                 double rotation = current_rotate + 90 % 360;

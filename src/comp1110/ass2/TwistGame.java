@@ -243,6 +243,7 @@ public class TwistGame {
             else {
                 String piecesId=type+""+rotation+"";
                 piecesSet.add(new Pieces(piecesId));
+
                 if (PutonBoard(position,piecesSet.lastElement().getWidth(),piecesSet.lastElement().getHeight())){
 
                     if (updateBoard(piecesSet.lastElement().DecodetoBoardposition(position),piecesSet.lastElement().getColor())==false){
@@ -281,10 +282,11 @@ public class TwistGame {
      * @param position
      * @return a string of position
      */
-    public static String positionToPlaceCode(int position){
+    private static String positionToPlaceCode(int position){
         int x=position%8+1;
         char y=(char) (Integer.valueOf('A')+position/8);
-        return x+""+y+"";
+        String positionresult = x+""+y+"";
+        return positionresult;
     }
 
     /**
@@ -382,6 +384,7 @@ public class TwistGame {
             if (node[i]==null || node[i].getStatus()==IamPeg){
                // System.out.println(i+" "+positionToPlaceCode(i));
                 use.add(positionToPlaceCode(i));
+
                 if (i%8>0){
                 // System.out.println((i-1)+" "+positionToPlaceCode(i-1));
                     use.add(positionToPlaceCode(i-1));
@@ -390,8 +393,11 @@ public class TwistGame {
                         use.add(positionToPlaceCode(i-2));
                     }
                 }
+
+
             }
         }
+
         //System.out.println("Can used Position:"+'\n'+use.toString());
         return use;
     }
@@ -487,6 +493,7 @@ public class TwistGame {
      */
 
     public static Set<String> RemoveSymmetry(HashSet<String> set){
+
         //Remove Strict Symmetry.
         HashSet <String> setTemp= new HashSet<>();
         setTemp= (HashSet<String>) set.clone();
@@ -590,6 +597,7 @@ public class TwistGame {
 
             } while (checkStringFinal(steps));
 
+
         String[] s= (String[]) result.toArray(new String[0]);
         System.out.println(result.toString());
         return s;
@@ -651,7 +659,7 @@ public class TwistGame {
         }
         return false;
     }
-    public static boolean checkString(String placement){
+    static boolean checkString(String placement){
         int i=0;
         for (char each:pieces) {
             if (placement.contains(each+"")){
