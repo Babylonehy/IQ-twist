@@ -37,6 +37,12 @@ public class Objective {
     //TODO add two method to decode Startstate.
 
     /**
+     * Decode Startstate to boardNode
+     */
+    private  void decodeStartstate(String Startstate){
+
+    }
+    /**
      * Initialize the Challenge level with Start state as Challenge Number equal to 1.
      */
 

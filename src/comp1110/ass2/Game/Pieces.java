@@ -14,9 +14,18 @@ import comp1110.ass2.Elements.PiecesType;
  */
 
 public class Pieces {
+    Object Pieces = new Object();
 
-    private  String piecesId; //length 4 chars
+    public Object getPieces() {
+        return Pieces;
+    }
 
+    private  char piecesId; //length 4 chars
+
+
+    public Pieces(char piecesId){
+        this.piecesId=piecesId;
+    }
     /**
      * This method rotate piece by 90,180,270,360 degree in right direction
      * @param dir Rotation Direction
@@ -36,17 +45,28 @@ public class Pieces {
     private static int[][] flipPieces(int [][] pieces){
         return null;
     }
+
+
     /**
-     * The method decodes pieces into encode.
+     * The method decodes pieces to 4*4.
      * @param piecesId From PieceType; Offer to BoardNode.
-     * @returnA set new rotated and fliped Pieces.
+     * @return A set new rotated and fliped Pieces.
      */
-
-
-
-    //TODO add description about this method
     private static int[][] DecodePieces(String piecesId){
         return null;
+    }
+
+
+    /**
+     * Get the left_top_position in 4*4
+     * 0,1,2,3
+     * 4,5,6,7
+     * 8,9,10,11
+     * @param m 4*4 after decode
+     * @return position 0-11
+     */
+    public static int left_top_position(int[][] m){
+        return 1;
     }
 
 }
