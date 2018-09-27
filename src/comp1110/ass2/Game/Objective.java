@@ -1,16 +1,11 @@
 package comp1110.ass2.Game;
 
 
-import java.util.Scanner;
-import java.util.Set;
-
 /**
  * Create by Sean 2018-08-21
  * This class will collect the challenge level of the game by input number and set up this game.
  * Last modify: 2018-08-23 11:29:06 by Stella
  */
-
-//TODO Finished this commit about this class
 
 public class Objective {
 
@@ -26,7 +21,6 @@ public class Objective {
      * @param ChallengeNumber The challenge level which is excepted.
      */
 
-    //TODO add description about constructor.
     public Objective(String Startstate, int ChallengeNumber){
         assert ChallengeNumber >= 1 && ChallengeNumber <= 100;
         this.Startstate = Startstate;
@@ -34,14 +28,6 @@ public class Objective {
     }
 
 
-    //TODO add two method to decode Startstate.
-
-    /**
-     * Decode Startstate to boardNode
-     */
-    private  void decodeStartstate(String Startstate){
-
-    }
     /**
      * Initialize the Challenge level with Start state as Challenge Number equal to 1.
      */
