@@ -1,6 +1,8 @@
 package comp1110.ass2.gui;
 
+import com.sun.xml.internal.fastinfoset.util.StringArray;
 import comp1110.ass2.Game.Constant;
+import comp1110.ass2.TwistGame;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -13,6 +15,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.effect.DropShadow;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyCode;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
@@ -24,7 +27,8 @@ import javafx.scene.text.Text;
 import javafx.scene.text.TextAlignment;
 import javafx.stage.Stage;
 
-import java.util.Random;
+import javax.swing.text.html.HTMLDocument;
+import java.util.*;
 
 import static comp1110.ass2.Game.Constant.pegs;
 import static comp1110.ass2.Game.Constant.pieces;
@@ -64,6 +68,8 @@ public class Board extends Application {
     private final Text wrongInput = new Text();
 
     private Pieces startPieces[] = new Pieces[8];
+    private Peg startPegs[] = new Peg[7];
+    private Pieces hintPiece;
 
     /* marker for unplaced tiles */
     public static final int NOT_PLACED = 255;
@@ -621,10 +627,10 @@ public class Board extends Application {
         piece.getChildren().clear();
         int i = 0;
         for (char each : pegs) {
-            Peg startPeg = new Peg(each, i);
+            startPegs[i] = new Peg(each, i);
+            peg.getChildren().add(startPegs[i]);
+            peg.getChildren().get(peg.getChildren().size() - 1).setId(String.valueOf(startPegs[i].getId()));
             i++;
-            peg.getChildren().add(startPeg);
-            peg.getChildren().get(peg.getChildren().size() - 1).setId(String.valueOf(startPeg.getId()));
         }
         int j = 0;
         for (char each : pieces) {
@@ -660,6 +666,34 @@ public class Board extends Application {
 
     }
 
+    private void setHintHandler(Scene scene) {
+
+        scene.setOnKeyPressed(event -> {
+            // make hint when press slash
+            if (event.getCode() == KeyCode.SLASH) {
+                //String hint = makeHints(BoardStr);
+                String hint = "a1A1";
+                int x, y, id = hint.charAt(0);
+                x = BOARD_X + SQUARE_SIZE + SQUARE_SIZE * (hint.charAt(1) - '1');
+                y = MARGIN_Y + SQUARE_SIZE + SQUARE_SIZE * (hint.charAt(2) - 'A');
+                System.out.println("x+y = " + x + " " + y);
+                hintPiece = startPieces[id - 'a'];
+                hintPiece.setLayoutX(x);
+                hintPiece.setLayoutY(y);
+                hintPiece.setOpacity(0.4);
+            }
+        });
+        scene.setOnKeyReleased(event -> {
+            // make hint when press slash
+            if (event.getCode() == KeyCode.SLASH) {
+                if (hintPiece != null) {
+                    hintPiece.setOpacity(1);
+                    hintPiece.setLayoutX(hintPiece.homeX);
+                    hintPiece.setLayoutY(hintPiece.homeY);
+                }
+            }
+        });
+    }
 
     @Override
     public void start(Stage primaryStage) throws Exception {
@@ -676,6 +710,7 @@ public class Board extends Application {
         makeStart(pegs, Constant.pieces);
 
         primaryStage.setResizable(false);
+        setHintHandler(scene);
         primaryStage.setScene(scene);
         primaryStage.show();
     }
@@ -683,7 +718,7 @@ public class Board extends Application {
 
     // FIXME Task 7: Implement a basic playable Twist Game in JavaFX that only allows pieces to be placed in valid places
 
-    private static String makeStartingPlecament() {
+    private String makeStartingPlecament() {
         // FIXME Task 8: Implement starting placements
         Random rd = new Random();
         String startingDictionary[] = {"a1B5b2C0c5A2d7B7e5B0f1A6g3A7h5D0i1B0j7A0j7B0k1A0k2B0l3B0l4C0",
@@ -703,13 +738,20 @@ public class Board extends Application {
         return result;
     }
 
-    public static void main(String[] args) {
-        for (int i = 0; i < 9999; i++) {
-            System.out.println("startingPlacement = " + makeStartingPlecament());
-        }
+    private String makeHints(String placement) {
+        // FIXME Task 10: Implement hints
+        // Get solutions for current placement.
+        String results[] = TwistGame.getSolutions(placement);
+        // return null if game has been finished
+        if (results == null | results.length == 0)
+            return null;
+        Random rd = new Random();
+        String result = results[rd.nextInt(results.length)];
+        result = result.replace(placement, "");
+        int startPos = rd.nextInt(result.length() / 4) * 4;
+        return result.substring(startPos, startPos + 4);
     }
 
-    // FIXME Task 10: Implement hints
 
     // FIXME Task 11: Generate interesting starting placements
 
