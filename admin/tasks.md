@@ -73,11 +73,13 @@ Xiang Li: Add other test & Task7 & Finished function about next step hints.
 Deadline:2018-09-25 24:00   
 *****(Please feel free to ask any questions and share your progress. Hope we have good job.)*****
 
-Zhi Wang: completed the simple operation section in the Class of viewer. But invalid for this game. 2018-09-23
+Zhi Wang: completed the simple operation section in the Class of viewer. But invalid for this game. 2018-09-23  
 Xiang Li: completed the basics of the game（Task7 done） and the game was ready to play. 2018-09-26
 
 ## Week 9
-
+Zhi Wang：Task8，10 almost finished, But still have BUG.
+Ning Cai: JavaFx menu for gamestart.  
+Xiang Li: Redesign UI and Optimize Logical. fix Task8,10.  
 ## Week 10
 
 ## Week 11
