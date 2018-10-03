@@ -72,7 +72,8 @@ public class Board extends Application {
 
     private Pieces startPieces[] = new Pieces[8];
     private Peg startPegs[] = new Peg[7];
-    private Pieces hintPiece;
+    private Pieces hintPiece=null;
+    private String[] solution=null;
 
     /* marker for unplaced tiles */
     public static final int NOT_PLACED = 255;
@@ -128,7 +129,7 @@ public class Board extends Application {
         if (isPlacementStringValid(placement) && BoardStr.length() < 1) {
             hideText();
             BoardStr = placement;
-            System.out.println(placement);
+            System.out.println("BoardStr:["+placement+"]");
             char[][] decode = decodeTotype_position(placement);
             for (int i = 0; i < decode.length; i++) {
                 int x = (decode[i][1] - '1' + 1);
@@ -150,7 +151,7 @@ public class Board extends Application {
                     peg.getChildren().set(index, Peg_change);
                 } else {
                     int Z = decode[i][3] - '0';
-                    Pieces Piece_change = new Pieces(decode[i][0], x, y, Z);
+                    Pieces Piece_change = new Pieces(decode[i][0], x, y, Z,false);
                     piece.getChildren().set(decode[i][0] - 'a', Piece_change);
                 }
 
@@ -359,9 +360,9 @@ public class Board extends Application {
 
                 x = BOARD_X + SQUARE_SIZE + SQUARE_SIZE * coloumn;
                 y = MARGIN_Y + SQUARE_SIZE + SQUARE_SIZE * row;
-                System.out.println("TopLeft:"+x+" "+y);
+                //System.out.println("TopLeft:"+x+" "+y);
                 if (row < 4 && coloumn < 8&&row>=0&&coloumn>=0) {
-                    System.out.println(row+" "+coloumn);
+                    //System.out.println(row+" "+coloumn);
                    String placeStep = type + positionToPlaceCode((int) (row * 8 + coloumn)) + z;
                     // System.out.println(generateBoardStr(placeStep));
                     if (generateBoardStr(placeStep)) {
@@ -439,9 +440,9 @@ public class Board extends Application {
             setId(pieces + "0");
         }
 
-        Pieces(char pieces, int x, int y, int z) {
-            if (pieces >= 'a' && pieces <= 'h') {
-                setId(String.valueOf(pieces));
+        Pieces(char pieces, int x, int y, int z,boolean hint) {
+            if (pieces >= 'a' && pieces <= 'h' ) {
+               // setId(String.valueOf(pieces));
                 Image img = new Image(Viewer.class.getResource(URI_BASE + pieces + ".png").toString());
                 setImage(img);
                 int X = BOARD_X + SQUARE_SIZE * x;
@@ -464,8 +465,15 @@ public class Board extends Application {
                 }
                 setLayoutX(X);
                 setLayoutY(Y);
-                setId(pieces + "" + positionToPlaceCode(8 * y + x) + "" + z);
-                System.out.println(getId());
+                String placeCode= pieces +""+positionToPlaceCode(8 * y + x)+""+ z;
+                if (!hint){
+                    setId(placeCode);
+                    System.out.println(getId());
+                }
+                else {
+                    setId("hints"+""+placeCode);
+                }
+
                 type = pieces;
                 fixedStatus = true;
             }
@@ -548,7 +556,7 @@ public class Board extends Application {
         temp += place;
         if (isPlacementStringValid(temp)) {
             BoardStr = temp;
-            System.out.println(BoardStr);
+            System.out.println("BoardStr:["+BoardStr+"]");
             return true;
         } else {
             return false;
@@ -577,6 +585,8 @@ public class Board extends Application {
     private void reset() throws Exception {
         BoardStr = "";
         Finished = false;
+        hintPiece=null;
+        solution=null;
         hideText();
         ShowComplete(0);
         makeStart(pegs, pieces);
@@ -639,7 +649,18 @@ public class Board extends Application {
         }
 
     }
-
+    private int pieceCount(String placement){
+        int count=0;
+        for (int i = 0; i < placement.length()/4; i++) {
+            for (char each: pieces){
+                if (placement.substring(i*4,i*4+1).equals(each+"")){
+                    count++;
+                    break;
+                }
+            }
+        }
+        return count;
+    }
     private void addBackground() {
         ImageView imageView = new ImageView(new Image(getClass().getResource(URI_BASE + "BKG.jpg").toExternalForm()));
         root.getChildren().add(imageView);
@@ -695,26 +716,29 @@ public class Board extends Application {
 
         scene.setOnKeyPressed(event -> {
             // make hint when press slash
-            if (event.getCode() == KeyCode.SLASH) {
+            if (event.getCode() == KeyCode.SLASH && hintPiece==null) {
                 String hint = makeHints(BoardStr);
-                //String hint = "a1A1";
-                int x, y, id = hint.charAt(0);
-                x = BOARD_X + SQUARE_SIZE + SQUARE_SIZE * (hint.charAt(1) - '1');
-                y = MARGIN_Y + SQUARE_SIZE + SQUARE_SIZE * (hint.charAt(2) - 'A');
-                System.out.println("x+y = " + x + " " + y);
-                hintPiece = startPieces[id - 'a'];
-                hintPiece.setLayoutX(x);
-                hintPiece.setLayoutY(y);
-                hintPiece.setOpacity(0.4);
+                //System.out.println("Press /");
+                if (hint!=null){
+                    System.out.println("Hint: "+hint);
+                    hintPiece = new Pieces(hint.charAt(0), hint.charAt(1)- '1' + 1, hint.charAt(2)- 'A' + 1, hint.charAt(3)- '1'+1, true);
+                    hintPiece.setOpacity(0.4);
+                    piece.getChildren().add(hintPiece);
+                }
+                else {
+                    makeText("No hint for Wrong placement or less than 4 pieces! \n (If the number of pieces are more than 3, \n No hint must due to Wrong placement)",18);
+                    showText();
+                }
             }
         });
         scene.setOnKeyReleased(event -> {
             // make hint when press slash
+            //System.out.println("Released /");
+            hideText();
             if (event.getCode() == KeyCode.SLASH) {
                 if (hintPiece != null) {
-                    hintPiece.setOpacity(1);
-                    hintPiece.setLayoutX(hintPiece.homeX);
-                    hintPiece.setLayoutY(hintPiece.homeY);
+                    piece.getChildren().remove(hintPiece);
+                    hintPiece=null;
                 }
             }
         });
@@ -770,17 +794,47 @@ public class Board extends Application {
     }
 
     private String makeHints(String placement) {
-        // Get solutions for current placement.
-        String results[] = TwistGame.getSolutions(placement);
-        // return null if game has been finished
-        if (results == null | results.length == 0)
+        //System.out.println("Hint from "+placement);
+        if (pieceCount(placement)>3) {
+            // Get solutions for current placement.
+            String[] results;
+            if (solution==null){
+                solution= TwistGame.getSolutions(placement);
+            }
+            results=solution;
+            // return null if game has been finished
+            if (results == null | results.length == 0)
+            {
+                System.out.println("No solution: "+placement);
+                return null;
+            }
+            else {
+                System.out.println("Got solution.");
+            }
+
+            Random rd = new Random();
+            String result = results[0];
+            //System.out.println(placement+" Solution:"+result);
+            result = clearSamestr(result,placement);
+            int startPos = rd.nextInt(result.length() / 4) * 4;
+            result=result.substring(startPos, startPos + 4);
+            //System.out.println("Hints:"+result);
+            return result;
+        }
+        else {
             return null;
-        Random rd = new Random();
-        String result = results[rd.nextInt(results.length)];
-        result = result.replace(placement, "");
-        int startPos = rd.nextInt(result.length() / 4) * 4;
-        return result.substring(startPos, startPos + 4);
+        }
         // FIXME Task 10: Implement hints
+    }
+
+    private String clearSamestr(String result, String placement){
+
+        for (int i = 0; i < placement.length()/4; i++) {
+         String temp=placement.substring(i*4,i*4+4);
+            result=result.replace(temp,"");
+        }
+        //System.out.println("Reminder:"+result);
+        return result;
     }
 
 
