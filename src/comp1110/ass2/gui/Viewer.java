@@ -98,7 +98,6 @@ public class Viewer extends Application {
         wrongInput.setOpacity(0);
     }
 
-//FIXME this method can be more general to print message.....
 
     /**
      * Draw a placement in the window, removing any previously drawn one

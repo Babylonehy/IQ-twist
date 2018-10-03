@@ -1,6 +1,5 @@
 package comp1110.ass2.gui;
 
-import com.sun.xml.internal.fastinfoset.util.StringArray;
 import comp1110.ass2.Game.Constant;
 import comp1110.ass2.TwistGame;
 import javafx.application.Application;
@@ -12,7 +11,6 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
-import javafx.scene.effect.DropShadow;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
@@ -27,12 +25,15 @@ import javafx.scene.text.Text;
 import javafx.scene.text.TextAlignment;
 import javafx.stage.Stage;
 
-import javax.swing.text.html.HTMLDocument;
-import java.util.*;
+import java.util.Random;
 
 import static comp1110.ass2.Game.Constant.pegs;
 import static comp1110.ass2.Game.Constant.pieces;
 import static comp1110.ass2.TwistGame.*;
+
+/**
+ * 
+ */
 
 public class Board extends Application {
 
@@ -65,7 +66,7 @@ public class Board extends Application {
     private final Group piece = new Group();
 
     /*message*/
-    private final Text wrongInput = new Text();
+    private final Text Text = new Text();
 
     private Pieces startPieces[] = new Pieces[8];
     private Peg startPegs[] = new Peg[7];
@@ -84,39 +85,37 @@ public class Board extends Application {
     Scene scene = new Scene(root, VIEWER_WIDTH, VIEWER_HEIGHT);
 
     /**
-     * Create the message to be displayed when the player wrongInput.
+     * Create the message to be displayed when the player Text.
      */
 
-    private void makeWrongInput(String out, int size) {
-        wrongInput.setText(out);
-        wrongInput.setFill(Color.RED);
-        wrongInput.setCache(true);
-        wrongInput.setFont(Font.font("Arial", FontWeight.EXTRA_BOLD, size));
-        wrongInput.setLayoutX(BOARD_X+3*SQUARE_SIZE);
-        wrongInput.setLayoutY(MARGIN_Y+3*SQUARE_SIZE);
-        wrongInput.setTextAlignment(TextAlignment.CENTER);
-        if (!root.getChildren().contains(wrongInput)) {
-            root.getChildren().add(wrongInput);
+    private void makeText(String out, int size) {
+        Text.setText(out);
+        Text.setFill(Color.RED);
+        Text.setCache(true);
+        Text.setFont(Font.font("Arial", FontWeight.EXTRA_BOLD, size));
+        Text.setLayoutX(BOARD_X+3*SQUARE_SIZE);
+        Text.setLayoutY(MARGIN_Y+3*SQUARE_SIZE);
+        Text.setTextAlignment(TextAlignment.CENTER);
+        if (!root.getChildren().contains(Text)) {
+            root.getChildren().add(Text);
         }
     }
 
     /**
-     * Show the  wrongInput message
+     * Show the  Text message
      */
-    private void showwrongInput() {
-        wrongInput.toFront();
-        wrongInput.setOpacity(1);
+    private void showText() {
+        Text.toFront();
+        Text.setOpacity(1);
     }
 
     /**
-     * Hide the wrongInput message
+     * Hide the Text message
      */
-    private void hidewrongInput() {
-        wrongInput.toBack();
-        wrongInput.setOpacity(0);
+    private void hideText() {
+        Text.toBack();
+        Text.setOpacity(0);
     }
-
-//FIXME this method can be more general to print message.....
 
     /**
      * Draw a placement in the window, removing any previously drawn one
@@ -125,7 +124,7 @@ public class Board extends Application {
      */
     void makePlacement(String placement) {
         if (isPlacementStringValid(placement) && BoardStr.length() < 1) {
-            hidewrongInput();
+            hideText();
             BoardStr = placement;
             System.out.println(placement);
             char[][] decode = decodeTotype_position(placement);
@@ -155,10 +154,10 @@ public class Board extends Application {
 
             }
         } else {
-            makeWrongInput("Wrong Input or invalid Start \n (Please Reset Before Start, If anything on board.)", 18);
-            showwrongInput();
+            makeText("Wrong Input or invalid Start \n (Please Reset Before Start, If anything on board.)", 18);
+
+            showText();
         }
-        // FIXME Task 4: implement the simple placement viewer
     }
 
 
@@ -167,11 +166,10 @@ public class Board extends Application {
      */
     private void makeControls() throws Exception {
         Button button = new Button("Start");
-        Button button2 = new Button("Reset");
+        Button button2 = new Button("Restart");
         button.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent e) {
-//                makePlacement(textField.getText());
                 makePlacement(makeStartingPlecament());
             }
         });
@@ -188,7 +186,7 @@ public class Board extends Application {
         HBox hb = new HBox();
         hb.getChildren().addAll(button, button2);
         hb.setSpacing(10);
-        hb.setLayoutX(VIEWER_WIDTH / 2);
+        hb.setLayoutX(VIEWER_WIDTH / 2.5);
         hb.setLayoutY(VIEWER_HEIGHT - 30);
         controls.getChildren().add(hb);
     }
@@ -210,8 +208,7 @@ public class Board extends Application {
         DraggablePieces() {
             /* event handlers */
             toFront();
-
-            System.out.println("finished:" + Finished);
+            //System.out.println("finished:" + Finished);
             setOnMousePressed(event -> {// mouse press indicates begin of drag
                 toFront();
                 if (event.getButton().equals(MouseButton.PRIMARY)) {
@@ -281,6 +278,7 @@ public class Board extends Application {
         }
 
         private String codePieces() {
+            z = (int) ((getRotate() % 360) / 90 + (getScaleY() == 1 ? 0 : 1) * 4);
             String piecesId = type + "" + z;
             if (fixedStatus == false) {
                 setId(piecesId);
@@ -360,7 +358,7 @@ public class Board extends Application {
                 x = BOARD_X + SQUARE_SIZE + SQUARE_SIZE * coloumn;
                 y = MARGIN_Y + SQUARE_SIZE + SQUARE_SIZE * row;
                 System.out.println("TopLeft:"+x+" "+y);
-                if (row < 4 && coloumn < 8) {
+                if (row < 4 && coloumn < 8&&row>=0&&coloumn>=0) {
                     System.out.println(row+" "+coloumn);
                    String placeStep = type + positionToPlaceCode((int) (row * 8 + coloumn)) + z;
                     // System.out.println(generateBoardStr(placeStep));
@@ -376,12 +374,14 @@ public class Board extends Application {
 
                         checkComplete();
                     } else {
+                        snap.play();
                         snapToHome();
                     }
 
                 }
 
             } else {
+
                 snapToHome();
             }
         }
@@ -398,14 +398,6 @@ public class Board extends Application {
                 setId(type + "" + "0");
                 status = NOT_PLACED;
             }
-        }
-
-        public int getStatus() {
-            return status;
-        }
-
-        public String getPosition() {
-            return position;
         }
     }
 
@@ -530,9 +522,9 @@ public class Board extends Application {
     public void checkComplete() {
         if (checkString(BoardStr)) {
             Finished = true;
-            makeWrongInput("Well Done!", 48);
-            showwrongInput();
-            ShowCompelte(1);
+            makeText("Well Done!", 48);
+            showText();
+            ShowComplete(1);
         }
     }
 
@@ -576,11 +568,15 @@ public class Board extends Application {
         board.getChildren().add(baseboard);
     }
 
+    /**
+     * clear the board.
+     * @throws Exception
+     */
     private void reset() throws Exception {
         BoardStr = "";
         Finished = false;
-        hidewrongInput();
-        ShowCompelte(0);
+        hideText();
+        ShowComplete(0);
         makeStart(pegs, pieces);
     }
 
@@ -648,7 +644,12 @@ public class Board extends Application {
         root.toBack();
     }
 
-     private void ShowCompelte(int off){
+    /**
+     * If the game Complete, show the picture.
+     * 1 is finished, other number is not.
+     * @param off
+     */
+     private void ShowComplete(int off){
          complete.setX(BOARD_X+2*SQUARE_SIZE);
          complete.setY(MARGIN_Y+SQUARE_SIZE);
          if (off==1){
@@ -661,7 +662,10 @@ public class Board extends Application {
          }
      }
 
-
+    /**
+     * show pieces ID on the rightBottom.
+     * @param s piecesID(4 or 2 char)
+     */
 
     private void RightBottomCode(String s) {
         Label label1 = new Label(s);
@@ -681,6 +685,10 @@ public class Board extends Application {
 
     }
 
+    /**
+     * hints control.
+     * @param scene
+     */
     private void setHintHandler(Scene scene) {
 
         scene.setOnKeyPressed(event -> {
@@ -722,7 +730,7 @@ public class Board extends Application {
 
         root.getChildren().add(complete);
 
-        ShowCompelte(0);
+        ShowComplete(0);
         makeControls();
         makeBoard();
         makeStart(pegs, Constant.pieces);
@@ -733,18 +741,19 @@ public class Board extends Application {
         primaryStage.show();
     }
 
-
     // FIXME Task 7: Implement a basic playable Twist Game in JavaFX that only allows pieces to be placed in valid places
 
     private String makeStartingPlecament() {
-        // FIXME Task 8: Implement starting placements
-        Random rd = new Random();
         String startingDictionary[] = {"a1B5b2C0c5A2d7B7e5B0f1A6g3A7h5D0i1B0j7A0j7B0k1A0k2B0l3B0l4C0",
                 "a1C6b6A6c2D0d7B1e1A3f2A2g4B2h4A2i7B0j3D0j7D0k3A0l6A0",
                 "a7A7b6A7c1A3d2A6e2C3f3C4g4A7h6D0i6B0j2B0j1C0k3C0l4B0l5C0",
                 "a4C4b2C4c1B2d7B1e1C6f6A0g4A5h1A0j3B0j7D0k1C0k1D0l6B0l1A0",
                 "a6A0b4A2c3A3d1A3e1C4f4B3g6B2h5D0i5A0j2B0j3C0k2C0k2D0l8C0l8D0"};
-        String result = startingDictionary[rd.nextInt(5)];
+        String result ="";
+        do {
+        Random rd = new Random();
+        result = startingDictionary[rd.nextInt(5)];
+        result=result.substring(32,result.length());
         int startPos, endPos;
         startPos = rd.nextInt(result.length() - 4);
         startPos -= startPos % 4;
@@ -753,7 +762,9 @@ public class Board extends Application {
         //System.out.println("result.length() = " + result.length());
         result = result.substring(startPos, endPos);
         //System.out.println("startPos + \" \" + endPos+\" \" = " + startPos + " " + endPos);
+        }while (result.isEmpty());
         return result;
+        // FIXME Task 8: Implement starting placements
     }
 
     private String makeHints(String placement) {
