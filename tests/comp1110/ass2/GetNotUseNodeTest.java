@@ -23,6 +23,7 @@ public class GetNotUseNodeTest {
         private void test(String start, String expected) {
             Set<String> outSet = TwistGame.getNotUseNode(start);
             assertTrue("Input was '" + start + "', expected " + expected + " but got " + outSet, expected.equals(outSet));
+            System.out.println(Thread.currentThread().getStackTrace()[2].getMethodName()+ " '"+start+ "'  Pass");
         }
 
         }
