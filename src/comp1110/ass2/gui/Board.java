@@ -32,17 +32,19 @@ import static comp1110.ass2.Game.Constant.pieces;
 import static comp1110.ass2.TwistGame.*;
 
 /**
- * 
+ * Main game GUI.
+ * Last modify: 2018-10-03 16:56:59 Sean
+ * setHintHandler()，makeStartingPlecament() by Jerem
+ * The rest of code by Sean
  */
 
 public class Board extends Application {
-
 
     /* board layout */
     private static final int MARGIN_Y = 60;
     private static final int SQUARE_SIZE = 60;
     private static final int VIEWER_WIDTH = 933;
-    private static final int VIEWER_HEIGHT = 730;
+    private static final int VIEWER_HEIGHT = 700;
     private static final int BOAED_FitWidth = 9 * SQUARE_SIZE;
     private static final int BOAED_FitHeight = 5 * SQUARE_SIZE;
     private static final int BOARD_X = 180;
@@ -768,7 +770,6 @@ public class Board extends Application {
     }
 
     private String makeHints(String placement) {
-        // FIXME Task 10: Implement hints
         // Get solutions for current placement.
         String results[] = TwistGame.getSolutions(placement);
         // return null if game has been finished
@@ -779,6 +780,7 @@ public class Board extends Application {
         result = result.replace(placement, "");
         int startPos = rd.nextInt(result.length() / 4) * 4;
         return result.substring(startPos, startPos + 4);
+        // FIXME Task 10: Implement hints
     }
 
 

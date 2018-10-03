@@ -15,8 +15,8 @@ import javafx.stage.Stage;
 
 public class Menu extends Application {
 
-    private static final int WIDTH  = 750;
-    private static final int HEIGHT = 500;
+    private static final int WIDTH  = 700;
+    private static final int HEIGHT = 933;
 
 
     private Pane Pane_1 = new Pane(); //Just take a example ......name can be altered after.

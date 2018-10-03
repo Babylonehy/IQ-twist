@@ -32,6 +32,8 @@ import static comp1110.ass2.TwistGame.*;
  * NOTE: This class is separate from your main game class.  This
  * class does not play a game, it just illustrates various piece
  * placements.
+ * Inner class <Nodes> by Jerem
+ * The rest of code by Sean
  */
 public class Viewer extends Application {
 
@@ -63,39 +65,39 @@ public class Viewer extends Application {
     private final Group piece = new Group();
 
     /*message*/
-    private final Text wrongInput = new Text("Wrong Input!");
+    private final Text Text = new Text("Wrong Input!");
 
     private Pieces startPieces[] = new Pieces[8];
 
     Scene scene = new Scene(root, VIEWER_WIDTH, VIEWER_HEIGHT);
     /**
-     * Create the message to be displayed when the player wrongInput.
+     * Create the message to be displayed when the player Text.
      */
 
-    private void makeWrongInput() {
-        wrongInput.setFill(Color.RED);
-        wrongInput.setCache(true);
-        wrongInput.setFont(Font.font("Arial", FontWeight.EXTRA_BOLD, 12));
-        wrongInput.setLayoutX(30);
-        wrongInput.setLayoutY(VIEWER_HEIGHT - 20);
-        wrongInput.setTextAlignment(TextAlignment.CENTER);
-        root.getChildren().add(wrongInput);
+    private void makeText() {
+        Text.setFill(Color.RED);
+        Text.setCache(true);
+        Text.setFont(Font.font("Arial", FontWeight.EXTRA_BOLD, 12));
+        Text.setLayoutX(30);
+        Text.setLayoutY(VIEWER_HEIGHT - 20);
+        Text.setTextAlignment(TextAlignment.CENTER);
+        root.getChildren().add(Text);
     }
 
     /**
-     * Show the  wrongInput message
+     * Show the  Text message
      */
-    private void showwrongInput() {
-        wrongInput.toFront();
-        wrongInput.setOpacity(1);
+    private void showText() {
+        Text.toFront();
+        Text.setOpacity(1);
     }
 
     /**
-     * Hide the wrongInput message
+     * Hide the Text message
      */
-    private void hidewrongInput() {
-        wrongInput.toBack();
-        wrongInput.setOpacity(0);
+    private void hideText() {
+        Text.toBack();
+        Text.setOpacity(0);
     }
 
 
@@ -106,7 +108,7 @@ public class Viewer extends Application {
      */
     public void makePlacement(String placement) {
         if (isPlacementStringValid(placement)) {
-            hidewrongInput();
+            hideText();
             System .out.println(placement);
             char[][] decode = decodeTotype_position(placement);
 
@@ -125,8 +127,8 @@ public class Viewer extends Application {
 
             }
         } else {
-            makeWrongInput();
-            showwrongInput();
+            makeText();
+            showText();
         }
         // FIXME Task 4: implement the simple placement viewer
     }
@@ -239,10 +241,10 @@ public class Viewer extends Application {
                         setLayoutX(SQUARE_SIZE * 4 * (type - 97));
                         setLayoutY(BOAED_FitHeight + SQUARE_SIZE);
                     }
-//                    if (type >= 'i') {
-//                        setLayoutY(0);
-//                        setLayoutX(PEG_X + peg_index * SQUARE_SIZE);
-//                    }
+                    if (type >= 'i') {
+                        setLayoutY(0);
+                        setLayoutX(PEG_X + peg_index * SQUARE_SIZE);
+                    }
                 }
                 System.out.println(raw+","+coloumn);
             });

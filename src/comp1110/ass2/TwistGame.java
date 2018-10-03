@@ -18,6 +18,8 @@ import static comp1110.ass2.Game.Constant.*;
  * <p>
  * The game is based directly on Smart Games' IQ-Twist game
  * (http://www.smartgames.eu/en/smartgames/iq-twist)
+ * isPlacementWellFormed(String piecePlacement) by Jerem
+ * The rest of code by Sean.
  */
 
 public class TwistGame {
@@ -41,17 +43,20 @@ public class TwistGame {
 
         int l = piecePlacement.length();
         int a = 0;
+
         if (l % 4 != 0) {
             return false;
         } else {
             a = l / 4;
         }
+
         if (a == 0) {
             return false;
         }
         if (piecePlacement == null) {
             return false;
         }
+
         int[] char1, char2, char3, char4;
         char1 = new int[8];
         char2 = new int[8];
@@ -613,7 +618,7 @@ public class TwistGame {
      */
     static String ReorderPieces(String placement) {
         Vector result = new Vector();
-        Pattern p = Pattern.compile("[a-h][1-8][A-D][0-7]|[i-l][1-8][A-D]0");
+        Pattern p = Pattern.compile("[a-h][1-8][A-D][0-7]");
         Matcher m = p.matcher(placement);
         //Fixme regex too slow.....
         while (m.find()) {

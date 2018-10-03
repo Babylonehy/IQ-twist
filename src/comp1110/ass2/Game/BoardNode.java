@@ -23,6 +23,8 @@ import static comp1110.ass2.Elements.BoardStatus.*;
  * 24 25 26 27 28 29 30 31
  *
  * Last modify: 2018-08-23 15:24:06 by Stella
+ * All comment by Stella
+ * All code by Sean
  */
 
 
@@ -52,6 +54,11 @@ public class BoardNode {
             this.position=position;
     }
 
+    /**
+     * Write status to node.
+     * 1 is FULL, -1 is Hole, 0 is null.
+     * @param status
+     */
     private void WriteStatus(int status){
         switch (status){
             case 1:
