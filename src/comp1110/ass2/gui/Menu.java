@@ -48,8 +48,8 @@ import java.util.List;
 
 public class Menu extends Application {
 
-    private static final int WIDTH  = 750;
-    private static final int HEIGHT = 500;
+    private static final int WIDTH  = 700;
+    private static final int HEIGHT = 933;
 
     private AudioClip loop;
 

@@ -5,7 +5,9 @@ package comp1110.ass2.Elements;
  * We use enum type to represent 8 different shapes of pieces, which are a,b,c,d,e,f,g,h;
  * Then create empty int[][] for each from a0 to h0;
  * Last modify: 2018-09-10 16:30:36 by Sean
-  */
+ * All the matrix by Stella
+ * All functions by Sean
+ */
 
 public class PiecesType {
 

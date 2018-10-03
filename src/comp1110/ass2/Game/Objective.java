@@ -5,6 +5,8 @@ package comp1110.ass2.Game;
  * Create by Sean 2018-08-21
  * This class will collect the challenge level of the game by input number and set up this game.
  * Last modify: 2018-08-23 11:29:06 by Stella
+ * All Comment by Stella
+ * ALL Code by Sean
  */
 
 public class Objective {

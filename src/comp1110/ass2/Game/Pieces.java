@@ -17,6 +17,7 @@ import static comp1110.ass2.Elements.PiecesType.getTypeset;
  * All the change based on PiecesType.
  *
  * Last modify: 2018-09-13 00:42:53 by Sean
+ * All code by Sean
  */
 
 public class Pieces {
