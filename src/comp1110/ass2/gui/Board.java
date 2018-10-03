@@ -49,7 +49,7 @@ public class Board extends Application {
 
     private static final String URI_BASE = "assets/";
     private static final String BASEBOARD_URI = Board.class.getResource(URI_BASE + "board.png").toString();
-
+    private ImageView complete= new ImageView(new Image(getClass().getResource(URI_BASE +"complete.jpg").toExternalForm()));
 
     private final Group root = new Group();
     private final Group controls = new Group();
@@ -92,8 +92,8 @@ public class Board extends Application {
         wrongInput.setFill(Color.RED);
         wrongInput.setCache(true);
         wrongInput.setFont(Font.font("Arial", FontWeight.EXTRA_BOLD, size));
-        wrongInput.setLayoutX(30);
-        wrongInput.setLayoutY(VIEWER_HEIGHT - 20);
+        wrongInput.setLayoutX(BOARD_X+3*SQUARE_SIZE);
+        wrongInput.setLayoutY(MARGIN_Y+3*SQUARE_SIZE);
         wrongInput.setTextAlignment(TextAlignment.CENTER);
         if (!root.getChildren().contains(wrongInput)) {
             root.getChildren().add(wrongInput);
@@ -155,7 +155,7 @@ public class Board extends Application {
 
             }
         } else {
-            makeWrongInput("Wrong Input!", 12);
+            makeWrongInput("Wrong Input or invalid Start \n (Please Reset Before Start, If anything on board.)", 18);
             showwrongInput();
         }
         // FIXME Task 4: implement the simple placement viewer
@@ -166,9 +166,6 @@ public class Board extends Application {
      * Create a basic text field for input and a refresh button.
      */
     private void makeControls() throws Exception {
-        Label label1 = new Label("Start—Placement:");
-        textField = new TextField();
-        textField.setPrefWidth(300);
         Button button = new Button("Start");
         Button button2 = new Button("Reset");
         button.setOnAction(new EventHandler<ActionEvent>() {
@@ -176,7 +173,6 @@ public class Board extends Application {
             public void handle(ActionEvent e) {
 //                makePlacement(textField.getText());
                 makePlacement(makeStartingPlecament());
-                textField.clear();
             }
         });
         button2.setOnAction(new EventHandler<ActionEvent>() {
@@ -190,9 +186,9 @@ public class Board extends Application {
             }
         });
         HBox hb = new HBox();
-        hb.getChildren().addAll(label1, textField, button, button2);
+        hb.getChildren().addAll(button, button2);
         hb.setSpacing(10);
-        hb.setLayoutX(VIEWER_WIDTH / 3.5);
+        hb.setLayoutX(VIEWER_WIDTH / 2);
         hb.setLayoutY(VIEWER_HEIGHT - 30);
         controls.getChildren().add(hb);
     }
@@ -536,6 +532,7 @@ public class Board extends Application {
             Finished = true;
             makeWrongInput("Well Done!", 48);
             showwrongInput();
+            ShowCompelte(1);
         }
     }
 
@@ -583,6 +580,7 @@ public class Board extends Application {
         BoardStr = "";
         Finished = false;
         hidewrongInput();
+        ShowCompelte(0);
         makeStart(pegs, pieces);
     }
 
@@ -650,6 +648,21 @@ public class Board extends Application {
         root.toBack();
     }
 
+     private void ShowCompelte(int off){
+         complete.setX(BOARD_X+2*SQUARE_SIZE);
+         complete.setY(MARGIN_Y+SQUARE_SIZE);
+         if (off==1){
+                 complete.toFront();
+                 complete.setOpacity(1);
+         }
+         else {
+             complete.toBack();
+             complete.setOpacity(0);
+         }
+     }
+
+
+
     private void RightBottomCode(String s) {
         Label label1 = new Label(s);
         HBox hb = new HBox();
@@ -707,6 +720,9 @@ public class Board extends Application {
         root.getChildren().add(peg);
         root.getChildren().add(piece);
 
+        root.getChildren().add(complete);
+
+        ShowCompelte(0);
         makeControls();
         makeBoard();
         makeStart(pegs, Constant.pieces);
@@ -733,7 +749,7 @@ public class Board extends Application {
         startPos = rd.nextInt(result.length() - 4);
         startPos -= startPos % 4;
         // Get the end subString postion bigger than 0 and smaller than the length of chosen placement.
-        endPos = startPos + (rd.nextInt((result.length() -1 - startPos) / 4) + 1) * 4;
+        endPos = startPos + (rd.nextInt((result.length() -1 - startPos) / 4)) * 4;
         //System.out.println("result.length() = " + result.length());
         result = result.substring(startPos, endPos);
         //System.out.println("startPos + \" \" + endPos+\" \" = " + startPos + " " + endPos);
