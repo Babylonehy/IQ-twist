@@ -43,7 +43,7 @@ import java.util.List;
  *This class is used to create a menu for interaction with players.
  * Maybe it will have more than one menu to provide more interaction with player
  *
- * Last modify: 2018-08-21 15:28:53 by Sean
+ * Last modify: 2018-10-04 06:03:00 by Stella
  */
 
 public class Menu extends Application {
