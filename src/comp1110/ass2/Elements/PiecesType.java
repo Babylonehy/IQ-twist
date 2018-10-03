@@ -14,6 +14,7 @@ public class PiecesType {
  *  0 for null;
  *  1 for covered;
  *  -1 for empty;
+ *  Code by Stella, further revised and improved by Sean.
 */
     static final int[][] a0 = {
         {-1, 1,-1, 0},

@@ -1,5 +1,11 @@
 package comp1110.ass2.gui;
 
+/**
+ * Create by Stella 2018-10-04
+ *This class is to support Menu.class.
+ * Last modify: 2018-10-04 06:03:00 by Stella
+ */
+
 import javafx.beans.binding.Bindings;
 import javafx.scene.effect.BoxBlur;
 import javafx.scene.effect.DropShadow;
