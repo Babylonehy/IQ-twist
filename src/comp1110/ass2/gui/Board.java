@@ -349,7 +349,7 @@ public class Board extends Application {
         private void snapToGrid() {
             if (onBoard()) {
                 //  System.out.println("On Board!");
-                int row, coloumn;
+                long row, coloumn;
                 double x = getLayoutX();
                 double y = getLayoutY();
                 double max = Math.max(width, height);
@@ -358,14 +358,15 @@ public class Board extends Application {
                     x = x + (max - min) / 2.0;
                     y = y - (max - min) / 2.0;
                 }
-                coloumn = (int) (x - 240) / 60;
-                row = (int) (y - 120) / 60;
+                coloumn = Math.round ((x - 240) / 60);
+                row =  Math.round((y - 120) / 60);
+
                 x = BOARD_X + SQUARE_SIZE + SQUARE_SIZE * coloumn;
                 y = MARGIN_Y + SQUARE_SIZE + SQUARE_SIZE * row;
-                // System.out.println("TopLeft:"+x+" "+y);
+                System.out.println("TopLeft:"+x+" "+y);
                 if (row < 4 && coloumn < 8) {
-                    //System.out.println(row+" "+coloumn);
-                    String placeStep = type + positionToPlaceCode(row * 8 + coloumn) + z;
+                    System.out.println(row+" "+coloumn);
+                   String placeStep = type + positionToPlaceCode((int) (row * 8 + coloumn)) + z;
                     // System.out.println(generateBoardStr(placeStep));
                     if (generateBoardStr(placeStep)) {
                         if ((z % 4) % 2 != 0) {
@@ -672,8 +673,8 @@ public class Board extends Application {
         scene.setOnKeyPressed(event -> {
             // make hint when press slash
             if (event.getCode() == KeyCode.SLASH) {
-                //String hint = makeHints(BoardStr);
-                String hint = "a1A1";
+                String hint = makeHints(BoardStr);
+                //String hint = "a1A1";
                 int x, y, id = hint.charAt(0);
                 x = BOARD_X + SQUARE_SIZE + SQUARE_SIZE * (hint.charAt(1) - '1');
                 y = MARGIN_Y + SQUARE_SIZE + SQUARE_SIZE * (hint.charAt(2) - 'A');
@@ -732,7 +733,7 @@ public class Board extends Application {
         startPos = rd.nextInt(result.length() - 4);
         startPos -= startPos % 4;
         // Get the end subString postion bigger than 0 and smaller than the length of chosen placement.
-        endPos = startPos + (rd.nextInt((result.length() - startPos) / 4) + 1) * 4;
+        endPos = startPos + (rd.nextInt((result.length() -1 - startPos) / 4) + 1) * 4;
         //System.out.println("result.length() = " + result.length());
         result = result.substring(startPos, endPos);
         //System.out.println("startPos + \" \" + endPos+\" \" = " + startPos + " " + endPos);
