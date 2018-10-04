@@ -50,7 +50,7 @@ Vector position = new Vector();
             }
             return true;
         }
-        ''''
+'''
 The logic is very clear and he used some if statement with exsiting if statement to clearly state the logic for the code.
 MAybe we can make the code in an good order for others to see, forexample, we can use an some statement after former if statement to specify the logic ony by one.
 This will makes the code more easier to go through.
