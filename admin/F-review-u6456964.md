@@ -4,7 +4,7 @@ Author: Xiang Li (u6716878)
 
 ###Review Comments:
 
-
+```
 public static String[] getSolutions(String placement) {
         HashSet<String> setnext = new HashSet<>();
         HashSet<String> settemp = new HashSet<>();
@@ -55,6 +55,8 @@ public static String[] getSolutions(String placement) {
         String[] s = (String[]) result.toArray(new String[0]);
         System.out.println(result.toString());
         return s;
+```
+
 The logic of this piece of code is very clean with reasonable use of looping statements, and the layout of the code is very clear which helps to read and understand his
 intentions.
 It is worth to learn, because such a clear format and logical structure may be convenient for us to understand the meaning after we finish the code for a period of time 
