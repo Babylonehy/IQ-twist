@@ -4,7 +4,7 @@ Author: Xiang Li (u6716878)
 
 ###Review Comments:
 
-```
+```java
 public static String[] getSolutions(String placement) {
         HashSet<String> setnext = new HashSet<>();
         HashSet<String> settemp = new HashSet<>();
