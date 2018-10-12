@@ -3,7 +3,7 @@ package comp1110.ass2.gui;
 import javafx.application.Application;
 import javafx.stage.Stage;
 
-public class Information extends Application implements Runnable{
+public class otherInformation extends Application implements Runnable  {
 
     public static void main(String[] args) {
         launch(args);
@@ -17,7 +17,7 @@ public class Information extends Application implements Runnable{
 
     public void run() {
         try {
-            new Information().start(new Stage());
+            new otherInformation().start(new Stage());
         } catch (Exception e) {
             e.printStackTrace();
         }

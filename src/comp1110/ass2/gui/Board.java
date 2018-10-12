@@ -38,7 +38,7 @@ import static comp1110.ass2.TwistGame.*;
  * The rest of code by Sean
  */
 
-public class Board extends Application {
+public class Board extends Application implements Runnable {
 
     /* board layout */
     private static final int MARGIN_Y = 60;
@@ -488,6 +488,15 @@ public class Board extends Application {
     /**
      * A inner class that represent pegs used in game
      */
+    @Override
+
+    public void run() {
+        try {
+            new Board().start(new Stage());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
     class Peg extends ImageView {
         char peg;
 
