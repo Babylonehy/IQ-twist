@@ -72,7 +72,11 @@ public class Menu extends Application {
      * Add Background for a Pane
      */
     private void addBackground(){
-
+        ImageView imageView = new ImageView(new Image(getClass().getResource("assets/background1.jpg").toExternalForm()));
+        //ImageView imageView = new ImageView(new Image(getClass().getResource("res/iqsteps.png").toExternalForm()));
+        imageView.setFitWidth(WIDTH);
+        imageView.setFitHeight(HEIGHT);
+        root.getChildren().add(imageView);
     }
 
 
@@ -108,9 +112,7 @@ public class Menu extends Application {
         menuBox.setTranslateY(y);
         menuData.forEach(data -> {
             MenuItem item = new MenuItem(data.getKey());
-
             Rectangle clip = new Rectangle(300, 30);
-
             root.getChildren().addAll(menuBox);
         });
     }
@@ -128,5 +130,10 @@ public class Menu extends Application {
         root.getChildren().addAll();
         primaryStage.setScene(scene);
         primaryStage.show();
+    }
+
+
+    public static void main(String[] args) {
+        launch(args);
     }
 }
