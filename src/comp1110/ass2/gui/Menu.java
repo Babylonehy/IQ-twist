@@ -1,41 +1,32 @@
 package comp1110.ass2.gui;
 
-import com.sun.xml.internal.fastinfoset.sax.Features;
-import javafx.animation.ScaleTransition;
-import javafx.animation.TranslateTransition;
 import javafx.application.Application;
 import javafx.application.Platform;
-import javafx.embed.swing.JFXPanel;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
-import java.io.File;
 
 import javafx.scene.*;
 import javafx.scene.control.Button;
-import javafx.scene.media.AudioClip;
 import javafx.scene.control.MenuItem;
 import javafx.scene.effect.DropShadow;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.input.KeyCode;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
-import javafx.scene.media.AudioClip;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Line;
 import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
-import javafx.*;
-import javafx.util.Duration;
 import javafx.util.Pair;
-import javafx.application.Application;
-import javafx.stage.Stage;
 import javafx.scene.Scene;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
-import javafx.scene.layout.BorderPane;
+import sun.audio.AudioData;
+import sun.audio.AudioPlayer;
+import sun.audio.AudioStream;
+import sun.audio.ContinuousAudioDataStream;
+
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.Arrays;
-import java.util.Collection;
 import java.util.List;
 
 /**
@@ -49,53 +40,72 @@ import java.util.List;
 public class Menu extends Application {
     private static final int WIDTH  = 833;
     private static final int HEIGHT = 600;
+    private static final String URI_BASE = "assets/";
     private Pane root = new Pane();
-    private AudioClip loop;
     private VBox menuBox = new VBox(-5);
     private List<Pair<String,Runnable>> menuData = Arrays.asList(
             new Pair<String,Runnable>("Start",new Board()),
-            new Pair<String,Runnable>("Game Features",new otherInformation()),
+            new Pair<String,Runnable>("Impression",new otherInformation()),
             new Pair<String,Runnable>("Author Information",new Information()),
             new Pair<String,Runnable>("Exit to Desktop", Platform::exit));
+    private Line line;
 
     private Parent createContent() {
         addBackground();
-        addTitle();
-        double lineX = WIDTH / 2 - 100;//WIDTH / 2 - 100;
-        double lineY = HEIGHT / 2.6 + 120;//HEIGHT / 3 + 50;
-        addLine(lineX, lineY);
+        double lineX = WIDTH / 2 - 100;
+        double lineY = HEIGHT / 2.6 + 120;
         addMenu(lineX + 5, lineY );
-        startAnimation();
         return root;
     }
     /**
      * Add Background for a Pane
      */
     private void addBackground(){
-        ImageView imageView = new ImageView(new Image(getClass().getResource("assets/background1.jpg").toExternalForm()));
-        //ImageView imageView = new ImageView(new Image(getClass().getResource("res/iqsteps.png").toExternalForm()));
+        ImageView imageView = new ImageView(new Image(getClass().getResource(URI_BASE + "background1.jpg").toExternalForm()));
         imageView.setFitWidth(WIDTH);
         imageView.setFitHeight(HEIGHT);
         root.getChildren().add(imageView);
+
+
     }
 
 
     private void addTitle() {
+        Title title = new Title("IQ - STEPS");
+        title.setTranslateX(WIDTH / 2 - title.getTitleWidth() / 2);
+        title.setTranslateY(HEIGHT / 5.5);
+
+        root.getChildren().add(title);
 
     }
 
     private void addLine(double x, double y) {
+        line = new Line(x, y, x, y + 150);
+        line.setStrokeWidth(3);
+        line.setStroke(Color.color(1, 1, 1, 0.75));
+        line.setEffect(new DropShadow(5, Color.BLACK));
+        line.setScaleY(0);
 
+        root.getChildren().add(line);
     }
     /**
      * Set up the background music loop (to play when the 'M' key is pressed)
      * Need Exception
      */
-    private void setUpBGM(){
+    private void setUpBGM() {
 
-
+        try {
+            InputStream in = new FileInputStream(URI_BASE+"Pianoboy.mp3");
+            AudioStream as = new AudioStream(in);
+            AudioData data = as.getData();
+            ContinuousAudioDataStream loop= new ContinuousAudioDataStream (data);
+            AudioPlayer.player.start(loop);
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
         }
-
+    }
 
     private void startAnimation() {
 
@@ -107,14 +117,18 @@ public class Menu extends Application {
     // * @param scene A Target UI
      //*/
 
+
+
     private void addMenu(double x, double y) {
         menuBox.setTranslateX(x);
         menuBox.setTranslateY(y);
         menuData.forEach(data -> {
             MenuItem item = new MenuItem(data.getKey());
+
             Rectangle clip = new Rectangle(300, 30);
-            root.getChildren().addAll(menuBox);
+
         });
+        root.getChildren().addAll();
     }
 
    // private void setUpHandlers(Scene scene){
@@ -126,10 +140,19 @@ public class Menu extends Application {
         primaryStage.setTitle("IQ Puzzle Game");
         Group root = new Group();
         Scene scene = new Scene(root,WIDTH,HEIGHT);
-        Button btn = new Button("Start");
+        primaryStage.setScene(scene);
+        addBackground();
+        Button btn = new Button("START");
+
+        this.setOpaque(false);
         root.getChildren().addAll();
         primaryStage.setScene(scene);
         primaryStage.show();
+
+    }
+
+    private boolean setOpaque(boolean b) {
+        return b;
     }
 
 
