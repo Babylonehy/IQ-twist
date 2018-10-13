@@ -79,7 +79,7 @@ public class Menu extends Application {
 
     }
 
-    private void addLine(double x, double y) {
+   /** private void addLine(double x, double y) {
         line = new Line(x, y, x, y + 150);
         line.setStrokeWidth(3);
         line.setStroke(Color.color(1, 1, 1, 0.75));
@@ -100,10 +100,8 @@ public class Menu extends Application {
             AudioData data = as.getData();
             ContinuousAudioDataStream loop= new ContinuousAudioDataStream (data);
             AudioPlayer.player.start(loop);
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
         } catch (IOException e) {
-            e.printStackTrace();
+            System.out.print("FileNotFoundException ");
         }
     }
 
@@ -142,7 +140,7 @@ public class Menu extends Application {
         Scene scene = new Scene(root,WIDTH,HEIGHT);
         primaryStage.setScene(scene);
         addBackground();
-        Button btn = new Button("START");
+        //Button btn = new Button("START");
         setUpBGM();
         this.setOpaque(false);
         root.getChildren().addAll();
