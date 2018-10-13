@@ -143,7 +143,7 @@ public class Menu extends Application {
         primaryStage.setScene(scene);
         addBackground();
         Button btn = new Button("START");
-
+        setUpBGM();
         this.setOpaque(false);
         root.getChildren().addAll();
         primaryStage.setScene(scene);
