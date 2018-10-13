@@ -1,4 +1,4 @@
-package comp1110.ass2.Game;
+package comp1110.ass2.Solution;
 
 import java.util.Set;
 
