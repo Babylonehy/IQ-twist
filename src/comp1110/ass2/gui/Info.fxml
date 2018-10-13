@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane prefHeight="215.0" prefWidth="300.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="comp1110.ass2.gui.Menu">
+  <children>
+    <Label alignment="CENTER" contentDisplay="RIGHT" layoutX="17.0" layoutY="5.0" prefHeight="199.99990000000253" prefWidth="280.0" text="COMP1110 Assignment 2 Group TasksRoles:  Zhi Wang(u6171870);   Xiang Li(u6716878);  Ning Cai(u6456964)(admin);   " textAlignment="LEFT" textFill="#00a3ff" textOverrun="WORD_ELLIPSIS" underline="false" wrapText="true">
+      <font>
+        <Font name="Arial Bold" size="12.0" />
+      </font>
+    </Label>
+  </children>
+</AnchorPane>
