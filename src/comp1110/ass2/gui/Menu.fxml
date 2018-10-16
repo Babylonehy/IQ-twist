@@ -1,14 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.effect.*?>
-<?import javafx.scene.image.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.effect.Reflection?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.text.*?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="700.0" prefWidth="933.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="comp1110.ass2.gui.Menu">
+<AnchorPane prefHeight="700.0" prefWidth="933.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="comp1110.ass2.gui.Menu">
   <children>
     <ImageView fitHeight="708.0" fitWidth="1072.473372781065" layoutX="-14.0" layoutY="-8.0" pickOnBounds="true" preserveRatio="true">
       <image>
@@ -30,7 +31,7 @@
         <Button fx:id="exit" layoutX="89.0" layoutY="141.0" mnemonicParsing="false" onAction="#ExitClick" prefHeight="36.0" prefWidth="127.0" text="Exit" textOverrun="CENTER_ELLIPSIS" />
       </children>
     </Pane>
-    <Label alignment="CENTER" layoutX="460.0" layoutY="232.0" prefHeight="61.0" prefWidth="105.0" text="IQ-Twist" textAlignment="CENTER" textFill="BLACK" textOverrun="CENTER_ELLIPSIS">
+    <Label alignment="CENTER" layoutX="434.0" layoutY="232.0" prefHeight="61.0" prefWidth="158.0" text="IQ-Twist" textAlignment="CENTER" textFill="BLACK" textOverrun="CENTER_ELLIPSIS">
       <font>
         <Font name="System Bold" size="24.0" />
       </font>
