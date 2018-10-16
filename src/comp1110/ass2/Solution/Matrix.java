@@ -1,5 +1,9 @@
 package comp1110.ass2.Solution;
 
+
+/**
+ * https://blog.csdn.net/zhouzhiwengang/article/details/14164797
+ */
 public class Matrix {
 
     public int length;

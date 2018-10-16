@@ -1,5 +1,9 @@
 package comp1110.ass2.Solution;
 
+/**
+ * https://en.wikipedia.org/wiki/Dancing_Links
+ * https://arxiv.org/pdf/cs/0011047.pdf
+ */
 public class DLX {
 
     class Node {
