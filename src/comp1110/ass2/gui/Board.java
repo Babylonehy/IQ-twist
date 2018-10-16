@@ -3,14 +3,13 @@ package comp1110.ass2.gui;
 import comp1110.ass2.Game.Constant;
 import comp1110.ass2.TwistGame;
 import javafx.application.Application;
+import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Group;
 import javafx.scene.Node;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
@@ -26,6 +25,7 @@ import javafx.scene.text.TextAlignment;
 import javafx.stage.Stage;
 
 import java.util.Random;
+import java.util.Timer;
 
 import static comp1110.ass2.Game.Constant.pegs;
 import static comp1110.ass2.Game.Constant.pieces;
@@ -56,7 +56,7 @@ public class Board extends Application implements Runnable {
 
     private final Group root = new Group();
     private final Group controls = new Group();
-    TextField textField;
+
 
     /* board*/
     private final Group board = new Group();
@@ -86,6 +86,76 @@ public class Board extends Application implements Runnable {
     private AudioClip snap = new AudioClip(getClass().getResource(URI_BASE + "ouoh-error.mp3").toString());
 
     Scene scene = new Scene(root, VIEWER_WIDTH, VIEWER_HEIGHT);
+
+    /*TOP difficult and time*/
+    Text timer = new Text();
+    Text difficulty = new Text();
+    ChoiceBox<String> difficultyBox;
+
+    /*Thread*/
+    private Thread thread;
+    private boolean stop;
+    private long startTime;
+    private long curTime;
+
+
+    private void initTimer() {
+        stop = false;
+        startTime = System.currentTimeMillis();
+        timer.setX(VIEWER_WIDTH-100);
+        timer.setY(40);
+
+        thread = new Thread() {
+            public void run() {
+                while (!stop) {
+                    curTime = System.currentTimeMillis();
+                    int interval = (int) ((curTime - startTime) / 1000);
+                    int hour = interval / 3600;
+                    int minute = (interval / 60) % 60;
+                    int second = interval % 60;
+                    timer.setText(String.format("%02d:%02d:%02d", hour, minute, second));
+                    try {
+                        Thread.sleep(1000);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                }
+
+            }
+        };
+        thread.setDaemon(true);
+        thread.start();
+    }
+
+    /**
+     *
+     * @return
+     */
+    private String getDifficulty() {
+
+        difficulty.setText(difficultyBox.getValue());
+
+        difficulty.setX(VIEWER_WIDTH-100);
+        difficulty.setY(20);
+        difficulty.setLineSpacing(10);
+        difficulty.setTextAlignment(TextAlignment.CENTER);
+        return difficultyBox.getValue();
+    }
+    /**
+     *
+     */
+    private void makeInfo(){
+        HBox hb = new HBox();
+        difficultyBox= new ChoiceBox<String>(FXCollections.observableArrayList(
+                "Easy", "Middle", "Hard")
+        );
+        difficultyBox.setTooltip(new Tooltip("Select the difficulty"));
+        difficultyBox.setValue("Easy");
+        difficultyBox.setLayoutX(80);
+        difficultyBox.setLayoutY(40);
+        root.getChildren().add(difficultyBox);
+
+    }
 
     /**
      * Create the message to be displayed when the player Text.
@@ -173,7 +243,9 @@ public class Board extends Application implements Runnable {
         button.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent e) {
-                makePlacement(makeStartingPlecament());
+                getDifficulty();
+                makePlacement(makeStartingPlecament(""));
+                initTimer();
             }
         });
         button2.setOnAction(new EventHandler<ActionEvent>() {
@@ -543,6 +615,7 @@ public class Board extends Application implements Runnable {
             Finished = true;
             makeText("Well Done!", 48);
             showText();
+            stop=Finished;
             ShowComplete(1);
         }
     }
@@ -599,6 +672,7 @@ public class Board extends Application implements Runnable {
         hideText();
         ShowComplete(0);
         makeStart(pegs, pieces);
+        stop=true;
     }
 
     /**
@@ -753,32 +827,11 @@ public class Board extends Application implements Runnable {
         });
     }
 
-    @Override
-    public void start(Stage primaryStage) throws Exception {
-        primaryStage.setTitle("TwistGame");
-        primaryStage.getIcons().add(new Image(getClass().getResource(URI_BASE + "Icon.jpg").toExternalForm()));
-        addBackground();
-        root.getChildren().add(board);
-        root.getChildren().add(controls);
-        root.getChildren().add(peg);
-        root.getChildren().add(piece);
 
-        root.getChildren().add(complete);
-
-        ShowComplete(0);
-        makeControls();
-        makeBoard();
-        makeStart(pegs, Constant.pieces);
-
-        primaryStage.setResizable(false);
-        setHintHandler(scene);
-        primaryStage.setScene(scene);
-        primaryStage.show();
-    }
 
     // FIXME Task 7: Implement a basic playable Twist Game in JavaFX that only allows pieces to be placed in valid places
 
-    private String makeStartingPlecament() {
+    private String makeStartingPlecament(String level) {
         String startingDictionary[] = {"a1B5b2C0c5A2d7B7e5B0f1A6g3A7h5D0i1B0j7A0j7B0k1A0k2B0l3B0l4C0",
                 "a1C6b6A6c2D0d7B1e1A3f2A2g4B2h4A2i7B0j3D0j7D0k3A0l6A0",
                 "a7A7b6A7c1A3d2A6e2C3f3C4g4A7h6D0i6B0j2B0j1C0k3C0l4B0l5C0",
@@ -848,5 +901,31 @@ public class Board extends Application implements Runnable {
 
 
     // FIXME Task 11: Generate interesting starting placements
+    @Override
+    public void start(Stage primaryStage) throws Exception {
+        primaryStage.setTitle("TwistGame");
+        primaryStage.getIcons().add(new Image(getClass().getResource(URI_BASE + "Icon.jpg").toExternalForm()));
+        addBackground();
+        root.getChildren().add(board);
+        root.getChildren().add(controls);
+        root.getChildren().add(peg);
+        root.getChildren().add(piece);
 
+        root.getChildren().add(complete);
+        root.getChildren().add(timer);
+        root.getChildren().add(difficulty);
+
+        ShowComplete(0);
+        makeControls();
+        makeBoard();
+        makeStart(pegs, Constant.pieces);
+        makeInfo();
+        getDifficulty();
+
+
+        primaryStage.setResizable(false);
+        setHintHandler(scene);
+        primaryStage.setScene(scene);
+        primaryStage.show();
+    }
 }

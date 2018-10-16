@@ -12,7 +12,7 @@ import java.util.Set;
 public class Solution {
 
     /**
-     * A solver for the game(just support Task9)
+     * A solver for the game(just support Task9&11)
      * Given a start point placement and return a set which contains all the possible solution
      * @param placement A certain status for the game
      * @return A set which contains （all） the possible solutions for the input placement
