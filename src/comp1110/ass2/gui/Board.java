@@ -823,7 +823,7 @@ public class Board extends Application implements Runnable {
                     piece.getChildren().add(hintPiece);
                 }
                 else {
-                    makeText("No hint for Wrong placement or less than 1 pieces! \n (If the number of pieces are more than 3, \n No hint must due to Wrong placement)",18);
+                    makeText("No hint for Wrong placement! \n (No hint must due to previous Wrong placement)",18);
                     showText();
                 }
             }
@@ -941,7 +941,6 @@ public class Board extends Application implements Runnable {
                 System.out.println("Got solution.");
             }
 
-//            Random rd = new Random();
             String result = results[0];
             ans=result;
             //System.out.println(placement+" Solution:"+result);
@@ -949,15 +948,14 @@ public class Board extends Application implements Runnable {
                 System.out.println(placement.substring(4*i,4*i+4));
                 String re=placement.substring(4*i,4*i+4);
                 result=result.replace(re,"");
-                if (!ans.contains(re) && re!=""){
-                    System.out.println("Hints dlx");
-                    return makeHints(placement);
-                }
+//                if (!ans.contains(re) && re!=""){
+//                    System.out.println("Hints dlx");
+//                    return makeHints(placement);
+//                }
+                //FIXME bug When player don't follow the start placement
             }
             result=result.substring(0,4);
-            //int startPos = rd.nextInt(result.length() / 4) * 4;
-            //result=result.substring(startPos, startPos + 4);
-            //System.out.println("Hints:"+result);
+
             return result;
         }
         else {
