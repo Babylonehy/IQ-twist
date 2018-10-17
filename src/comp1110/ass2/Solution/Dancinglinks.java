@@ -180,8 +180,6 @@ public class Dancinglinks {
         Node col = chooseCol();
         remove(col);
 
-
-        //System.out.println("B"+temp+);
         for (Node i = col.down; i != col; i = i.down) {
             if (nodes.size() > step) {
                 nodes.remove(step);

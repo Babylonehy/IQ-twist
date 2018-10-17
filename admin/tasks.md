@@ -81,5 +81,7 @@ Zhi Wang：Task8，10 almost finished, But still have BUG.
 Ning Cai: JavaFx menu for gamestart.  
 Xiang Li: Redesign UI and Optimize Logical. fix Task8,10.  
 ## Week 10
-
+Break
 ## Week 11
+Zhi Wang & Ning Cai：Presentation 
+Xiang Li: Fix Menu & fix Task8,10, Finished Task11. 

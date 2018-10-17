@@ -29,25 +29,33 @@ public class Solution {
     private static List<String> pieceset = new ArrayList<String>();
     private static Vector<int[]> sparseMatrix=new Vector<>();
 
-    /**
-     * A solver for the game(just support Task9&11)
-     * Given a start point placement and return a set which contains all the possible solution
-     * @param placement A certain status for the game
-     * @return A set which contains （all） the possible solutions for the input placement
+    /**Encoding
+     *
+     *                                                                 Board Position                                                       ||  Every type Only one pieces choose
+     * -------------------------------------------------------------------------------------------------------------------------------------------------------------------
+     * ID	0	1	2	3	4	5	6	7	8	9	10	11	12	13	14	15	16	17	18	19	20	21	22	23	24	25	26	27	28	29	30	31	32	33	34	35	36	37	38	39
+     * a1A0	1	1	1	0	0	0	0	0	0	0	1	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	1	0	0	0	0	0	0	0
+     * a2A0	0	1	1	1	0	0	0	0	0	0	0	1	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	1	0	0	0	0	0	0	0
+     * a3A0	0	0	1	1	1	0	0	0	0	0	0	0	1	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	1	0	0	0	0	0	0	0
+     * a4A0	0	0	0	1	1	1	0	0	0	0	0	0	0	1	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	1	0	0	0	0	0	0	0
+     * a5A0	0	0	0	0	1	1	1	0	0	0	0	0	0	0	1	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	1	0	0	0	0	0	0	0
+     * a6A0	0	0	0	0	0	1	1	1	0	0	0	0	0	0	0	1	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	1	0	0	0	0	0	0	0
+     * a1B0	0	0	0	0	0	0	0	0	1	1	1	0	0	0	0	0	0	0	1	0	0	0	0	0	0	0	0	0	0	0	0	0	1	0	0	0	0	0	0	0
+     * a2B0	0	0	0	0	0	0	0	0	0	1	1	1	0	0	0	0	0	0	0	1	0	0	0	0	0	0	0	0	0	0	0	0	1	0	0	0	0	0	0	0
+     * a3B0	0	0	0	0	0	0	0	0	0	0	1	1	1	0	0	0	0	0	0	0	1	0	0	0	0	0	0	0	0	0	0	0	1	0	0	0	0	0	0	0
+     * a4B0	0	0	0	0	0	0	0	0	0	0	0	1	1	1	0	0	0	0	0	0	0	1	0	0	0	0	0	0	0	0	0	0	1	0	0	0	0	0	0	0
+     * a5B0	0	0	0	0	0	0	0	0	0	0	0	0	1	1	1	0	0	0	0	0	0	0	1	0	0	0	0	0	0	0	0	0	1	0	0	0	0	0	0	0
+     * a6B0	0	0	0	0	0	0	0	0	0	0	0	0	0	1	1	1	0	0	0	0	0	0	0	1	0	0	0	0	0	0	0	0	1	0	0	0	0	0	0	0
+     * a1C0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	0	1	1	1	0	0	0	0	0	0	0	1	0	0	0	0	0	1	0	0	0	0	0	0	0
+     * -------------------------------------------------------------------------------------------------------------------------------------------------------------------
      */
 
-    public  Set<String> Solutions(String placement){
-        return null;  //TODO Solution
-    }
 
     /**
-     * Generate all  solutions without peg
+     * Generate all  pieces without peg
      * Store in txt
      *
      */
-    public  void AllSolutions(){
-         //TODO ALLSolution
-    }
 
     private static void Allpieces(char[] piecesused) {
         int count = 0;
@@ -216,6 +224,13 @@ public class Solution {
         return sparseMatrix;
     }
 
+    /**
+     * A solver for the game(just support Task9&11)
+     * Given a start point placement and return a set which contains all the possible solution
+     * @param placement A certain status for the game
+     * @return A set which contains （all） the possible solutions for the input placement
+     */
+
     public static String[] getsolution(String placement){
         sparseMatrix=transformTosparseMatrix(clearpeg(placement));
         String peg=placement.replaceAll(clearpeg(placement),"");
@@ -255,6 +270,10 @@ public class Solution {
         //a7A7b1A0c3A0d1B5e3C2f6C2g4B0h5B0
         //a7A7b1A0c3A0d1B5e3C2f6C2g4B0h5B0
 
+        /**
+         * A solver for the game(just support Task9&11)
+         * Given all the possible solution
+         */
         long start=System.currentTimeMillis();
         Dancinglinks dlx=new Dancinglinks();
         dlx.createDancingLinks(getsparseMatrix());
@@ -273,7 +292,7 @@ public class Solution {
         System.out.println(solution.size());
         System.out.println((System.currentTimeMillis()-start)/1000.0);
 
-       // getsolution("g2A3h8B3");
+
     }
 
 
