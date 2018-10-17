@@ -117,7 +117,7 @@ public class Board extends Application implements Runnable {
         startTime = System.currentTimeMillis();
         timer.setX(VIEWER_WIDTH-100);
         timer.setY(40);
-
+        timer.setFill(Color.BLACK);
         thread = new Thread() {
             public void run() {
                 while (!stop) {
@@ -133,7 +133,7 @@ public class Board extends Application implements Runnable {
                         e.printStackTrace();
                     }
                 }
-
+                timer.setFill(Color.RED);
             }
         };
         thread.setDaemon(true);
@@ -176,10 +176,10 @@ public class Board extends Application implements Runnable {
 
     private void makeText(String out, int size) {
         Text.setText(out);
-        Text.setFill(Color.RED);
+        Text.setFill(Color.YELLOW);
         Text.setCache(true);
         Text.setFont(Font.font("Arial", FontWeight.EXTRA_BOLD, size));
-        Text.setLayoutX(BOARD_X+3*SQUARE_SIZE);
+        Text.setLayoutX(BOARD_X+1.5*SQUARE_SIZE);
         Text.setLayoutY(MARGIN_Y+3*SQUARE_SIZE);
         Text.setTextAlignment(TextAlignment.CENTER);
         if (!root.getChildren().contains(Text)) {
@@ -240,7 +240,7 @@ public class Board extends Application implements Runnable {
 
             }
         } else {
-            makeText("Wrong Input or invalid Start \n (Please Reset Before Start, If anything on board.)", 18);
+            makeText("Invalid Start \n (Please Reset Before Start, If anything on board.)", 18);
 
             showText();
         }
@@ -930,6 +930,7 @@ public class Board extends Application implements Runnable {
                 solution= getsolution((placement));
             }
             results=solution;
+
             // return null if game has been finished
             if (results == null | results.length == 0)
             {
@@ -942,8 +943,17 @@ public class Board extends Application implements Runnable {
 
 //            Random rd = new Random();
             String result = results[0];
+            ans=result;
             //System.out.println(placement+" Solution:"+result);
-            result =result.replaceAll(clearpeg(placement),"");
+            for (int i = 0; i < placement.length()/4; i++) {
+                System.out.println(placement.substring(4*i,4*i+4));
+                String re=placement.substring(4*i,4*i+4);
+                result=result.replace(re,"");
+                if (!ans.contains(re) && re!=""){
+                    System.out.println("Hints dlx");
+                    return makeHints(placement);
+                }
+            }
             result=result.substring(0,4);
             //int startPos = rd.nextInt(result.length() / 4) * 4;
             //result=result.substring(startPos, startPos + 4);
@@ -1048,6 +1058,22 @@ public class Board extends Application implements Runnable {
         return placement;
     }
 
+    private void instructions(){
+        Text instructions=new Text();
+        instructions.setFill(Color.BLUE);
+        instructions.setCache(true);
+        instructions.setFont(Font.font(String.valueOf(Font.getDefault()),12));
+        instructions.setLayoutX(SQUARE_SIZE/2);
+        instructions.setLayoutY(3*SQUARE_SIZE);
+        instructions.setTextAlignment(TextAlignment.LEFT);
+        instructions.setText("Instructions:\n" +
+                "[Mouse left]： Drag\n"+"[Mouse right]： Undo\n"+"[Scroll wheel]： Rotate\n"+
+                "[Press scroll wheel]： Flip\n"+"[Press \\]： Hint\n");
+        instructions.toFront();
+
+        root.getChildren().add(instructions);
+    }
+
     @Override
     public void start(Stage primaryStage) throws Exception {
         readSolution("./src/comp1110/ass2/Solution/Output/Solution.txt");
@@ -1069,6 +1095,7 @@ public class Board extends Application implements Runnable {
         makeStart(pegs, Constant.pieces);
         makeInfo();
         getDifficulty();
+        instructions();
 
 
         primaryStage.setResizable(false);

@@ -168,7 +168,7 @@ public class Dancinglinks {
         }
     }
 
-
+    //Fixme Can find all solution for a give Placement
     private void solve(int step) {
         if (root.right == root) {
             ans.add(nodesToMatrix(nodes));

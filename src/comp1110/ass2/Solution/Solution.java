@@ -254,7 +254,7 @@ public class Solution {
     public static void main(String[] args) throws IOException {
         //a7A7b1A0c3A0d1B5e3C2f6C2g4B0h5B0
         //a7A7b1A0c3A0d1B5e3C2f6C2g4B0h5B0
-        /*
+
         long start=System.currentTimeMillis();
         Dancinglinks dlx=new Dancinglinks();
         dlx.createDancingLinks(getsparseMatrix());
@@ -272,8 +272,8 @@ public class Solution {
         WriteAnsTotxt(solution,"Solution.txt");
         System.out.println(solution.size());
         System.out.println((System.currentTimeMillis()-start)/1000.0);
-        */
-        getsolution("g2A3h8B3");
+
+       // getsolution("g2A3h8B3");
     }
 
 
