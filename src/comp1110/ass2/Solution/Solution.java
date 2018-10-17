@@ -11,6 +11,7 @@ import java.util.*;
 
 import static comp1110.ass2.Game.Constant.StrictSymmetry;
 import static comp1110.ass2.Game.Constant.pieces;
+import static comp1110.ass2.TwistGame.Reorder;
 import static comp1110.ass2.TwistGame.isPlacementStringValid;
 import static comp1110.ass2.TwistGame.positionToPlaceCode;
 
@@ -116,6 +117,24 @@ public class Solution {
 
 
     }
+    private static void WriteAnsTotxt(HashSet<String> ans,String filename) throws IOException {
+        try {
+            File writename = new File("./src/comp1110/ass2/Solution/Output/"+filename);
+            writename.createNewFile(); // 创建新文件
+            BufferedWriter out = new BufferedWriter(new FileWriter(writename));
+            for (String each : ans) {
+                out.write(each);
+                out.write("\n");
+            }
+            out.flush();
+            out.close();
+        }
+        catch (Exception e){
+            e.printStackTrace();
+        }
+
+
+    }
 
     public static Vector<int[]>  getsparseMatrix(){
         for (String each: Constant.StrictSymmetry) {
@@ -124,9 +143,29 @@ public class Solution {
         Allpieces();
         return sparseMatrix;
     }
+
+
+
     public static void main(String[] args) throws IOException {
-        getsparseMatrix();
-       WriteToTxt(sparseMatrix,"Initial.txt");
+        long start=System.currentTimeMillis();
+        Dancinglinks dlx=new Dancinglinks();
+        dlx.createDancingLinks(getsparseMatrix());
+        dlx.getsolution(100000000);
+        List<ArrayList<Integer>> answer=dlx.getAns();
+        HashSet<String> solution=new HashSet<>();
+        for (List each: answer){
+            String placement="";
+            for (int i = 0; i <each.size() ; i++) {
+                placement+=pieceset.get((Integer) each.get(i));
+            }
+            solution.add(Reorder(placement));
+        }
+
+        WriteAnsTotxt(solution,"Solution.txt");
+        System.out.println(solution.toString());
+        System.out.println(solution.size());
+        System.out.println((System.currentTimeMillis()-start)/1000.0);
     }
+
 
 }

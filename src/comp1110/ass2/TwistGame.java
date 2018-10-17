@@ -635,7 +635,7 @@ public class TwistGame {
         return newstring;
     }
 
-    static String Reorder(String placement) {
+    public static String Reorder(String placement) {
         char[] placements = placement.toCharArray();
         String[] s = new String[placement.length() / 4];
         List<String> list = new ArrayList<>();
