@@ -23,9 +23,9 @@ import static comp1110.ass2.TwistGame.positionToPlaceCode;
 
 public class Solution {
 
-    static List<String> StrictSymmetry=new ArrayList<String>();
-    static List<String> pieceset = new ArrayList<String>();
-    static Vector<int[]> sparseMatrix=new Vector<>();
+    private static List<String> StrictSymmetry=new ArrayList<String>();
+    private static List<String> pieceset = new ArrayList<String>();
+    private static Vector<int[]> sparseMatrix=new Vector<>();
 
     /**
      * A solver for the game(just support Task9&11)
@@ -80,7 +80,7 @@ public class Solution {
             }
 
         }
-        PrintMatrix(sparseMatrix);
+//        PrintMatrix(sparseMatrix);
 
     }
 
@@ -116,11 +116,16 @@ public class Solution {
 
 
     }
-    public static void main(String[] args) throws IOException {
+
+    public static Vector<int[]>  getsparseMatrix(){
         for (String each: Constant.StrictSymmetry) {
             StrictSymmetry.add(each);
         }
         Allpieces();
+        return sparseMatrix;
+    }
+    public static void main(String[] args) throws IOException {
+        getsparseMatrix();
        WriteToTxt(sparseMatrix,"Initial.txt");
     }
 
