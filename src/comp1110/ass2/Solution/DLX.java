@@ -20,7 +20,9 @@ public class DLX {
             this(row, col);
             this.header = header;
         }
-
-
     }
+
+
+
+
 }
