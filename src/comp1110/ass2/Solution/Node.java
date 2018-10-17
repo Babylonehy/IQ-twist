@@ -2,6 +2,7 @@ package comp1110.ass2.Solution;
 
 /**
  * Node class for dlx.
+ * All code by Sean
  */
 public class Node {
 

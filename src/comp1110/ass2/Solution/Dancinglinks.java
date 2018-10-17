@@ -4,13 +4,13 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Vector;
 
-import static comp1110.ass2.Solution.Solution.getsparseMatrix;
 
 /**
  * https://en.wikipedia.org/wiki/Dancing_Links
  * https://arxiv.org/pdf/cs/0011047.pdf
  * https://github.com/xnnyygn/algorithm-learning
  * http://garethrees.org/2007/06/10/zendoku-generation/#section-4
+ * All code by Sean
  */
 public class Dancinglinks {
     
@@ -168,15 +168,20 @@ public class Dancinglinks {
         }
     }
 
+
     private void solve(int step) {
         if (root.right == root) {
             ans.add(nodesToMatrix(nodes));
+        //    System.out.println(ans.size());
+
             return; //break
         }
 
         Node col = chooseCol();
         remove(col);
 
+
+        //System.out.println("B"+temp+);
         for (Node i = col.down; i != col; i = i.down) {
             if (nodes.size() > step) {
                 nodes.remove(step);
@@ -187,6 +192,7 @@ public class Dancinglinks {
             }
 
             solve(step + 1);
+
 
             //break
             if (ans.size() >= maxAnsNumber) return;
