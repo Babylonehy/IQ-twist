@@ -108,7 +108,7 @@ public class Solution {
     private static void WriteToTxt(Vector<int[]> Matrix,String filename) throws IOException {
         try {
             File writename = new File("./src/comp1110/ass2/Solution/Output/"+filename);
-            writename.createNewFile(); // 创建新文件
+            writename.createNewFile();
             BufferedWriter out = new BufferedWriter(new FileWriter(writename));
             for (int i = 0; i <sparseMatrix.size() ; i++) {
                 out.write(pieceset.get(i)+"  ");
@@ -129,7 +129,7 @@ public class Solution {
     private static void WriteAnsTotxt(HashSet<String> ans,String filename) throws IOException {
         try {
             File writename = new File("./src/comp1110/ass2/Solution/Output/"+filename);
-            writename.createNewFile(); // 创建新文件
+            writename.createNewFile();
             BufferedWriter out = new BufferedWriter(new FileWriter(writename));
             for (String each : ans) {
                 out.write(each);
