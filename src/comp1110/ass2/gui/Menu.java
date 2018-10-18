@@ -14,7 +14,7 @@ import java.io.IOException;
 public class Menu extends Application {
     private static final String URI_BASE = "assets/";
     private static final int VIEWER_WIDTH = 933;
-    private static final int VIEWER_HEIGHT = 700;
+    private static final int VIEWER_HEIGHT = 600;
     Parent root = null;
 
 
