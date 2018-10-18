@@ -318,7 +318,7 @@ public class Board extends Application implements Runnable {
 
             //Flip
             setOnMouseClicked(event -> {
-                if (event.getButton().equals(MouseButton.MIDDLE) && event.getEventType().equals(MouseEvent.MOUSE_CLICKED) && status == NOT_PLACED) {
+                if (event.getButton().equals(MouseButton.PRIMARY) && event.getEventType().equals(MouseEvent.MOUSE_CLICKED) && status == NOT_PLACED) {
                     setScaleY(-1 * getScaleY());
                     codePieces();
                 }
@@ -904,7 +904,9 @@ public class Board extends Application implements Runnable {
         temp=clearpeg(temp);
         for (int i = 0; i < placement.length()/4; i++) {
             System.out.println(placement.substring(4*i,4*i+4));
-            String re=placement.substring(4*i,4*i+4);
+            char p=placement.charAt(i*4);
+            int index=temp.indexOf(p);
+            String re=temp.substring(index,index+4);
             temp=temp.replace(re,"");
 //            if (!ans.contains(re) && re!=""){
 //                System.out.println("Hints dlx");
@@ -946,12 +948,16 @@ public class Board extends Application implements Runnable {
             //System.out.println(placement+" Solution:"+result);
             for (int i = 0; i < placement.length()/4; i++) {
                 System.out.println(placement.substring(4*i,4*i+4));
-                String re=placement.substring(4*i,4*i+4);
+                char p=placement.charAt(i*4);
+                System.out.println("p"+p);
+                int index=result.indexOf(p);
+                String re=result.substring(index,index+4);
+                System.out.println("re"+re);
                 result=result.replace(re,"");
-//                if (!ans.contains(re) && re!=""){
-//                    System.out.println("Hints dlx");
-//                    return makeHints(placement);
-//                }
+                if (!ans.contains(re) ){
+                    System.out.println("Hints dlx");
+                    return makeHints(placement);
+                }
                 //FIXME bug When player don't follow the start placement
             }
             result=result.substring(0,4);
@@ -1061,12 +1067,13 @@ public class Board extends Application implements Runnable {
         instructions.setFill(Color.BLUE);
         instructions.setCache(true);
         instructions.setFont(Font.font(String.valueOf(Font.getDefault()),12));
-        instructions.setLayoutX(SQUARE_SIZE/2);
+        instructions.setLayoutX(SQUARE_SIZE/4);
         instructions.setLayoutY(3*SQUARE_SIZE);
         instructions.setTextAlignment(TextAlignment.LEFT);
         instructions.setText("Instructions:\n" +
                 "[Mouse left]： Drag\n"+"[Mouse right]： Undo\n"+"[Scroll wheel]： Rotate\n"+
-                "[Press scroll wheel]： Flip\n"+"[Press \\]： Hint\n");
+                "[Press Mouse left]： Flip\n"+"[Press \\]： Hint\n"+"------------\n"+
+                "Overlap Hints means \nyou have wrong placement Piece");
         instructions.toFront();
 
         root.getChildren().add(instructions);

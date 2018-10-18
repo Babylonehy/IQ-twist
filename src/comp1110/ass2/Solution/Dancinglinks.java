@@ -201,6 +201,7 @@ public class Dancinglinks {
                 reverse(jreverse.header);
             }
         }
+        //bottom,not solution
         reverse(col);
     }
 
