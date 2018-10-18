@@ -906,10 +906,10 @@ public class Board extends Application implements Runnable {
             System.out.println(placement.substring(4*i,4*i+4));
             String re=placement.substring(4*i,4*i+4);
             temp=temp.replace(re,"");
-            if (!ans.contains(re) && re!=""){
-                System.out.println("Hints dlx");
-                return makeHints(placement);
-            }
+//            if (!ans.contains(re) && re!=""){
+//                System.out.println("Hints dlx");
+//                return makeHints(placement);
+//            }
         }
 
         System.out.println(temp);
