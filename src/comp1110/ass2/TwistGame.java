@@ -337,7 +337,7 @@ public class TwistGame {
      * @param color
      * @return
      */
-    private static boolean updateBoard(Map<Integer, Integer> m, Color color) {
+    public static boolean updateBoard(Map<Integer, Integer> m, Color color) {
 
         for (int key : m.keySet()) {
             int status = m.get(key);
@@ -635,7 +635,7 @@ public class TwistGame {
         return newstring;
     }
 
-    static String Reorder(String placement) {
+    public static String Reorder(String placement) {
         char[] placements = placement.toCharArray();
         String[] s = new String[placement.length() / 4];
         List<String> list = new ArrayList<>();
@@ -678,31 +678,6 @@ public class TwistGame {
     }
 
     public static void main(String[] args) {
-        //c1A3d2A6e2C3f3C2g4A7h6D0j2B0j1C0k3C0l4B0l5C0
-        //[a6A0b6B0c1A3d2A6e2C3f3C2g4A7h6D0, a7A7b6A5c1A3d2A6e2C3f3C2g4A7h6D0]
-        //d2A6e2C3f3C2g4A7h6D0i6B0j2B0j1C0k3C0l4B0l5C0
-        //a7A7b6A7c1A3d2A6e2C3f3C2g4A7h6D0
-        //d2A6e2C3f3C2g4A7h6D0i6B0j2B0j1C0k3C0l4B0l5C0a7A3c1A3
-        //e5C2f1C4g6B7h4B0k3D0k5D0l6C0
-        //[a7A7b3B5c3A0d1A3e5C2f1C4g6B7h4B0]
-        //[a7A7b3B5c3A0d1A3e5C2f1C4g6B7h4B0,
-        // a7A7b3B5c3A2d1A3e5C2f1C4g6B7h4B0]
-        //System.out.println(getViablePiecePlacements("e5C2f1C4g6B7h4B0k3D0k5D0l6C0").toString());
-        // System.out.println(getViablePiecePlacements("d2A6e2C3f3C2g4A7h6D0i6B0j2B0j1C0k3C0l4B0l5C0a7A7c1A3").toString());
-        for (char each : pieces) {
-            for (int i = 0; i < 8; i++) {
-                for (char each2 : pieces) {
-                    for (int j = 0; j < 8; j++) {
-                        String temp = each + "" + i + each2 + "" + j;
-                    }
-                }
-            }
-        }
-
-        getSolutions("a7A7b6A7");
-        //getViablePiecePlacements("b2B0e5C2f1C4g6B7h4B0k3D0k5D0l6C0");
-        //reArrange("c1A3d2A6e2C3f3C2g4A7h6D0j2B0j1C0k3C0l4B0l5C0a7A7b6A5");
-        // System.out.println(isPlacementStringValid("d2A6e2C3f3C2g4A7h6D0i6B0j2B0j1C0k3C0l4B0l5C0a7A3c1A3b6A3"));
 
     }
 }

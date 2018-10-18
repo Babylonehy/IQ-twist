@@ -89,7 +89,7 @@ public class Pieces {
      * @param position left_and_top_position.
      * @return A map of position and status(int)
      */
-    public Map DecodetoBoardposition(int position){
+    public Map<Integer,Integer> DecodetoBoardposition(int position){
         Map<Integer,Integer> BoardPosition=new HashMap<>();
         for (int i = 0; i < this.getHeight(); i++) {
             int index=position+i*8;

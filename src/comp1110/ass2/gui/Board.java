@@ -1,16 +1,18 @@
 package comp1110.ass2.gui;
 
+import comp1110.ass2.Elements.BoardStatus;
+import comp1110.ass2.Game.BoardNode;
 import comp1110.ass2.Game.Constant;
+import comp1110.ass2.Game.Pieces;
 import comp1110.ass2.TwistGame;
 import javafx.application.Application;
+import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Group;
 import javafx.scene.Node;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
@@ -25,10 +27,17 @@ import javafx.scene.text.Text;
 import javafx.scene.text.TextAlignment;
 import javafx.stage.Stage;
 
-import java.util.Random;
+import java.io.*;
+import java.util.*;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
+import static comp1110.ass2.Elements.Color.Red;
+import static comp1110.ass2.Elements.Peg.Colortopeg;
 import static comp1110.ass2.Game.Constant.pegs;
 import static comp1110.ass2.Game.Constant.pieces;
+import static comp1110.ass2.Solution.Solution.clearpeg;
+import static comp1110.ass2.Solution.Solution.getsolution;
 import static comp1110.ass2.TwistGame.*;
 
 /**
@@ -56,7 +65,7 @@ public class Board extends Application implements Runnable {
 
     private final Group root = new Group();
     private final Group controls = new Group();
-    TextField textField;
+
 
     /* board*/
     private final Group board = new Group();
@@ -87,16 +96,90 @@ public class Board extends Application implements Runnable {
 
     Scene scene = new Scene(root, VIEWER_WIDTH, VIEWER_HEIGHT);
 
+    /*TOP difficult and time*/
+    Text timer = new Text();
+    Text difficulty = new Text();
+    ChoiceBox<String> difficultyBox;
+
+    /*Thread*/
+    private Thread thread;
+    private boolean stop;
+    private long startTime;
+    private long curTime;
+
+    /*Task11 solution*/
+    private ArrayList<String> Solution=new ArrayList<>();
+    private static String ans="";
+
+
+    private void initTimer() {
+        stop = false;
+        startTime = System.currentTimeMillis();
+        timer.setX(VIEWER_WIDTH-100);
+        timer.setY(40);
+        timer.setFill(Color.BLACK);
+        thread = new Thread() {
+            public void run() {
+                while (!stop) {
+                    curTime = System.currentTimeMillis();
+                    int interval = (int) ((curTime - startTime) / 1000);
+                    int hour = interval / 3600;
+                    int minute = (interval / 60) % 60;
+                    int second = interval % 60;
+                    timer.setText(String.format("%02d:%02d:%02d", hour, minute, second));
+                    try {
+                        Thread.sleep(1000);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                }
+                timer.setFill(Color.RED);
+            }
+        };
+        thread.setDaemon(true);
+        thread.start();
+    }
+
+    /**
+     *
+     * @return
+     */
+    private String getDifficulty() {
+
+        difficulty.setText(difficultyBox.getValue());
+
+        difficulty.setX(VIEWER_WIDTH-100);
+        difficulty.setY(20);
+        difficulty.setLineSpacing(10);
+        difficulty.setTextAlignment(TextAlignment.CENTER);
+        return difficultyBox.getValue();
+    }
+    /**
+     *
+     */
+    private void makeInfo(){
+        HBox hb = new HBox();
+        difficultyBox= new ChoiceBox<String>(FXCollections.observableArrayList(
+                "Easy", "Middle", "Hard")
+        );
+        difficultyBox.setTooltip(new Tooltip("Select the difficulty"));
+        difficultyBox.setValue("Easy");
+        difficultyBox.setLayoutX(80);
+        difficultyBox.setLayoutY(40);
+        root.getChildren().add(difficultyBox);
+
+    }
+
     /**
      * Create the message to be displayed when the player Text.
      */
 
     private void makeText(String out, int size) {
         Text.setText(out);
-        Text.setFill(Color.RED);
+        Text.setFill(Color.YELLOW);
         Text.setCache(true);
         Text.setFont(Font.font("Arial", FontWeight.EXTRA_BOLD, size));
-        Text.setLayoutX(BOARD_X+3*SQUARE_SIZE);
+        Text.setLayoutX(BOARD_X+1.5*SQUARE_SIZE);
         Text.setLayoutY(MARGIN_Y+3*SQUARE_SIZE);
         Text.setTextAlignment(TextAlignment.CENTER);
         if (!root.getChildren().contains(Text)) {
@@ -157,7 +240,7 @@ public class Board extends Application implements Runnable {
 
             }
         } else {
-            makeText("Wrong Input or invalid Start \n (Please Reset Before Start, If anything on board.)", 18);
+            makeText("Invalid Start \n (Please Reset Before Start, If anything on board.)", 18);
 
             showText();
         }
@@ -173,7 +256,9 @@ public class Board extends Application implements Runnable {
         button.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent e) {
-                makePlacement(makeStartingPlecament());
+
+                makePlacement(makeStartingPlecament(getDifficulty()));
+                initTimer();
             }
         });
         button2.setOnAction(new EventHandler<ActionEvent>() {
@@ -543,6 +628,7 @@ public class Board extends Application implements Runnable {
             Finished = true;
             makeText("Well Done!", 48);
             showText();
+            stop=Finished;
             ShowComplete(1);
         }
     }
@@ -599,6 +685,7 @@ public class Board extends Application implements Runnable {
         hideText();
         ShowComplete(0);
         makeStart(pegs, pieces);
+        stop=true;
     }
 
     /**
@@ -726,7 +813,8 @@ public class Board extends Application implements Runnable {
         scene.setOnKeyPressed(event -> {
             // make hint when press slash
             if (event.getCode() == KeyCode.SLASH && hintPiece==null) {
-                String hint = makeHints(BoardStr);
+              //  String hint = makeHints(BoardStr);
+                String hint=makeSimpleHints(BoardStr);
                 //System.out.println("Press /");
                 if (hint!=null){
                     System.out.println("Hint: "+hint);
@@ -735,7 +823,7 @@ public class Board extends Application implements Runnable {
                     piece.getChildren().add(hintPiece);
                 }
                 else {
-                    makeText("No hint for Wrong placement or less than 4 pieces! \n (If the number of pieces are more than 3, \n No hint must due to Wrong placement)",18);
+                    makeText("No hint for Wrong placement! \n (No hint must due to previous Wrong placement)",18);
                     showText();
                 }
             }
@@ -753,42 +841,47 @@ public class Board extends Application implements Runnable {
         });
     }
 
-    @Override
-    public void start(Stage primaryStage) throws Exception {
-        primaryStage.setTitle("TwistGame");
-        primaryStage.getIcons().add(new Image(getClass().getResource(URI_BASE + "Icon.jpg").toExternalForm()));
-        addBackground();
-        root.getChildren().add(board);
-        root.getChildren().add(controls);
-        root.getChildren().add(peg);
-        root.getChildren().add(piece);
 
-        root.getChildren().add(complete);
-
-        ShowComplete(0);
-        makeControls();
-        makeBoard();
-        makeStart(pegs, Constant.pieces);
-
-        primaryStage.setResizable(false);
-        setHintHandler(scene);
-        primaryStage.setScene(scene);
-        primaryStage.show();
-    }
 
     // FIXME Task 7: Implement a basic playable Twist Game in JavaFX that only allows pieces to be placed in valid places
 
-    private String makeStartingPlecament() {
-        String startingDictionary[] = {"a1B5b2C0c5A2d7B7e5B0f1A6g3A7h5D0i1B0j7A0j7B0k1A0k2B0l3B0l4C0",
-                "a1C6b6A6c2D0d7B1e1A3f2A2g4B2h4A2i7B0j3D0j7D0k3A0l6A0",
-                "a7A7b6A7c1A3d2A6e2C3f3C4g4A7h6D0i6B0j2B0j1C0k3C0l4B0l5C0",
-                "a4C4b2C4c1B2d7B1e1C6f6A0g4A5h1A0j3B0j7D0k1C0k1D0l6B0l1A0",
-                "a6A0b4A2c3A3d1A3e1C4f4B3g6B2h5D0i5A0j2B0j3C0k2C0k2D0l8C0l8D0"};
+    private String makeStartingPlecament(String level) {
+
+//        String startingDictionary[] = {"a1B5b2C0c5A2d7B7e5B0f1A6g3A7h5D0i1B0j7A0j7B0k1A0k2B0l3B0l4C0",
+//                "a1C6b6A6c2D0d7B1e1A3f2A2g4B2h4A2i7B0j3D0j7D0k3A0l6A0",
+//                "a7A7b6A7c1A3d2A6e2C3f3C4g4A7h6D0i6B0j2B0j1C0k3C0l4B0l5C0",
+//                "a4C4b2C4c1B2d7B1e1C6f6A0g4A5h1A0j3B0j7D0k1C0k1D0l6B0l1A0",
+//                "a6A0b4A2c3A3d1A3e1C4f4B3g6B2h5D0i5A0j2B0j3C0k2C0k2D0l8C0l8D0"};
         String result ="";
-        do {
+        String pegcode="";
+        String piecescode="";
+
         Random rd = new Random();
-        result = startingDictionary[rd.nextInt(5)];
-        result=result.substring(32,result.length());
+        result = generateStartplacement();
+        int index;
+        int indexp;
+        switch (level){
+            case "Easy":
+               index=rd.nextInt(5)+3;
+               indexp=rd.nextInt(8);
+                pegcode=result.substring(32,32+index*4);
+                piecescode=result.substring(indexp*4,indexp*4+4*3);
+                break;
+            case "Middle":
+                index=rd.nextInt(4)+2;
+                indexp=rd.nextInt(8);
+                pegcode=result.substring(32,32+index*4);
+                piecescode=result.substring(indexp*4,indexp*4+4*2);
+                break;
+            case "Hard":
+                index=rd.nextInt(1)+2;
+                indexp=rd.nextInt(8);
+                pegcode=result.substring(32,32+index*4);
+                break;
+
+        }
+
+        //result=result.substring(32,result.length());
         int startPos, endPos;
         startPos = rd.nextInt(result.length() - 4);
         startPos -= startPos % 4;
@@ -797,20 +890,47 @@ public class Board extends Application implements Runnable {
         //System.out.println("result.length() = " + result.length());
         result = result.substring(startPos, endPos);
         //System.out.println("startPos + \" \" + endPos+\" \" = " + startPos + " " + endPos);
-        }while (result.isEmpty());
+
+        result=piecescode+pegcode;
+        System.out.println(result);
         return result;
         // FIXME Task 8: Implement starting placements
     }
+    private String makeSimpleHints(String placement){
+        System.out.println(Reorder(clearpeg(placement)));
+        placement=clearpeg(placement);
+        String temp=ans.substring(0,ans.length());
+        int len=temp.length();
+        temp=clearpeg(temp);
+        for (int i = 0; i < placement.length()/4; i++) {
+            System.out.println(placement.substring(4*i,4*i+4));
+            String re=placement.substring(4*i,4*i+4);
+            temp=temp.replace(re,"");
+//            if (!ans.contains(re) && re!=""){
+//                System.out.println("Hints dlx");
+//                return makeHints(placement);
+//            }
+        }
+
+        System.out.println(temp);
+        if (len>temp.length()){
+            return temp.substring(0,4);
+        }
+
+        return null;
+    }
+
 
     private String makeHints(String placement) {
         //System.out.println("Hint from "+placement);
-        if (pieceCount(placement)>3) {
+        if (pieceCount(placement)>0) {
             // Get solutions for current placement.
             String[] results;
             if (solution==null){
-                solution= TwistGame.getSolutions(placement);
+                solution= getsolution((placement));
             }
             results=solution;
+
             // return null if game has been finished
             if (results == null | results.length == 0)
             {
@@ -821,13 +941,21 @@ public class Board extends Application implements Runnable {
                 System.out.println("Got solution.");
             }
 
-            Random rd = new Random();
             String result = results[0];
+            ans=result;
             //System.out.println(placement+" Solution:"+result);
-            result = clearSamestr(result,placement);
-            int startPos = rd.nextInt(result.length() / 4) * 4;
-            result=result.substring(startPos, startPos + 4);
-            //System.out.println("Hints:"+result);
+            for (int i = 0; i < placement.length()/4; i++) {
+                System.out.println(placement.substring(4*i,4*i+4));
+                String re=placement.substring(4*i,4*i+4);
+                result=result.replace(re,"");
+//                if (!ans.contains(re) && re!=""){
+//                    System.out.println("Hints dlx");
+//                    return makeHints(placement);
+//                }
+                //FIXME bug When player don't follow the start placement
+            }
+            result=result.substring(0,4);
+
             return result;
         }
         else {
@@ -836,17 +964,141 @@ public class Board extends Application implements Runnable {
         // FIXME Task 10: Implement hints
     }
 
-    private String clearSamestr(String result, String placement){
 
-        for (int i = 0; i < placement.length()/4; i++) {
-         String temp=placement.substring(i*4,i*4+4);
-            result=result.replace(temp,"");
-        }
-        //System.out.println("Reminder:"+result);
-        return result;
-    }
 
 
     // FIXME Task 11: Generate interesting starting placements
+    private void readSolution(String filename) throws FileNotFoundException {
+        try {
+        String pathname = filename;
+        File file = new File(pathname);
+        InputStreamReader reader = new InputStreamReader(new FileInputStream(file));
+        BufferedReader br = new BufferedReader(reader);
+        String line = "";
+        line = br.readLine();
+        while (line != null) {
+            Solution.add(br.readLine());
+            line = br.readLine();
+        }
+        }
+        catch (Exception e){
+            e.printStackTrace();
+        }
 
+    }
+
+    private String generateStartplacement(){
+        //Random get a solution
+        Collections.shuffle(Solution);
+        System.out.println(Solution.get(0));
+        String placement=Solution.get(0);
+        HashMap<String, String> peg=new HashMap<>();
+        BoardNode[] nodes = new BoardNode[32];
+        char[][] decode = decodeTotype_position(placement);
+
+        for (int i = 0; i < decode.length; i++) {
+            char type = decode[i][0];
+            int x = decode[i][1] - '1';
+            char y = decode[i][2];
+
+            int rotation = decode[i][3] - '0';
+            int position = charPairToPosition(x, y);
+            String piecesId = type + "" + rotation + "";
+            comp1110.ass2.Game.Pieces p = new comp1110.ass2.Game.Pieces(piecesId);
+            //nodes update
+            Map<Integer, Integer> m = p.DecodetoBoardposition(position);
+
+            for (int key : m.keySet()) {
+                int status = m.get(key);
+                if (status == 0) {
+                    continue;
+                }
+                if (nodes[key] == null) {
+                    nodes[key] = new BoardNode(key, status,p.getColor());
+                    // System.out.println(key + " update successfully.");
+                }
+            }
+        }
+
+        for (int i = 0; i <nodes.length ; i++) {
+            if (nodes[i].getStatus()== BoardStatus.Hole){
+                peg.put(positionToPlaceCode(i),String.valueOf(Colortopeg(nodes[i].getColor())));
+            }
+        }
+        System.out.println(peg.toString());
+        int red=1;
+        int bule=2;
+        int green=2;
+        int yellow=2;
+
+        for (String each: peg.keySet()) {
+            if (peg.get(each).equals("i")&&red!=0){
+                placement+="i"+each+"0";
+                red--;
+            }
+            if (peg.get(each).equals("j")&&bule!=0){
+                placement+="j"+each+"0";
+                bule--;
+            }
+            if (peg.get(each).equals("k")&&green!=0){
+                placement+="k"+each+"0";
+                green--;
+            }
+            if (peg.get(each).equals("l")&&yellow!=0){
+                placement+="l"+each+"0";
+                yellow--;
+            }
+        }
+
+        placement=Reorder(placement);
+        ans=placement;
+        System.out.println(placement);
+        return placement;
+    }
+
+    private void instructions(){
+        Text instructions=new Text();
+        instructions.setFill(Color.BLUE);
+        instructions.setCache(true);
+        instructions.setFont(Font.font(String.valueOf(Font.getDefault()),12));
+        instructions.setLayoutX(SQUARE_SIZE/2);
+        instructions.setLayoutY(3*SQUARE_SIZE);
+        instructions.setTextAlignment(TextAlignment.LEFT);
+        instructions.setText("Instructions:\n" +
+                "[Mouse left]： Drag\n"+"[Mouse right]： Undo\n"+"[Scroll wheel]： Rotate\n"+
+                "[Press scroll wheel]： Flip\n"+"[Press \\]： Hint\n");
+        instructions.toFront();
+
+        root.getChildren().add(instructions);
+    }
+
+    @Override
+    public void start(Stage primaryStage) throws Exception {
+        readSolution("./src/comp1110/ass2/Solution/Output/Solution.txt");
+        primaryStage.setTitle("TwistGame");
+        primaryStage.getIcons().add(new Image(getClass().getResource(URI_BASE + "Icon.jpg").toExternalForm()));
+        addBackground();
+        root.getChildren().add(board);
+        root.getChildren().add(controls);
+        root.getChildren().add(peg);
+        root.getChildren().add(piece);
+
+        root.getChildren().add(complete);
+        root.getChildren().add(timer);
+        root.getChildren().add(difficulty);
+
+        ShowComplete(0);
+        makeControls();
+        makeBoard();
+        makeStart(pegs, Constant.pieces);
+        makeInfo();
+        getDifficulty();
+        instructions();
+
+
+        primaryStage.setResizable(false);
+        setHintHandler(scene);
+        primaryStage.setScene(scene);
+        primaryStage.show();
+    }
 }

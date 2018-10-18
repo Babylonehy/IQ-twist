@@ -50,6 +50,24 @@ public class Peg {
                     break;
         }
     }
+
+    public static char Colortopeg(Color color){
+        switch (color){
+            case Red:
+                return 'i';
+            case Blue:
+                return 'j';
+
+            case Green:
+                return 'k';
+
+            case Yellow:
+                return 'l';
+            default:
+                return '0';
+        }
+
+    }
     /** @return the character type for peg*/
 
     public  char getType(){
