@@ -12,6 +12,8 @@ import java.util.regex.Pattern;
 import static comp1110.ass2.Elements.BoardStatus.Full;
 import static comp1110.ass2.Elements.BoardStatus.IamPeg;
 import static comp1110.ass2.Game.Constant.*;
+import static comp1110.ass2.Solution.Solution.clearpeg;
+import static comp1110.ass2.Solution.Solution.getsolution;
 
 /**
  * This class provides the text interface for the Twist Game
@@ -553,57 +555,62 @@ public class TwistGame {
      * unordered solution to the game given the starting point provided by placement.
      */
     public static String[] getSolutions(String placement) {
-        HashSet<String> setnext = new HashSet<>();
-        HashSet<String> settemp = new HashSet<>();
-        HashSet<String> result = new HashSet<>();
 
-        Vector<Vector> steps = new Vector<>();
-        Vector<String> step = new Vector<>();
-        HashSet<String> stepset = new HashSet<>();
-        step.add(placement);
-        steps.add((Vector) step.clone());
-        step.clear();
+        ArrayList<String> result = new ArrayList<>();
+        String peg=placement.replace(clearpeg(placement),"");
+        String[] s=getsolution(clearpeg(placement));
+        for (String peices:s){
+            if (isPlacementStringValid(peices+peg)){
+                result.add(peices);
+            }
+        }
 
-        do {
-            int count = 0;
-            for (int i = 0; i < steps.lastElement().size(); i++) {
-                String placementstr = (String) steps.lastElement().get(i);
-                setnext = (HashSet<String>) getViablePiecePlacements(placementstr);
+        System.out.println(result.toString());
 
-                for (String each : setnext) {
-                    String temp = placementstr + each;
-                    temp = Reorder(temp);
-                    settemp = (HashSet<String>) getViablePiecePlacements(temp);
-                    if (settemp != null) {
-                        stepset.add(temp);
-                        //System.out.println(each+" "+temp);
-                    } else {
-                        String retemp = temp;
-                        if (retemp.length() >= 32 && !result.contains(retemp.substring(0, 32))) {
-                            if (isPlacementStringValid(retemp) && checkString(retemp)) {
-                                // System.out.println(each+" Done: "+temp);
-                                result.add(retemp.substring(0, 32));
+        return RemoveSymmetryPlacement(result);
+
+        // FIXME Task 9: determine all solutions to the game, given a particular starting placement
+    }
+
+    /**
+     *
+     * @param result
+     * @return
+     */
+    private static String[] RemoveSymmetryPlacement(ArrayList<String> result){
+        ArrayList<String> rt= (ArrayList<String>) result.clone();
+        for (String weak:WeakSymmetry.keySet()){
+
+            for (int i = 0; i <result.size() ; i++) {
+                String temp=result.get(i);
+                String piece= String.valueOf(WeakSymmetry.get(weak).charAt(0));
+                String rotate=String.valueOf(WeakSymmetry.get(weak).charAt(1));
+                String position=temp.substring(temp.indexOf(piece)+1,temp.indexOf(piece)+3);
+                //Find WeakSymmetry
+                if (temp.contains(piece+position+rotate)){
+                    for (int j = 0; j < result.size(); j++) {
+
+                        String temp2=result.get(j);
+                        String piece2= String.valueOf(weak.charAt(0));
+                        String rotate2=String.valueOf(weak.charAt(1));
+                        String position2=temp2.substring(temp2.indexOf(piece)+1,temp2.indexOf(piece)+3);
+                        //Find WeakSymmetry key contained in solution or not
+                        if (temp2.contains(piece2+position2+rotate2)){
+                            for (int k = 0; k <rt.size() ; k++) {
+                                // Remove WeakSymmetry
+                                if (rt.get(k).equals(temp)) {
+                                    rt.remove(k);
+                                    break;
+                                }
                             }
                         }
                     }
                 }
             }
+        }
+        String[] rtn = (String[]) rt.toArray(new String[0]);
 
-            for (String each : stepset) {
-                step.add(each);
-            }
-            stepset.clear();
-            steps.add((Vector) step.clone());
-            step.clear();
-
-        } while (checkStringFinal(steps));
-
-
-        String[] s = (String[]) result.toArray(new String[0]);
-        System.out.println(result.toString());
-        return s;
-
-        // FIXME Task 9: determine all solutions to the game, given a particular starting placement
+        return rtn;
     }
 
     /**
