@@ -1,8 +1,7 @@
 We declare that the work toward our submission of Stage H was distributed among the group members as follows:
+* u6171870 20
+* u6716878 40
+* u6456964 40
 
-* u2345678 30
-* u3456789 50
-* u0123456 30
-
-Signed: Mary Jones (u2345678), Bob Smith (u3456789), and Sue Black (u0123456)
+Signed: Zhi Wang(u6171870);Xiang Li(u6716878);Ning Cai(u6456964)
 
